@@ -1,58 +1,62 @@
-
-
 <div class="container">
    <legend class="w-80 p-0 h-0 ">
-    <p>Ficha de internación 
+    <p>Ficha de investigación de enfermedad celíaca.
     </p>
 </legend>
 <fieldset class="border p-2">
-<legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;">  <?=$datosNinio['ApeNom'].' - '. $datosNinio['edad'] ;?>
+<legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;">  Nombre del caso
    </legend>
 
 <form onkeydown="return event.key != 'Enter';" class="row g-3" action=""   id="interFormulario" method="post" autocomplete="off" >
 
-<input type="hidden"name="NOTIINTERNADOS[Idint]" id="Idint" value=<?=$datosInter['Idint'] ?? ''?> >
-<input type="hidden" name="NOTIINTERNADOS[IdNotifica]"  id="IdNotifica"   value=<?=$Notificacion['NotId'] ?? ''?>>
-<input type="hidden" name="NOTIINTERNADOS[IdNinio]"  id="IdNinio"   value=<?=$datosNinio['IdNinio'];?>>	          
+<input type="hidden" name="ficha[idficha]" id="Idint" value=<?=$datosInter['Idint'] ?? ''?> >
+        
 
-<?php
- if ($_GET['tabla']=='egreso'){ ?> 
-<input type="hidden"name="NOTIINTERNADOS[IntFecha]" id="Idint" value=<?=$datosInter['IntFecha'] ?? ''?> >
-<input type="hidden" name="NOTIINTERNADOS[IntAo]"  id="IdNotifica"   value=<?=$datosInter['IntAo'] ?? ''?>>
-<input type="hidden" name="NOTIINTERNADOS[IntEfec]"  id="IntEfec"   value=<?=$datosInter['IntEfec'];?>>	  
-<input type="hidden" name="NOTIINTERNADOS[IntSala]"  id="IntSala"   value=<?=$datosInter['IntSala'];?>>	
-<!-- <input type="hidden" name="NOTIINTERNADOS[IntObserva]"  id="IntObserva"   value=<?=$datosInter['IntObserva'];?>>	     -->
- <?php } ?>
-
-
-<?php
- if ($_GET['tabla']=='ingreso'){ ?>
 <div class="col-sm-2">	
-			<label class="form-label-sm" for="IntFecha">Fecha Ingreso</label>
-			<input class="form-control form-control-sm" type="date" name="NOTIINTERNADOS[IntFecha]" id="IntFecha" 
-            min="<?= $fechaMinima; ?>" max="<?=date('Y-m-d');?>" required="required" value="<?=$datosInter['IntFecha'] ?? ''?>">
+			<label class="form-label-sm" for="fechanot">Fecha Ingreso</label>
+			<input class="form-control form-control-sm" type="date" name="ficha[fechanot]" id="fechanot" 
+            min="<?= $fechaMinima; ?>" max="<?=date('Y-m-d');?>" required="required" value="<?=$datosInter['fechanot'] ?? ''?>">
 </div>
 
 <div class="col-sm-3">	
-			<label class="form-label-sm" for="Nombre_aop">Efector</label>
-			<input class="form-control form-control-sm" type="text" name="NOTIINTERNADOS[Nombre_aop]" id="Nombre_aop" required="required" value="<?=$datosInter['Nombre_aop'] ?? ''?>">
-			<input type="hidden" name="NOTIINTERNADOS[IntEfec]" id="IntEfec" value="<?= $data['value'] ?? $datosInter['IntEfec'] ?? '' ?>" />
+			<label class="form-label-sm" for="institucion">Efector</label>
+			<input class="form-control form-control-sm" type="text" name="ficha[institucion]" id="institucion" required="required" value="<?=$datosInter['institucion'] ?? ''?>">
+			<!-- <input type="hidden" name="ficha[IntEfec]" id="IntEfec" value="<?= $data['value'] ?? $datosInter['IntEfec'] ?? '' ?>" /> -->
 </div>
-
+<div class="col-sm-3">	
+			<label class="form-label-sm" for="nombre">Nombre</label>
+			<input class="form-control form-control-sm" type="text" name="ficha[nombre]" id="nombre" required="required" value="<?=$datosInter['nombre'] ?? ''?>">
+			</div>
+ <div class="col-sm-3">	
+			<label class="form-label-sm" for="apellido">Apellido</label>
+			<input class="form-control form-control-sm" type="text" name="ficha[apellido]" id="apellido" required="required" value="<?=$datosInter['apellido'] ?? ''?>">
+			</div>           
+            
 
 <div class="col-sm-2">
-  <label class="form-label-sm" for="IntSala">Sala</label>
-  <select name="NOTIINTERNADOS[IntSala]" id="IntSala" class="form-control form-control-sm">
-  	<option hidden selected><?=$datosInter['IntSala'] ?? '...'?></option>
-    	
-	<option value=2>Guardia</option>
-	<option value=3>Terapia intensiva</option>
-	<option value=9>Internación comun</option>
-	<option value=10>CRENI</option>
-    <option value=4>Recuperacion nutricional</option>
+  <label class="form-label-sm" for="sexo">Sexo</label>
+  <select name="ficha[sexo]" id="sexo" class="form-control form-control-sm">
+  	<option hidden selected><?=$datosInter['sexo'] ?? '...'?></option>
+    <option value=2>Femenino</option>
+	<option value=1>Masculino</option>
+	<option value=9>No determinado</option>
 	</select>
  </div>
+<div class="col-sm-2">	
+			<label class="form-label-sm" for="fechanac">Fecha de Nacimiento</label>
+			<input class="form-control form-control-sm" type="date" name="ficha[fechanac]" id="fechanac" 
+            min="<?= $fechaMinima; ?>" max="<?=date('Y-m-d');?>" required="required" value="<?=$datosInter['fechanac'] ?? ''?>">
+</div>
+<div class="col-sm-2">	
+			<label class="form-label-sm" for="fechanac">Edad</label>
+			<input class="form-control form-control-sm" type="number" name="ficha[edad]" id="edad" 
+             value="<?=$datosInter['fechanac'] ?? ''?>">
+</div>
 
+<div class="col-sm-3">	
+			<label class="form-label-sm" for="domicilio">Domicilio</label>
+			<input class="form-control form-control-sm" type="text" name="ficha[domicilio]" id="domicilio" required="required" value="<?=$datosInter['domicilio'] ?? ''?>">
+			</div>    
  
 
 <div class="col-sm-4">
@@ -60,24 +64,24 @@
     <input type="text" id="diagnosticos" class="form-control form-control-sm" placeholder="Ingrese un motivo de ingreso" /><br>
     <input type="button" value="Agregar motivo" id="agregar-diagnostico" class="btn btn-primary" />
     <ul id="lista-diagnosticos"></ul>
-    <input type="hidden" name="NOTIINTERNADOS[diagnosticos][]" id="hidden-diagnosticos" value="" />
+    <input type="hidden" name="ficha[diagnosticos][]" id="hidden-diagnosticos" value="" />
 </div>
 
   <div class="col-sm-4">
   <ul id="lista-diagnosticos"></ul> 
   </div> 
- <?php } else { ?>
+ 
   
  
  <div class="col-sm-2">	
 			<label class="form-label-sm" for="IntFechalta">Fecha Egreso</label>
-			<input class="form-control form-control-sm" type="date" name="NOTIINTERNADOS[IntFechalta]" id="IntFechalta" 
+			<input class="form-control form-control-sm" type="date" name="ficha[IntFechalta]" id="IntFechalta" 
             min="<?= $fechaMinima; ?>" max="<?=date('Y-m-d');?>" required="required" value="<?=$datosInter['IntFechalta'] ?? ''?>">
 </div>
 
 <div class="col-sm-3">
   <label class="form-label-sm" for="IntTipoAlta">Tipo</label>
-  <select name="NOTIINTERNADOS[IntTipoAlta]" id="IntTipoAlta" class="form-control form-control-sm">
+  <select name="ficha[IntTipoAlta]" id="IntTipoAlta" class="form-control form-control-sm">
   	<option hidden selected><?=$datosInter['IntTipoAlta'] ?? '...'?></option>
     	
 	<option value=1>Médica</option>
@@ -93,17 +97,17 @@
     <input type="text" id="diag_egr" class="form-control form-control-sm" placeholder="Ingrese diagnóstico" /><br>
     <input type="button" value="Agregar diagnóstico" id="agregar-diag_egr" class="btn btn-primary" />
     <ul id="lista-diagnosticos"></ul>
-    <input type="hidden" name="NOTIINTERNADOS[diag_egr][]" id="hidden-diag_egr" value="" />
+    <input type="hidden" name="ficha[diag_egr][]" id="hidden-diag_egr" value="" />
 </div>
 
   <div class="col-sm-4">
   <ul id="lista-diag_egr"></ul> 
   </div> 
 
- <?php } ?>
+ 
 <div class="form-group">
 			<label class="form-label-sm" for="IntObserva">Observaciones</label>
-			 <textarea class="form-control" rows="3" id="IntObserva" name="NOTIINTERNADOS[IntObserva]"
+			 <textarea class="form-control" rows="3" id="IntObserva" name="ficha[IntObserva]"
 			 value="<?=$datosInter['IntObserva'] ?? ''?>">
 			</textarea>
          </div>

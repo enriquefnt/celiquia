@@ -1,4 +1,4 @@
-<?php $title="Instructivo" ;?>
+<?php $title="Anuncios" ;?>
 
 <main>
 <section class="d-flex justify-content-center justify-content-lg-between ">

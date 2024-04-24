@@ -2,7 +2,7 @@
 namespace ClassGrl;
 
 class EntryPoint {
-public function __construct(private \ClassPart\SivinWebsite $website) {
+public function __construct(private \ClassPart\CeliaquiaWebsite $website) {
 }
 
 

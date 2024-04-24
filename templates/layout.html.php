@@ -47,10 +47,7 @@ $_SESSION['inicio'] = time(); // actualiza ultimo uso
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
 
-                        <!-- Chart.js y moment.js  -->
-
-   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> -->
-  
+                      
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  
 
@@ -65,7 +62,7 @@ $_SESSION['inicio'] = time(); // actualiza ultimo uso
 
 <header class="p-2 mb-2 bg-primary ">
   <div class="container-fluid">
-<h4 class="text-white">Sistema de Vigilancia Nutricional SIVIN.2</h4>
+<h4 class="text-white">Sistema de Registros de Enfermedad Celíaca</h4>
 
 <?php if (isset($_SESSION['username'])) 
 {echo  "<p> Usuario: <b>" . $_SESSION['nombre'] .' '.$_SESSION['apellido'].' </b>- ' . 
@@ -86,16 +83,14 @@ $_SESSION['establecimiento_nombre']. "</p>";}
           </li> 
          
           <li class="nav-item">
-          <a class="navbar-brand mb-0 " href="/ninios/busca">Carga</a>
+          <a class="navbar-brand mb-0 " href="/ninios/busca">Cargar Ficha</a>
           </li>
 
           <li class="nav-item">
-          <a class="navbar-brand mb-0 " href="/lista/nominal">Consulta</a>
+          <a class="navbar-brand mb-0 " href="/lista/nominal">Consulta Regitros</a>
           </li>
      
-           <!-- <li class="nav-item">
-          <a class="navbar-brand mb-0 " href="/antro/antro">Antro</a>
-          </li>  -->
+          
 
           <?php 
           //var_dump($_SESSION);die;
@@ -137,7 +132,7 @@ $_SESSION['establecimiento_nombre']. "</p>";}
 <footer class="p-1 mb-1 bg-primary text-white ">
 <div class="container-fluid">
 
-<h6 align="center"> MSP - DNyAS - Sistema de Vigilancia Nutricional</h6>
+<h6 align="center"> MSP - Sistema de Notificación de Enfermedad Celíaca</h6>
 
 </div>
 </footer>
