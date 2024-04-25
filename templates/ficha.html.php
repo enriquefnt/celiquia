@@ -95,7 +95,50 @@
   <label class="form-check-label" for="inlineCheckbox2">Endoscopia</label>
 </div>
 </div>
-	</fieldset>
+
+<div class="col-sm-2">
+  <label class="form-label-sm" for="grados">Grados</label>
+  <select name="ficha[grados]" id="grados" class="form-control form-control-sm">
+    <option value='0'>0</option>
+	<option value='1'>1</option>
+	<option value='2'>2</option>
+    <option value='3a'>3 a</option>
+    <option value='3b'>3 b</option>
+    <option value='3c'>3 c</option>
+	</select>
+ </div>
+
+
+<div class="col-sm-2">	
+			<label class="form-label-sm" for="protocolo">Nº Protocolo</label>
+			<input class="form-control form-control-sm" type="text" name="ficha[protocolo]" id="protocolo" required="required" value="<?=$datosInter['protocolo'] ?? ''?>">
+			</div>
+   
+            <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Síntomas y Signos Clínicos
+   </legend>
+   <div class="col-sm-2">	      
+   <label class="form-label-sm" for="fechadiag">Fecha de Consulta</label>
+			<input class="form-control form-control-sm" type="date" name="ficha[fechaconsulta]" id="fechaconsulta" 
+            min="1920-01-01" max="<?=date('Y-m-d');?>" required="required" value="<?=$datosInter['fechaconsulta'] ?? ''?>">
+    </div>    
+    <div class="col-sm-4">
+  <label class="form-label-sm" for="grados">Forma clínica de presentación</label>
+  <select name="ficha[formaclin]" id="grados" class="form-control form-control-sm">
+    <option value='Sintomática digestiva'>Sintomática digestiva</option>
+	<option value='Sintomática extradigestiva'>Sintomática extradigestiva</option>
+	<option value='Asintomática'>Asintomática</option>
+    <option value='Familiar (SCR)'>Familiar (SCR)</option>
+ 	</select>
+ </div>
+ 
+            <div class="form-group">
+			<label class="form-label-sm" for="enfermeasoc">Enfermedades asociadas</label>
+			 <textarea class="form-control" rows="2" id="enfermeasoc" name="ficha[enfermeasoc]"
+			 value="<?=$datosNoti['enfermeasoc'] ?? ''?>">
+			</textarea>
+</div> 
+        </fieldset>
+
 
 <fieldset class="border p-2">   
 <div class="d-flex">  
