@@ -78,17 +78,17 @@ $_SESSION['establecimiento_nombre']. "</p>";}
   <?php if ($loggedIn): ?>
        <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a  class="navbar-brand mb-0 " href="/ninios/home">Inicio</a>
-          </li> 
+          <!-- <li class="nav-item">
+            <a  class="navbar-brand mb-0 " href="/ficha/home">Inicio</a>
+          </li>  -->
          
           <li class="nav-item">
-          <a class="navbar-brand mb-0 " href="/ninios/busca">Cargar Ficha</a>
+          <a class="navbar-brand mb-0 " href="/ficha/ficha">Cargar Ficha</a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
           <a class="navbar-brand mb-0 " href="/lista/nominal">Consulta Regitros</a>
-          </li>
+          </li> -->
      
           
 

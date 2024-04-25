@@ -5,20 +5,23 @@ use \AllowDynamicProperties;
 class CeliaquiaWebsite implements \ClassGrl\Website  {
 
 	private \ClassGrl\DataTables $tablaFichas;
-	//private \ClassGrl\DataTables $tablaUser;
-	
-	//private \ClassGrl\Authentication $Authentication;
+	private \ClassGrl\DataTables $tablaInsti;
+	private \ClassGrl\DataTables $tablaUser;
+	private \ClassGrl\DataTables $tablaLocal;
+	private \ClassGrl\Authentication $Authentication;
 
 	
 	
 public function __construct() {
 
 
-	$pdo = new \PDO('mysql:host=212.1.210.73;dbname=saltaped_sivin2;charset=utf8mb4', 'saltaped_sivin2', 'i1ZYuur=sO1N');
+$pdo = new \PDO('mysql:host=212.1.210.73;dbname=saltaped_celiaquia;charset=utf8mb4', 'saltaped_userceliaquia', '1XS8I8nu5NXl');
 	
-	$this->tablaFichas = new \ClassGrl\DataTables($pdo,'NIÑOS', 'IdNinio');	
-//	$this->tablaUser = new \ClassGrl\DataTables($pdo,'datos_usuarios', 'id_usuario');	
-//	$this->authentication = new \ClassGrl\Authentication($this->tablaUser,'user', 'password'); 
+	$this->tablaFichas = new \ClassGrl\DataTables($pdo,'ficha', 'idficha');	
+	$this->tablaInsti = new \ClassGrl\DataTables($pdo,'datos_institucion', 'codi_esta');	
+	$this->tablaUser = new \ClassGrl\DataTables($pdo,'datos_usuarios', 'id_usuario');	
+	$this->tablaLocal = new \ClassGrl\DataTables($pdo,'datos_localidad', 'gid');	
+	$this->authentication = new \ClassGrl\Authentication($this->tablaUser,'user', 'password'); 
 	
 }
 	public function getLayoutVariables(): array {
@@ -47,35 +50,13 @@ public function getController(string $controllerName): ?object {
 
 		}
 
-	else if ($controllerName === 'ninios') {
+	else if ($controllerName === 'ficha') {
 
-		$controller = new  \ClassPart\Controllers\Ninios($this->tablaNinios,$this->tablaNoti,
-		$this->tablaEtnia,$this->tablaLoc, 
-		$this->tablaResi, $this->authentication);
+		$controller = new  \ClassPart\Controllers\Ficha($this->tablaFichas, $this->tablaInsti, $this->tablaLocal,
+		 $this->authentication);
 
 		}
-	
-		else if ($controllerName === 'noticon') {
-
-			$controller = new  \ClassPart\Controllers\Noticon($this->tablaNinios, $this->tablaNoti, 
-			$this->tablaControl, $this->tablaInter, $this->tablaInsti, $this->tablaMotNoti, $this->pdoZSCORE,
-			$this->tablaResi,$this->tablaEvol,	$this->tablaClin, $this->tablaEtio, 
-			$this->tablaAccion, $this->authentication);
-			}
-
-			else if ($controllerName === 'interna') {
-
-				$controller = new  \ClassPart\Controllers\Inter($this->tablaInter, $this->tablaNinios, 
-				$this->tablaNoti, $this->tablaInsti, $this->tablaMotIng, $this->tablaDiagEgr, 
-				$this->authentication);
-				}
-
-				 else if ($controllerName === 'lista') {
-
-				 	$controller = new  \ClassPart\Controllers\Lista($this->tablaNinios, $this->pdoZSCORE, 
-					$this->tablaZscore,$this->authentication);
-				 	}
-					 
+				 
 	
 
 	else if ($controllerName == 'login') {
