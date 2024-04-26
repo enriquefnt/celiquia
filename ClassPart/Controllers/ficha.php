@@ -81,8 +81,8 @@ class Ficha
     
       $ficha['fechacarga']=new \DateTime();
 
-// var_dump($Internacion);die;
-     $this->tablaInter->save($ficha);
+  var_dump($ficha);die;
+     $this->tablaFichas->save($ficha);
   
 
 /////////////////guarda motivos de ingreso /////////////////////

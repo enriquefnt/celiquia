@@ -24,19 +24,17 @@
 <div class="col-sm-7">	
 			<label class="form-label-sm" for="institucion">Efector</label>
 			<input class="form-control form-control-sm" type="text" name="ficha[institucion]" id="institucion" required="required" value="<?=$datosInter['institucion'] ?? ''?>">
-			<!-- <input type="hidden" name="ficha[IntEfec]" id="IntEfec" value="<?= $data['value'] ?? $datosInter['IntEfec'] ?? '' ?>" /> -->
+			
 </div>
-<!-- </fieldset>
 
-<fieldset class="border p-1"> -->
 <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Paciente
    </legend>
 
-<div class="col-sm-3">	
+<div class="col-sm-2">	
 			<label class="form-label-sm" for="nombre">Nombre</label>
 			<input class="form-control form-control-sm" type="text" name="ficha[nombre]" id="nombre" required="required" value="<?=$datosInter['nombre'] ?? ''?>">
 			</div>
- <div class="col-sm-3">	
+ <div class="col-sm-2">	
 			<label class="form-label-sm" for="apellido">Apellido</label>
 			<input class="form-control form-control-sm" type="text" name="ficha[apellido]" id="apellido" required="required" value="<?=$datosInter['apellido'] ?? ''?>">
 </div>           
@@ -50,6 +48,16 @@
 	<option value=9>No determinado</option>
 	</select>
  </div>
+ 
+ <div class="col-sm-2">	
+			<label class="form-label-sm" for="dni">DNI</label>
+			<div class="input-group">
+			<input class="form-control form-control-sm" type="number" name="Ninio[dni]" id="dni" min="0" max="99999999"  value="<?=$datosNinio['dni'] ?? ''?>">
+			<span class="input-group-text">
+      <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Indique el número de documento sin puntos. En caso de ser idocumentado coloque 0 "></i>
+      </span>
+</div>
+</div>
 
 <div class="col-sm-2">	
 			<label class="form-label-sm" for="fechanac">Fecha de Nacimiento</label>
@@ -68,8 +76,8 @@
 			</div>    
  
    <div class="col-sm-4">
-  <label class="form-label-sm" for="ResiLocal">Localidad</label>
-  <input type="text" name="ficha[ResiLocal]" id="ResiLocal" class="form-control form-control-sm" autocomplete="off"  value="<?=$datosDomi['ResiLocal'] ?? ''?>" >
+  <label class="form-label-sm" for="localidad">Localidad</label>
+  <input type="text" name="ficha[localidad]" id="localidad" class="form-control form-control-sm" autocomplete="off"  value="<?=$datosDomi['localidad'] ?? ''?>" >
    
   <input type="hidden" name="ficha[IdResi]" value="<?=$datosDomi['IdResi'] ?? ''?>">
    <input type="hidden" name="ficha[Gid]" id="Gid" value="<?= $data['value'] ?? $datosDomi['gid'] ?? '' ?>" />

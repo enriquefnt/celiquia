@@ -104,7 +104,7 @@ $_SESSION['establecimiento_nombre']. "</p>";}
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="navbar-brand mb-0" href="/user/user">Cargar Usuario</a></li>
               <li><a class="navbar-brand mb-0" href="/user/listar">Ver/Editar</a></li>
-             </ul>
+          </ul>
           </li>
             <?php } ?>
           <li> 
