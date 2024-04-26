@@ -6,7 +6,7 @@
 <fieldset class="border p-2">
 <form onkeydown="return event.key != 'Enter';" class="row g-3" action="" id="interFormulario" method="post" autocomplete="off" >
 
-<input type="hidden" name="ficha[idficha]" id="Idint" value=<?=$datosInter['Idint'] ?? ''?> >
+<input type="hidden" name="ficha[idficha]" id="idficha" value=<?=$datosInter['idficha'] ?? ''?> >
 
 <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;">  Declarante
    </legend>    
@@ -171,6 +171,14 @@
 
 <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Estudio Grupo Familiar
    </legend>
+   <div class="col-sm-6">
+   <input type="hidden" name="idCaso" value="1"> <!-- Aquí se debe cambiar el valor del ID del formulario principal -->
+    <!-- <h3>Familiares del Caso</h3> -->
+    <div id="familiares-container">
+        <!-- Aquí se agregarán dinámicamente los campos de los familiares -->
+    </div>
+    <button type="button" class="btn btn-primary" onclick="agregarFamiliar()">Agregar Familiar</button>
+</div>
 
    <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Medidas a observar
    </legend>
@@ -284,3 +292,38 @@ var auto_complete = new Autocom(document.getElementById('ResiLocal'), {
 	//document.getElementById('idNinio').value = selectedItem.value; 
   }
 });
+</script>
+
+<script>
+function agregarFamiliar() {
+    var container = document.getElementById("familiares-container");
+    var div = document.createElement("div");
+    div.classList.add("row");
+    div.innerHTML = `
+        <div class="col-sm-4">
+            <label class="form-label-sm" for="familiar_nombre">Nombre:</label>
+            <input type="text" class="form-control form-control-sm" name="datos_familia[familiar_nombre]" required>
+        </div>
+        <div class="col-sm-4">
+            <label class="form-label-sm" for="familiar_apellido">Apellido:</label>
+            <input type="text" class="form-control form-control-sm" name="datos_familia[familiar_apellido]" required>
+        </div>
+        <div class="col-sm-4">
+            <label class="form-label-sm" for="familiar_parentezco">Parentesco:</label>
+            <input type="text" class="form-control form-control-sm" name="datos_familia[familiar_parentezco]" required>
+        </div>
+        
+    `;
+    container.appendChild(div);
+
+    var filas = container.getElementsByClassName('row');
+    if (filas.length > 1) {
+        var ultimaFila = filas[filas.length - 1];
+        var labels = ultimaFila.querySelectorAll('label');
+        labels.forEach(function(label) {
+            label.style.display = 'none';
+        });
+    }
+}
+</script>
+
