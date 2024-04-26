@@ -10,13 +10,18 @@
 
 <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;">  Declarante
    </legend>    
-<div class="col-sm-3">	
-			<label class="form-label-sm" for="fechanot">Fecha </label>
-			<input class="form-control form-control-sm" type="date" name="ficha[fechanot]" id="fechanot" 
-            min="2024-01-01" max="<?=date('Y-m-d');?>" required="required" value="<?=date('Y-m-d');?>">
+   <div class="col-sm-2">	
+    <label class="form-label-sm" for="fechanot">Fecha </label>
+    <input class="form-control form-control-sm" type="date" name="ficha[fechanot]" id="fechanot" 
+    min="2024-01-01" max="<?=date('Y-m-d');?>" required="required" value="<?=date('Y-m-d');?>">
 </div>
 
-<div class="col-sm-9">	
+<div class="col-sm-3">
+    <label for="semana" class="form-label-sm">Semana Epidemiológica:</label>
+    <span id="semana" class="form-control form-control-sm"></span>
+</div>
+
+<div class="col-sm-7">	
 			<label class="form-label-sm" for="institucion">Efector</label>
 			<input class="form-control form-control-sm" type="text" name="ficha[institucion]" id="institucion" required="required" value="<?=$datosInter['institucion'] ?? ''?>">
 			<!-- <input type="hidden" name="ficha[IntEfec]" id="IntEfec" value="<?= $data['value'] ?? $datosInter['IntEfec'] ?? '' ?>" /> -->
@@ -137,9 +142,48 @@
 			 value="<?=$datosNoti['enfermeasoc'] ?? ''?>">
 			</textarea>
 </div> 
-        </fieldset>
+               <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Laboratorio
+   </legend>
+
+   <div class="col-sm-3">	
+			<label class="form-label-sm" for="fechaestrac">Fecha de extracción</label>
+			<input class="form-control form-control-sm" type="date" name="ficha[fechaestrac]" id="fechaestrac" 
+            min="1920-01-01" max="<?=date('Y-m-d');?>" required="required" value="<?=$datosInter['fechaestrac'] ?? ''?>">
+    </div> 
+    <div class="col-sm-3">
+    <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="iga" name="ficha[iga]" value="1">
+    <label class="form-check-label" for="iga">IgA sérica total</label>
+    </div>
+   </div>  
+    <div class="col-sm-3">
+    <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="atgiga" name="ficha[atgiga]" value="1">
+    <label class="form-check-label" for="atgiga">tTG-IgA</label>
+    </div>
+   </div>  
+   <div class="col-sm-3">
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="atgigg" name="ficha[atgigg]" value="1">
+  <label class="form-check-label" for="atgigg">tTG-IgG</label>
+</div>
+</div>  
+
+<legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Estudio Grupo Familiar
+   </legend>
+
+   <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Medidas a observar
+   </legend>
+
+   <div class="form-group">
+			<label class="form-label-sm" for="observaciones">Medidas a Observar</label>
+			 <textarea class="form-control" rows="2" id="observaciones" name="ficha[observaciones]"
+			 value="<?=$datosNoti['observaciones'] ?? ''?>">
+			</textarea>
+</div> 
 
 
+   </fieldset>
 <fieldset class="border p-2">   
 <div class="d-flex">  
         <div class="col-sm-3">		
@@ -203,6 +247,31 @@ var auto_complete = new Autocom(document.getElementById('Nombre_aop'), options);
         }
     </script>
    
+   <script>
+function calcularSemanaEpidemiologica() {
+    // Obtener la fecha ingresada
+    var fechaInput = document.getElementById("fechanot").value;
+    var fecha = new Date(fechaInput);
+    
+    // Calcular la semana epidemiológica
+    var firstDayOfYear = new Date(fecha.getFullYear(), 0, 1);
+    var pastDaysOfYear = (fecha - firstDayOfYear) / 86400000;
+    var week = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+
+    return week;
+}
+
+document.getElementById("fechanot").addEventListener("change", function() {
+    var semana = calcularSemanaEpidemiologica();
+    document.getElementById("semana").textContent = semana;
+});
+
+// Calcular la semana epidemiológica al cargar la página
+window.addEventListener('load', function() {
+    var semana = calcularSemanaEpidemiologica();
+    document.getElementById("semana").textContent = semana;
+});
+</script>
    
    <script>
 var auto_complete = new Autocom(document.getElementById('ResiLocal'), {
