@@ -111,7 +111,7 @@ private function insert($fields)
 	$query = rtrim($query, ',');
 	$query .= ')';
 	$fields = $this->processDates($fields);
-	//var_dump($fields);
+//	var_dump($fields);
 	$this->query($query, $fields);
 	//var_dump($query);var_dump($fields);
 	}

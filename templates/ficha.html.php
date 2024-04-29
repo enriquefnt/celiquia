@@ -82,8 +82,8 @@
   <label class="form-label-sm" for="localidad">Localidad</label>
   <input type="text" name="ficha[localidad]" id="localidad" class="form-control form-control-sm" autocomplete="off"  value="<?=$datosDomi['localidad'] ?? ''?>" >
    
-  <input type="hidden" name="ficha[IdResi]" value="<?=$datosDomi['IdResi'] ?? ''?>">
-   <input type="hidden" name="ficha[Gid]" id="Gid" value="<?= $data['value'] ?? $datosDomi['gid'] ?? '' ?>" />
+  <!-- <input type="hidden" name="ficha[IdResi]" value="<?=$datosDomi['IdResi'] ?? ''?>"> -->
+   <input type="hidden" name="ficha[Gid]" id="gid" value="<?= $data['value'] ?? $datosDomi['gid'] ?? '' ?>" />
    
 </div>
 
@@ -281,6 +281,7 @@ var auto_complete = new Autocom(document.getElementById('Nombre_aop'), options);
             var fechaNacimiento = document.getElementById('fechanac').value;
             var fechaDiagno = document.getElementById('fechadiag').value;
 
+
             // Convertir fechas a objetos Date
             var nacimiento = new Date(fechaNacimiento);
             var control = new Date(fechaDiagno);
@@ -342,7 +343,7 @@ var auto_complete = new Autocom(document.getElementById('localidad'), {
 	highlightTyped: true,
 	highlightClass: 'fw-bold text-primary',
 	onSelectItem: function(selectedItem) {
-		document.getElementById('Gid').value = selectedItem.value; // Asignar el valor del item seleccionado al input hidden
+		document.getElementById('gid').value = selectedItem.value; // Asignar el valor del item seleccionado al input hidden
 	//document.getElementById('idNinio').value = selectedItem.value; 
   }
 });

@@ -90,95 +90,19 @@ class Ficha
       
     
       $ficha['fechacarga']=new \DateTime();
+      $ficha['idUsuario']=$usuario['id_usuario'];
+      $ficha['edad']=$this->calcularEdad($ficha['fechanac'],$ficha['fechanot']);
+     
 
-  var_dump($ficha);die;
+ // var_dump($ficha);die;
      $this->tablaFichas->save($ficha);
   
-
-/////////////////guarda motivos de ingreso /////////////////////
-
-   
-if (isset($_POST['NOTIINTERNADOS']['diagnosticos'])){
-  $motivosInter = $_POST['NOTIINTERNADOS']['diagnosticos'];
-  $motivosInterArray = array_map(function($item) {
-    return explode(',', $item);
-  }, $motivosInter);
-  foreach ($motivosInterArray as $motivos) {
-    foreach ($motivos as $motivo) {
-        $motivoInternacion = [
-            'MI_Id' => '',
-            'MI_IntId' => $this->tablaInter->ultimoReg()['Idint'],
-            'MI_Motivo' => trim($motivo)
-        ];
-  
-        $this->tablaMotIng->save($motivoInternacion);
-    }
-   }
-  }
-
-
-
-///////////////////guarda diagnosticos de alta ///////////////////
-// if (isset($_POST['NOTIINTERNADOS']['diag_egr'])){
-//   $diagEgreso = $_POST['NOTIINTERNADOS']['diag_egr'];
-//   $diagEgresoArray = array_map(function($item) {
-//     return explode(',', $item);
-//   }, $diagEgreso);
-//   foreach ($diagEgresoArray as $diags) {
-//     foreach ($diags as $diag) {
-//         $diagEgresos = [
-//             'MA_Id' => '',
-//             'MA_IntId' => $this->tablaInter->ultimoReg()['Idint'],
-//             'MA_Motivo' => trim($diag)
-//         ];
-  
-//         $this->tablaDiagEgr->save($diagEgresos);
-//     }
-//    }
-//   }
-// ////////////////////////////////////////////////////////////////
-
-
-//     $datosInter=$this->tablaInter->findLast('IdNotifica',  $Internacion['IdNotifica']);
-
-//     $datosInter['Nombre_aop']=$this->tablaInsti->findById($NOTIINTERNADOS['IntEfec'])['Nombre_aop'] ?? '';
-    
-//      switch ($datosInter['IntSala']) {
-//         case 2:
-//           $datosInter['Sala'] ='Guardia';
-//           break;
-//         case 3:
-//           $datosInter['Sala'] ='Terapia intensiva';
-//           break;
-//         case 9:
-//           $datosInter['Sala'] ='Internación común';
-//           break;
-//           case 10:
-//             $datosInter['Sala'] ='CRENI';
-//           break;
-//           case 10:
-//             $datosInter['Sala'] ='Recuperación Nutricional';
-//           break;
-//         default:
-//         $datosInter['Sala'] ='Otra';
-//       }
-     
-//       if(isset($datosInter['IntFechalta'])){
-//         $datosInter['diasInter']=$this->calcularDias($datosInter['IntFecha'], $datosInter['IntFechalta']) ;}
-
-//    //  var_dump($datosInter);
-//  $template = ($datosInter['IntAlta'] == 'NO') ? 'ingreSucess.html.php' : 'altaSucess.html.php';
-//       $title='Internación';
-     
-//                   return ['template' => $template,
-//                   'title' => $title ,
-//               'variables' => [
-//               'datosNinio'=> $datosNinio?? [],
-//             'datosInter' => $datosInter  ?? []
-//                               ]
-
-//              ]; 
-     
+     return ['template' => 'fichasucess.html.php',
+     'title' => 'Cargado' ,
+     'variables' => [
+         'ficha' => $ficha ?? ' '
+     ]
+     ];
 
 }    
      
