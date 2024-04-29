@@ -91,8 +91,8 @@ endif;
 		    </div>
         </div>
    <div>
-            <input type="hidden" name="Usuario[id_establecimiento]" id="id_establecimiento"  value="<?=$data['value'] ??$datosUser['id_establecimiento'] ?? ''?>" />
-            <!-- <input type="hidden" name="Noticon[establecimiento_id]" id="establecimiento_id" value="<?= $data['value'] ?? $datosNoti['establecimiento_id'] ?? '' ?>" /> -->
+            <input type="hidden" name="Usuario[codi_esta]" id="codi_esta"  value="<?=$data['value'] ?? $datosUser['codi_esta'] ?? ''?>" />
+            
         </div>     
 
 
@@ -167,7 +167,7 @@ var options = {
  highlightTyped: true,
  highlightClass: 'fw-bold text-primary',
  onSelectItem: function(selectedItem) {
-    document.getElementById('id_establecimiento').value = parseInt(selectedItem.value); // Asignar el valor del item seleccionado al input hidden
+    document.getElementById('codi_esta').value = parseInt(selectedItem.value); // Asignar el valor del item seleccionado al input hidden
  }
 };
 

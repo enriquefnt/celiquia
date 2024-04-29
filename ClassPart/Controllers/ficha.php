@@ -32,11 +32,19 @@ class Ficha
         foreach($instituciones as $institucion)
         {
             $data_insti[] = array(
-                'label'     =>  $institucion['establecimiento_nombre'],
+                'label'     =>  $institucion['Nombre_aop'],
                 'value'     =>  $institucion['codi_esta']
             );
         }
 
+        $localidades = $this->tablaLocal->findAll();
+        foreach($localidades as $localidad)
+        {
+            $dataLocalidad[] = array(
+                'label'     => $localidad['localidad'],
+                'value'     => $localidad['gid']
+            );
+        }
        
 
  
@@ -51,6 +59,7 @@ class Ficha
                              'title' => $title ,
                          'variables' => [
                        'data_insti'  =>   $data_insti?? [],
+                       'dataLocalidad'  =>   $dataLocalidad?? [],
                        'datosFicha'=> $datosFicha?? []
                                    ]
     
@@ -63,7 +72,8 @@ class Ficha
                         return ['template' => 'ficha.html.php',
                                 'title' => $title ,
                                 'variables' => [
-                                'data_insti'  =>   $data_insti?? []
+                                'data_insti'  =>   $data_insti?? [],
+                                'dataLocalidad'  =>   $dataLocalidad?? []
                                  ]
                         ];
 

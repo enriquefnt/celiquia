@@ -46,7 +46,7 @@ public function getController(string $controllerName): ?object {
 
     if ($controllerName === 'user') {
 
-		$controller = new \ClassPart\Controllers\Usuarios($this->tablaUser,$this->tablaInsti,$this->tablaUserSivin);
+		$controller = new \ClassPart\Controllers\Usuarios( $this->tablaUser,$this->tablaInsti );
 
 		}
 

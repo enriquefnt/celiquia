@@ -27,7 +27,7 @@ public function user($id=null){
 	{
 	    $data_insti[] = array(
 	        'label'     =>  $institucion['Nombre_aop'],
-	        'value'     =>  $institucion['establecimiento_id']
+	        'value'     =>  $institucion['codi_esta']
 	    );
 	}
 
@@ -63,7 +63,7 @@ $instituciones = $this->tablaInsti->findAll();
 	{
 	    $data_insti[] = array(
 			'label'     =>  $institucion['Nombre_aop'],
-	        'value'     =>  $institucion['establecimiento_id']
+	        'value'     =>  $institucion['codi_esta']
 	    );
 	}
 
@@ -78,8 +78,8 @@ $instituciones = $this->tablaInsti->findAll();
 	if (empty($user['password'])) {
 	$Usuario['password'] = password_hash($Usuario['password'], PASSWORD_DEFAULT);
 	}
-	
-	$Usuario['usuAo'] = $this->tablaInsti->findById($Usuario['id_establecimiento'])['AOP'] ?? '';
+//	var_dump($Usuario);  die;
+	$Usuario['usuAo'] = $this->tablaInsti->findById($Usuario['codi_esta'])['AOP'] ?? '';
 	$Usuario['fechaCarga'] = new \DateTime();
 
 // var_dump($Usuario);  die;
