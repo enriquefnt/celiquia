@@ -142,8 +142,8 @@
             min="1920-01-01" max="<?=date('Y-m-d');?>" required="required" value="<?=$datosInter['fechaconsulta'] ?? ''?>">
     </div>    
     <div class="col-sm-4">
-  <label class="form-label-sm" for="grados">Forma clínica de presentación</label>
-  <select name="ficha[formaclin]" id="grados" class="form-control form-control-sm">
+  <label class="form-label-sm" for="formaclin">Forma clínica de presentación</label>
+  <select name="ficha[formaclin]" id="formaclin" class="form-control form-control-sm">
     <option value='Sintomática digestiva'>Sintomática digestiva</option>
 	<option value='Sintomática extradigestiva'>Sintomática extradigestiva</option>
 	<option value='Asintomática'>Asintomática</option>
@@ -357,16 +357,23 @@ function agregarFamiliar() {
     div.innerHTML = `
         <div class="col-sm-4">
             <label class="form-label-sm" for="familiar_nombre">Nombre:</label>
-            <input type="text" class="form-control form-control-sm" name="datos_familia[familiar_nombre]" required>
+            <input type="text" class="form-control form-control-sm" name="ficha[familiar_nombre][]" >
         </div>
         <div class="col-sm-4">
             <label class="form-label-sm" for="familiar_apellido">Apellido:</label>
-            <input type="text" class="form-control form-control-sm" name="datos_familia[familiar_apellido]" required>
+            <input type="text" class="form-control form-control-sm" name="ficha[familiar_apellido][]" >
         </div>
         <div class="col-sm-4">
             <label class="form-label-sm" for="familiar_parentezco">Parentesco:</label>
-            <input type="text" class="form-control form-control-sm" name="datos_familia[familiar_parentezco]" required>
+            <select name="ficha[familiar_parentezco][]" id="familiar_parentezco" class="form-control form-control-sm">
+            <option value='Hermano/a'>Hermano/a</option>
+            <option value='Padre/Madre'>Padre/Madre</option>
+            <option value='Hijo/a'>Hijo/a</option>
+            <option value='Tio/a'>Tio/a</option>
+            <option value='Abuelo/a'>Abuelo/a</option>
+            </select>
         </div>
+      
         
     `;
     container.appendChild(div);

@@ -78,13 +78,9 @@ public function getController(string $controllerName): ?object {
 public function checkLogin(string $uri): ?string {
 
         $restrictedPages = [
-			'ninios/ninios', 
-			'user/user', 
-			'noticon/noticon',
-			 'interna/inter',
-			 'antro/antro',
-			  'lista/nominal'
-			];
+			'ficha/ficha', 
+			'user/user' 
+						];
         
        foreach ($restrictedPages as $page) {
 

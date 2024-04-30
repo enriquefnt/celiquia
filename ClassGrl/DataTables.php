@@ -17,7 +17,10 @@ private function query($sql, $parameters = [])
 {
 	
 	$query = $this->pdo->prepare($sql);
+
+	//var_dump($parameters); 
 	$query->execute($parameters);
+	//var_dump($query);die;
 	return $query;
 }
 
@@ -111,9 +114,9 @@ private function insert($fields)
 	$query = rtrim($query, ',');
 	$query .= ')';
 	$fields = $this->processDates($fields);
-//	var_dump($fields);
+	//var_dump($query);//var_dump($fields);
 	$this->query($query, $fields);
-	//var_dump($query);var_dump($fields);
+	
 	}
 
 private function update($fields)

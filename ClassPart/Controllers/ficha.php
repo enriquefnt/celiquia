@@ -86,15 +86,37 @@ class Ficha
        $usuario = $this->authentication->getUser();
        $ficha = $_POST['ficha'];
    
-        
-      
-    
-      $ficha['fechacarga']=new \DateTime();
-      $ficha['idUsuario']=$usuario['id_usuario'];
-      $ficha['edad']=$this->calcularEdad($ficha['fechanac'],$ficha['fechanot']);
-     
+       $ficha['nombre']=ucfirst(ltrim($ficha['nombre']));
+       $ficha['apellido']=ucfirst(ltrim($ficha['apellido']));
+       $ficha['enfermeasoc']=ltrim($ficha['enfermeasoc']);
+       $ficha['observaciones']=ltrim($ficha['observaciones']);
+       $ficha['fechacarga']=new \DateTime();
+       $ficha['idUsuario']=$usuario['id_usuario'];
 
- // var_dump($ficha);die;
+       $ficha['edad']=$this->calcularEdad($ficha['fechanac'],$ficha['fechanot']);
+       $ficha['profesional']=$usuario['nombre'].' '.$usuario['apellido'];
+      
+      
+       ////// crea el json con los array recibidos ////
+if (isset($ficha['familiar_nombre'])){
+       $familiar_nombre = $ficha['familiar_nombre'];
+       $familiar_apellido = $ficha['familiar_apellido'];
+       $familiar_parentezco = $ficha['familiar_parentezco'];
+       $datos_familiares = array();
+       for ($i = 0; $i < count($familiar_nombre); $i++) {
+        $datos_familiares[] = array(
+            'nombre' => $familiar_nombre[$i],
+            'apellido' => $familiar_apellido[$i],
+            'parentezco' => $familiar_parentezco[$i]
+        );
+            }
+        }
+       $ficha['grupofam']=json_encode($datos_familiares);
+
+       
+    unset($ficha['familiar_parentezco'], $ficha['familiar_nombre'], $ficha['familiar_apellido']);
+
+ //var_dump($ficha);die;
      $this->tablaFichas->save($ficha);
   
      return ['template' => 'fichasucess.html.php',
@@ -105,8 +127,13 @@ class Ficha
      ];
 
 }    
-     
-    
+public function home()
+{
+    $title = 'Instructivo';
+
+    return ['template' => 'home.html.php', 'title' => $title, 'variables' => []];
+}
+
     
     public function calcularEdad($fechaNacimiento, $fechaActual) {
         $nacimiento = new \DateTime($fechaNacimiento);

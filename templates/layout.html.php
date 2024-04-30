@@ -17,7 +17,7 @@ $_SESSION['inicio'] = time(); // actualiza ultimo uso
 
   <link rel="stylesheet" type="text/css" href="/styles.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<!-- <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script> -->
+
 
 
 <script src="https://kit.fontawesome.com/f6cbba0704.js" crossorigin="anonymous"></script>
@@ -78,9 +78,9 @@ $_SESSION['establecimiento_nombre']. "</p>";}
   <?php if ($loggedIn): ?>
        <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a  class="navbar-brand mb-0 " href="/ficha/home">Inicio</a>
-          </li>  -->
+          </li> 
          
           <li class="nav-item">
           <a class="navbar-brand mb-0 " href="/ficha/ficha">Cargar Ficha</a>
