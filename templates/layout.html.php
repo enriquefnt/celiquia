@@ -86,9 +86,9 @@ $_SESSION['establecimiento_nombre']. "</p>";}
           <a class="navbar-brand mb-0 " href="/ficha/ficha">Cargar Ficha</a>
           </li>
 
-          <!-- <li class="nav-item">
-          <a class="navbar-brand mb-0 " href="/lista/nominal">Consulta Regitros</a>
-          </li> -->
+         <li class="nav-item">
+          <a class="navbar-brand mb-0 " href="/ficha/listar">Listar registros</a>
+          </li> 
      
           
 

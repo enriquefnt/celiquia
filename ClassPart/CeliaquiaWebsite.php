@@ -22,6 +22,7 @@ $pdo = new \PDO('mysql:host=212.1.210.73;dbname=saltaped_celiaquia;charset=utf8m
 	$this->tablaUser = new \ClassGrl\DataTables($pdo,'datos_usuarios', 'id_usuario');	
 	$this->tablaLocal = new \ClassGrl\DataTables($pdo,'datos_localidad', 'gid');	
 	$this->authentication = new \ClassGrl\Authentication($this->tablaUser,'user', 'password'); 
+	$this->Imprime = new \ClassPart\Controllers\Imprime();
 	
 }
 	public function getLayoutVariables(): array {
@@ -53,7 +54,8 @@ public function getController(string $controllerName): ?object {
 	else if ($controllerName === 'ficha') {
 
 		$controller = new  \ClassPart\Controllers\Ficha($this->tablaFichas, $this->tablaInsti, $this->tablaLocal,
-		 $this->authentication);
+
+		 $this->tablaUser, $this->authentication, $this->Imprime);
 
 		}
 				 

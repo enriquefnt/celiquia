@@ -10,16 +10,21 @@ class Ficha
     private $tablaFichas;
     private $tablaInsti;
     private $tablaLocal;
+    private $tablaUser;
     private $authentication;
 
     public function __construct(\ClassGrl\DataTables $tablaFichas,
                                 \ClassGrl\DataTables $tablaInsti,
                                 \ClassGrl\DataTables $tablaLocal,
-                               	\ClassGrl\Authentication $authentication)
+                                \ClassGrl\DataTables $tablaUser,
+                               	\ClassGrl\Authentication $authentication,
+                                \ClassPart\Controllers\Imprime $Imprime)
     {
         $this->tablaFichas = $tablaFichas;
         $this->tablaInsti = $tablaInsti;
         $this->tablaLocal = $tablaLocal;
+        $this->tablaUser = $tablaUser;
+        $this->Imprime = $Imprime;
         $this->authentication = $authentication;
     }
 
@@ -127,6 +132,79 @@ if (isset($ficha['familiar_nombre'])){
      ];
 
 }    
+
+public function listar() {
+    $result = $this->tablaFichas->findAll();
+
+    $caso = [];
+    foreach ($result as $caso) {
+        
+        $casos[] = [
+            'idficha' => $caso['idficha'],
+            'fechanot' => date('d/m/Y', strtotime($caso['fechanot'])),
+            'nombres' => $caso['nombre']. ' '.$caso['apellido'],
+            'edad' => $caso['edad'],
+            'institucion' => $caso['institucion']?? '',
+            'localidad' => $caso['localidad'] ?? ''
+                                ];
+            }
+  //var_dump($casos);die;
+    
+            $title = 'Lista Casos';
+
+   
+
+    return ['template' => 'listacasos.html.php',
+            'title' => $title,
+            'variables' => [
+            'casos' => $casos,
+         ]
+        ];
+
+
+
+
+}
+
+public function print() {
+
+	
+	$datosFicha = $this->tablaFichas->findById($_GET['id']);
+	$fecha= date('d/m/Y',strtotime($datosFicha['fechanot']));
+	//var_dump($datosFicha);die;
+	$informa = $this->userTable->findById(329);
+	
+	$usuario = $this->authentication->getUser();
+	
+	
+	// $beneficiario = $beneficiariox[1] .' '.$beneficiariox[2] ;
+	// $responsable =$beneficiariox['NombresResp'] .' '.$beneficiariox['ApellidosResp'] ;
+	// $edades = $this->calcularEdad($datosBenef['FechaNac'], $datosFicha['fecha_ped']);
+	$quienImprime = $usuario['nombre'] .' '.$usuario['apellido'] ;
+
+	$pdf = new \ClassPart\Controllers\Imprime('P','mm','A4');
+	// $pdf->AddFont('Medico','','medico.php');
+	$pdf->AliasNbPages();
+	$pdf->AddPage();
+	$pdf->Ln(6);
+	$pdf->SetFont('Arial','',12);
+    $pdf->Cell(0,7, 'Fecha: ' . $fecha  ,0,0); 
+	$pdf->Ln();
+	$pdf->Cell(0,7,iconv('UTF-8', 'Windows-1252','Institución: ').  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion'])  ,0,0); 
+	$pdf->Ln();
+	$pdf->Cell(0,7,'Profesional: '.iconv('UTF-8', 'Windows-1252', $informa['profesional'] )   ,0,1); 
+    
+	
+	//$pdf->SetFont('Medico','',14);
+	$pdf->SetFont('Arial','I',8);
+	$pdf->SetY(-28);
+	
+	
+}
+
+
+
+
 public function home()
 {
     $title = 'Instructivo';
