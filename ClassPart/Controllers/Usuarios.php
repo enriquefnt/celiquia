@@ -173,37 +173,7 @@ return ['template' => 'registersuccess.html.php',
 }
 
 
-// public function import() {
 
-// 	$usuariosSivinViejo=$this->userTableSivin->findAll();
-	
-// 	$exportUsuario=[];
-
-// 	foreach ($usuariosSivinViejo as $usuarioSivinViejo){
-// 		$exportUsuario['id_usuario']='';
-// 		$exportUsuario['nombre']=$usuarioSivinViejo['Nom'];
-// 		$exportUsuario['apellido']=$usuarioSivinViejo['Ape']; 	
-// 		$exportUsuario['profesion']=$usuarioSivinViejo['Profe'];
-// 		$exportUsuario['tipo']=$usuarioSivinViejo['Tipo'];
-// 		$exportUsuario['establecimiento_nombre']=$usuarioSivinViejo['Est_Nom'];
-// 		$exportUsuario['celular']='###-#######';
-// 		$exportUsuario['email']=$usuarioSivinViejo['Mail'];
-// 		$exportUsuario['user']=$usuarioSivinViejo['NomUsuario'];
-// 		$exportUsuario['password']=password_hash($usuarioSivinViejo['Usu_Contra'], PASSWORD_DEFAULT);
-// 		$exportUsuario['id_establecimiento']=$usuarioSivinViejo['IdEfector'];
-// 		$exportUsuario['usuAo']=$usuarioSivinViejo['Ao_Num'];
-// 	   $exportUsuario['fechaCarga']='2000-01-01';
-// // var_dump($exportUsuario);
-// $this->userTable->save($exportUsuario);
-
-
-// 	};
-// //exit;
-
-// header('Location: /user/listar');
-	
-
-// 	}
 
 }
 
