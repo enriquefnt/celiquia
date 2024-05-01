@@ -196,7 +196,7 @@ public function print() {
 	//$pdf->Ln(5);
 	$pdf->Cell(80,10,iconv('UTF-8', 'Windows-1252','Institución: ').  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion'])  ,0,0); 
 	$pdf->Ln(6);
-	$pdf->Cell(0,7,'Profesional: '.iconv('UTF-8', 'Windows-1252', $datosFicha['profesional'] )   ,0,1); 
+	$pdf->Cell(0,7,'Profesional: '. iconv('UTF-8', 'Windows-1252', $datosFicha['profesional'] )   ,0,1); 
     $pdf->Ln();
 //	$pdf->SetFillColor(220, 220, 220);
     $pdf->Rect(10, 67, 190, 20, 'D');
