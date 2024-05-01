@@ -172,6 +172,7 @@ public function print() {
 	$datosFicha = $this->tablaFichas->findById($_GET['idficha']);
    
 	$fecha= date('d/m/Y',strtotime($datosFicha['fechanot']));
+    $nombre= $datosFicha['nombre']. '  '. $datosFicha['apellido'];
 	
 	$informa = $this->tablaUser->findById($datosFicha['idUsuario']);
 	//var_dump($informa);die;
@@ -184,20 +185,35 @@ public function print() {
 	// $pdf->AddFont('Medico','','medico.php');
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
+	$pdf->Ln(10);
+    $pdf->SetFillColor(220, 220, 220);
+    $pdf->Rect(10, 40, 190, 20, 'D');
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(0,7, 'Informante', 0, 1, 'L', true);
+	$pdf->SetFont('Arial','',10);
+    $pdf->Cell(35,10, 'Fecha: ' . $fecha  ,0,0); 
+	//$pdf->Ln(5);
+	$pdf->Cell(80,10,iconv('UTF-8', 'Windows-1252','Institución: ').  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion'])  ,0,0); 
 	$pdf->Ln(6);
-	$pdf->SetFont('Arial','',12);
-    $pdf->Cell(0,7, 'Fecha: ' . $fecha  ,0,0); 
-	$pdf->Ln();
-	$pdf->Cell(0,7,iconv('UTF-8', 'Windows-1252','Institución: ').  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion'])  ,0,0); 
-	$pdf->Ln();
 	$pdf->Cell(0,7,'Profesional: '.iconv('UTF-8', 'Windows-1252', $datosFicha['profesional'] )   ,0,1); 
-    
-	
+    $pdf->Ln();
+//	$pdf->SetFillColor(220, 220, 220);
+    $pdf->Rect(10, 67, 190, 20, 'D');
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(0,7, 'Persona', 0, 1, 'L', true);
+	$pdf->SetFont('Arial','',10);
+    $pdf->Cell(100,10,'Nombre: '.  iconv('UTF-8', 'Windows-1252', $nombre)  ,0,0); 
+    $pdf->Cell(80,10, 'Edad: ' . $datosFicha['edad'] ,0,0); 
+    $pdf->Ln(5);
+    $pdf->Cell(100,10,'Domicilio: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['domicilio'])  ,0,0); 
+    $pdf->Cell(60,10,'Localidad: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['localidad'])  ,0,0); 
+	//$pdf->Ln(5);
 	//$pdf->SetFont('Medico','',14);
 	$pdf->SetFont('Arial','I',8);
 	$pdf->SetY(-28);
-	
-	$pdf->Output($datosFicha[2],'I');
+	$pdf->Output($datosFicha[1],'I');
 }
 
 

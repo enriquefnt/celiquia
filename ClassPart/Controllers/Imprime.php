@@ -12,11 +12,11 @@ function Header()
     // Logo
    $this->Image('../imagenes/logo.png',10,6,30);
     // Arial bold 15
-    $this->SetFont('Arial','B',15);
+    $this->SetFont('Arial','B',16);
     // Move to the right
-    $this->Cell(70);
+    $this->Cell(45);
     // Title
-    $this->Cell(80,12,iconv('UTF-8', 'Windows-1252', 'Ficha de investigación de Enfermedad Celíaca'),1,0,'C');
+    $this->Cell(140,12,iconv('UTF-8', 'Windows-1252', 'Ficha de investigación de Enfermedad Celíaca'),1,0,'C');
     // Line break
     $this->Ln(20);
 }
@@ -25,10 +25,10 @@ function Header()
 function Footer()
 {
     // Position at 1.5 cm from bottom
- //   $this->SetY(-15);
+    $this->SetY(-15);
     // Arial italic 8
-//    $this->SetFont('Arial','I',8);
+    $this->SetFont('Arial','I',8);
     // Page number
-  //  $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}'. 'Copia Impresa por: ' ,0,0,'C');
+    $this->Cell(0,10,'Pag. '.$this->PageNo().'/{nb}'. 'Copia Impresa por: ' ,0,0,'C');
     }
 }
