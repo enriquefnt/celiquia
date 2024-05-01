@@ -22,6 +22,7 @@ $pdo = new \PDO('mysql:host=212.1.210.73;dbname=saltaped_celiaquia;charset=utf8m
 	$this->tablaUser = new \ClassGrl\DataTables($pdo,'datos_usuarios', 'id_usuario');	
 	$this->tablaLocal = new \ClassGrl\DataTables($pdo,'datos_localidad', 'gid');	
 	$this->authentication = new \ClassGrl\Authentication($this->tablaUser,'user', 'password'); 
+	$this->Imprime = new \ClassPart\Controllers\Imprime();
 	
 }
 	public function getLayoutVariables(): array {
@@ -46,14 +47,15 @@ public function getController(string $controllerName): ?object {
 
     if ($controllerName === 'user') {
 
-		$controller = new \ClassPart\Controllers\Usuarios($this->tablaUser,$this->tablaInsti);
+		$controller = new \ClassPart\Controllers\Usuarios( $this->tablaUser,$this->tablaInsti );
 
 		}
 
 	else if ($controllerName === 'ficha') {
 
 		$controller = new  \ClassPart\Controllers\Ficha($this->tablaFichas, $this->tablaInsti, $this->tablaLocal,
-		 $this->authentication);
+
+		 $this->tablaUser, $this->authentication, $this->Imprime);
 
 		}
 				 
@@ -78,13 +80,9 @@ public function getController(string $controllerName): ?object {
 public function checkLogin(string $uri): ?string {
 
         $restrictedPages = [
-			'ninios/ninios', 
-			'user/user', 
-			'noticon/noticon',
-			 'interna/inter',
-			 'antro/antro',
-			  'lista/nominal'
-			];
+			'ficha/ficha', 
+			'user/user' 
+						];
         
        foreach ($restrictedPages as $page) {
 

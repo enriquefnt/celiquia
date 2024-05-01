@@ -66,9 +66,12 @@
 </div>
 
 <div class="col-sm-2">
-<label>Edad:</label>
-        <span id="resultado"></span>
+<label for="edad" class="form-label-sm">Edad:</label>
+  <span id="resultado" class="form-control form-control-sm"></span>
 </div>
+
+
+
 
 <div class="col-sm-8">	
 			<label class="form-label-sm" for="domicilio">Domicilio</label>
@@ -79,10 +82,11 @@
   <label class="form-label-sm" for="localidad">Localidad</label>
   <input type="text" name="ficha[localidad]" id="localidad" class="form-control form-control-sm" autocomplete="off"  value="<?=$datosDomi['localidad'] ?? ''?>" >
    
-  <input type="hidden" name="ficha[IdResi]" value="<?=$datosDomi['IdResi'] ?? ''?>">
-   <input type="hidden" name="ficha[Gid]" id="Gid" value="<?= $data['value'] ?? $datosDomi['gid'] ?? '' ?>" />
+  <!-- <input type="hidden" name="ficha[IdResi]" value="<?=$datosDomi['IdResi'] ?? ''?>"> -->
+   <input type="hidden" name="ficha[Gid]" id="gid" value="<?= $data['value'] ?? $datosDomi['gid'] ?? '' ?>" />
    
 </div>
+
 <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Diagnóstico
    </legend>
 
@@ -92,10 +96,13 @@
             min="1920-01-01" max="<?=date('Y-m-d');?>" required="required" value="<?=$datosInter['fechadiag'] ?? ''?>">
 </div>    
 
+
 <div class="col-sm-2">
-<label>Edad diagnóstico:</label>
-        <span id="resultado"></span>
+<label for="edadDiagnostico" class="form-label-sm">Edad diagnóstico:</label>
+  <span id="edadDiagnostico" class="form-control form-control-sm"></span>
 </div>
+
+
  <div class="col-sm-2">
     <div class="form-check form-check-inline">
     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1">
@@ -135,8 +142,8 @@
             min="1920-01-01" max="<?=date('Y-m-d');?>" required="required" value="<?=$datosInter['fechaconsulta'] ?? ''?>">
     </div>    
     <div class="col-sm-4">
-  <label class="form-label-sm" for="grados">Forma clínica de presentación</label>
-  <select name="ficha[formaclin]" id="grados" class="form-control form-control-sm">
+  <label class="form-label-sm" for="formaclin">Forma clínica de presentación</label>
+  <select name="ficha[formaclin]" id="formaclin" class="form-control form-control-sm">
     <option value='Sintomática digestiva'>Sintomática digestiva</option>
 	<option value='Sintomática extradigestiva'>Sintomática extradigestiva</option>
 	<option value='Asintomática'>Asintomática</option>
@@ -228,7 +235,7 @@ var auto_complete = new Autocom(document.getElementById('Nombre_aop'), options);
 </script>
 
 
-
+<!-- ///////edad //////////////////////////// -->
 <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('fecha').addEventListener('change', function() {
@@ -262,6 +269,45 @@ var auto_complete = new Autocom(document.getElementById('Nombre_aop'), options);
             }
         }
     </script>
+<!-- //// edad al diagnostico ///////////// -->
+ <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('fechadiag').addEventListener('change', function() {
+                calcularEdadDiag();
+            });
+        });
+
+        function calcularEdadDiag() {
+            var fechaNacimiento = document.getElementById('fechanac').value;
+            var fechaDiagno = document.getElementById('fechadiag').value;
+
+
+            // Convertir fechas a objetos Date
+            var nacimiento = new Date(fechaNacimiento);
+            var control = new Date(fechaDiagno);
+
+            // Calcular diferencia de tiempo en milisegundos
+            var diffTiempo = control.getTime() - nacimiento.getTime();
+
+            // Calcular diferencia de años
+            var edad = new Date(diffTiempo);
+            var anios = Math.abs(edad.getUTCFullYear() - 1970);
+            var meses = edad.getUTCMonth();
+            var dias = edad.getUTCDate() - 1; // Restar 1 día para evitar la diferencia por timezone
+
+            // Mostrar la edad en el formulario
+            var resultado = document.getElementById('edadDiagnostico');
+            if (anios > 0) {
+                resultado.textContent = anios + " años " + meses + " meses";
+            } else {
+                resultado.textContent = meses + " meses " + dias + " días";
+            }
+        }
+    </script> 
+
+
+
+
    
    <script>
 function calcularSemanaEpidemiologica() {
@@ -289,14 +335,15 @@ window.addEventListener('load', function() {
 });
 </script>
    
+   
    <script>
-var auto_complete = new Autocom(document.getElementById('ResiLocal'), {
-	data: <?php echo json_encode($data); ?>,
+var auto_complete = new Autocom(document.getElementById('localidad'), {
+	data: <?php echo json_encode($dataLocalidad); ?>,
 	maximumItems: 10,
 	highlightTyped: true,
 	highlightClass: 'fw-bold text-primary',
 	onSelectItem: function(selectedItem) {
-		document.getElementById('Gid').value = selectedItem.value; // Asignar el valor del item seleccionado al input hidden
+		document.getElementById('gid').value = selectedItem.value; // Asignar el valor del item seleccionado al input hidden
 	//document.getElementById('idNinio').value = selectedItem.value; 
   }
 });
@@ -310,16 +357,23 @@ function agregarFamiliar() {
     div.innerHTML = `
         <div class="col-sm-4">
             <label class="form-label-sm" for="familiar_nombre">Nombre:</label>
-            <input type="text" class="form-control form-control-sm" name="datos_familia[familiar_nombre]" required>
+            <input type="text" class="form-control form-control-sm" name="ficha[familiar_nombre][]" >
         </div>
         <div class="col-sm-4">
             <label class="form-label-sm" for="familiar_apellido">Apellido:</label>
-            <input type="text" class="form-control form-control-sm" name="datos_familia[familiar_apellido]" required>
+            <input type="text" class="form-control form-control-sm" name="ficha[familiar_apellido][]" >
         </div>
         <div class="col-sm-4">
             <label class="form-label-sm" for="familiar_parentezco">Parentesco:</label>
-            <input type="text" class="form-control form-control-sm" name="datos_familia[familiar_parentezco]" required>
+            <select name="ficha[familiar_parentezco][]" id="familiar_parentezco" class="form-control form-control-sm">
+            <option value='Hermano/a'>Hermano/a</option>
+            <option value='Padre/Madre'>Padre/Madre</option>
+            <option value='Hijo/a'>Hijo/a</option>
+            <option value='Tio/a'>Tio/a</option>
+            <option value='Abuelo/a'>Abuelo/a</option>
+            </select>
         </div>
+      
         
     `;
     container.appendChild(div);
@@ -333,5 +387,19 @@ function agregarFamiliar() {
         });
     }
 }
+</script>
+
+<script>
+var options = {
+ data: <?php echo json_encode($data_insti); ?>,
+ maximumItems: 10,
+ highlightTyped: true,
+ highlightClass: 'fw-bold text-primary',
+ onSelectItem: function(selectedItem) {
+    document.getElementById('codi_esta').value = parseInt(selectedItem.value); // Asignar el valor del item seleccionado al input hidden
+ }
+};
+
+var auto_complete = new Autocom(document.getElementById('institucion'), options);
 </script>
 
