@@ -1,9 +1,9 @@
 <?php
 namespace ClassPart\Controllers;
-
 use \ClassGrl\DataTables;
+use \ClasPart\Controllers\Imprime;
 use \AllowDynamicProperties;
-
+use \font;
 #[AllowDynamicProperties]
 class Ficha
 {
@@ -169,17 +169,15 @@ public function listar() {
 public function print() {
 
 	
-	$datosFicha = $this->tablaFichas->findById($_GET['id']);
+	$datosFicha = $this->tablaFichas->findById($_GET['idficha']);
+   
 	$fecha= date('d/m/Y',strtotime($datosFicha['fechanot']));
-	//var_dump($datosFicha);die;
-	$informa = $this->userTable->findById(329);
 	
+	$informa = $this->tablaUser->findById($datosFicha['idUsuario']);
+	//var_dump($informa);die;
+
 	$usuario = $this->authentication->getUser();
-	
-	
-	// $beneficiario = $beneficiariox[1] .' '.$beneficiariox[2] ;
-	// $responsable =$beneficiariox['NombresResp'] .' '.$beneficiariox['ApellidosResp'] ;
-	// $edades = $this->calcularEdad($datosBenef['FechaNac'], $datosFicha['fecha_ped']);
+   
 	$quienImprime = $usuario['nombre'] .' '.$usuario['apellido'] ;
 
 	$pdf = new \ClassPart\Controllers\Imprime('P','mm','A4');
@@ -192,14 +190,14 @@ public function print() {
 	$pdf->Ln();
 	$pdf->Cell(0,7,iconv('UTF-8', 'Windows-1252','Institución: ').  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion'])  ,0,0); 
 	$pdf->Ln();
-	$pdf->Cell(0,7,'Profesional: '.iconv('UTF-8', 'Windows-1252', $informa['profesional'] )   ,0,1); 
+	$pdf->Cell(0,7,'Profesional: '.iconv('UTF-8', 'Windows-1252', $datosFicha['profesional'] )   ,0,1); 
     
 	
 	//$pdf->SetFont('Medico','',14);
 	$pdf->SetFont('Arial','I',8);
 	$pdf->SetY(-28);
 	
-	
+	$pdf->Output($datosFicha[2],'I');
 }
 
 
@@ -208,6 +206,7 @@ public function print() {
 public function home()
 {
     $title = 'Instructivo';
+
 
     return ['template' => 'home.html.php', 'title' => $title, 'variables' => []];
 }
