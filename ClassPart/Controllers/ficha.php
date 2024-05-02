@@ -50,7 +50,16 @@ class Ficha
                 'value'     => $localidad['gid']
             );
         }
-       
+      
+        $dniExisten = $this->tablaFichas->findAll();
+      foreach($dniExisten as $dniExiste)
+    {
+        $listaDni[]=array(
+            'dni' => $dniExiste['dni']
+        );
+    } 
+     
+   // var_dump($listaDni) ;die;
 
  
   
@@ -65,7 +74,8 @@ class Ficha
                          'variables' => [
                        'data_insti'  =>   $data_insti?? [],
                        'dataLocalidad'  =>   $dataLocalidad?? [],
-                       'datosFicha'=> $datosFicha?? []
+                       'datosFicha'=> $datosFicha?? [],
+                       'listaDni' => $listaDni ?? []
                                    ]
     
                         ]; }
@@ -87,7 +97,7 @@ class Ficha
     public function fichaSubmit() {
          
      
-       
+       $fichas=$this->tablaFichas->findAll();
        $usuario = $this->authentication->getUser();
        $ficha = $_POST['ficha'];
    
@@ -96,6 +106,7 @@ class Ficha
        $ficha['enfermeasoc']=ltrim($ficha['enfermeasoc']);
        $ficha['observaciones']=ltrim($ficha['observaciones']);
        $ficha['fechacarga']=new \DateTime();
+       $ficha['edaddiag']= $this->calcularEdad($ficha['fechanac'],$ficha['fechanot']);
        $ficha['idUsuario']=$usuario['id_usuario'];
 
        $ficha['edad']=$this->calcularEdad($ficha['fechanac'],$ficha['fechanot']);
@@ -117,21 +128,23 @@ if (isset($ficha['familiar_nombre'])){
             'parentezco' => $familiar_parentezco[$i]
         );
             }
-        }
+        
        $ficha['grupofam']=json_encode($datos_familiares);
-
+    }
        
     unset($ficha['familiar_parentezco'], $ficha['familiar_nombre'], $ficha['familiar_apellido']);
 
  //var_dump($ficha);die;
-    $errors = 0;
+ $errors = [];
+$dniexiste=count($this->tablaFichas->find('dni', $ficha['dni']));
+var_dump($dniexiste);
+ if (empty($_GET['id']) && count($this->tablaFichas->find('dni', $ficha['dni'])) > 0
+     && $ficha['dni'] > 0) {
 
- if (empty($_GET['id']) && count($this->tablaFichas->find('Dni', $ficha['dni'])) > 0
-     && $ficha['Dni'] > 0) {
-
-     $errors = 1;
+     $errors = 'usuario repetido';
  }
-else if($errors=0){
+ var_dump($errors);
+ if  (empty($errors)) {
 
      $this->tablaFichas->save($ficha);
   
@@ -142,12 +155,13 @@ else if($errors=0){
      ]
      ];
     }
-else {
-
+else  {
+        $ficharep=$this->tablaFichas->find('dni', $ficha['dni']);
+      //  
     return ['template' => 'errorDni.html.php',
      'title' => 'Error' ,
      'variables' => [
-         'ficha' => $ficha ?? ' '
+         'ficharep' => $ficharep
          ]
         ];
     }   
@@ -207,11 +221,14 @@ public function print() {
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
 	$pdf->Ln(10);
+    $pdf->SetLineWidth(0.5);
     $pdf->SetFillColor(220, 220, 220);
     $pdf->Rect(10, 40, 190, 20, 'D');
     $pdf->SetFont('Arial', 'B', 12);
+    
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell(0,7, 'Informante', 0, 1, 'L', true);
+    ///////////////declarante ////////////////////
+    $pdf->Cell(0,7, 'Declarante', 0, 1, 'L', true);
 	$pdf->SetFont('Arial','',10);
     $pdf->Cell(35,10, 'Fecha: ' . $fecha  ,0,0); 
 	//$pdf->Ln(5);
@@ -220,16 +237,29 @@ public function print() {
 	$pdf->Cell(0,7,'Profesional: '. iconv('UTF-8', 'Windows-1252', $datosFicha['profesional'] )   ,0,1); 
     $pdf->Ln();
 //	$pdf->SetFillColor(220, 220, 220);
+/////////////////paciente/////////////////////////
     $pdf->Rect(10, 67, 190, 20, 'D');
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell(0,7, 'Persona', 0, 1, 'L', true);
+    $pdf->Cell(0,7, 'Paciente', 0, 1, 'L', true);
 	$pdf->SetFont('Arial','',10);
     $pdf->Cell(100,10,'Nombre: '.  iconv('UTF-8', 'Windows-1252', $nombre)  ,0,0); 
     $pdf->Cell(80,10, 'Edad: ' . $datosFicha['edad'] ,0,0); 
     $pdf->Ln(5);
     $pdf->Cell(100,10,'Domicilio: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['domicilio'])  ,0,0); 
     $pdf->Cell(60,10,'Localidad: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['localidad'])  ,0,0); 
+    $pdf->Ln(15);
+    ////////////////////////diagnostico //////////////////
+    $pdf->Rect(10, 94, 190, 20, 'D');
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Diagnóstico'), 0, 1, 'L', true);
+	$pdf->SetFont('Arial','',10);
+    $pdf->Cell(100,10,'Fecha'. iconv('UTF-8', 'Windows-1252',' Diagnóstico: ') .  $datosFicha['fechadiag'] ,0,0); 
+    $pdf->Cell(80,10, 'Edad' . iconv('UTF-8', 'Windows-1252',' Diagnóstico: '). $datosFicha['edaddiag'] ,0,0); 
+    $pdf->Ln(5);
+    //$pdf->Cell(100,10,'Domicilio: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['domicilio'])  ,0,0); 
+    //$pdf->Cell(60,10,'Localidad: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['localidad'])  ,0,0); 
 	//$pdf->Ln(5);
 	//$pdf->SetFont('Medico','',14);
 	$pdf->SetFont('Arial','I',8);
@@ -242,7 +272,7 @@ public function print() {
 
 public function home()
 {
-    $title = 'Instructivo';
+    $title = 'Inicio';
 
 
     return ['template' => 'home.html.php', 'title' => $title, 'variables' => []];
