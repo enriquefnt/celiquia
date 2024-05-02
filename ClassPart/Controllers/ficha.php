@@ -103,6 +103,8 @@ class Ficha
       
       
        ////// crea el json con los array recibidos ////
+
+       
 if (isset($ficha['familiar_nombre'])){
        $familiar_nombre = $ficha['familiar_nombre'];
        $familiar_apellido = $ficha['familiar_apellido'];
@@ -122,6 +124,15 @@ if (isset($ficha['familiar_nombre'])){
     unset($ficha['familiar_parentezco'], $ficha['familiar_nombre'], $ficha['familiar_apellido']);
 
  //var_dump($ficha);die;
+    $errors = 0;
+
+ if (empty($_GET['id']) && count($this->tablaFichas->find('Dni', $ficha['dni'])) > 0
+     && $ficha['Dni'] > 0) {
+
+     $errors = 1;
+ }
+else if($errors=0){
+
      $this->tablaFichas->save($ficha);
   
      return ['template' => 'fichasucess.html.php',
@@ -130,6 +141,16 @@ if (isset($ficha['familiar_nombre'])){
          'ficha' => $ficha ?? ' '
      ]
      ];
+    }
+else {
+
+    return ['template' => 'errorDni.html.php',
+     'title' => 'Error' ,
+     'variables' => [
+         'ficha' => $ficha ?? ' '
+         ]
+        ];
+    }   
 
 }    
 

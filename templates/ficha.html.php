@@ -52,7 +52,7 @@
  <div class="col-sm-2">	
 			<label class="form-label-sm" for="dni">DNI</label>
 			<div class="input-group">
-			<input class="form-control form-control-sm" type="number" name="Ninio[dni]" id="dni" min="0" max="99999999"  value="<?=$datosNinio['dni'] ?? ''?>">
+			<input class="form-control form-control-sm" type="number" name="ficha[dni]" id="dni" min="0" max="99999999"  >">
 			<span class="input-group-text">
       <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Indique el número de documento sin puntos. En caso de ser idocumentado coloque 0 "></i>
       </span>
