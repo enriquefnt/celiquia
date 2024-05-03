@@ -10,7 +10,7 @@
     <th align="center">Nombre</th>
     <th align="center">Edad</th>
     <th align="center">Localidad</th> 
-    <!-- <th class="text-center">Editar</th> -->
+    <th class="text-center">Ver/Imprimir</th> 
     </tr>
 </thead>
 
@@ -23,11 +23,11 @@
     <td><?= $caso['edad']; ?></td>
     <td><?= $caso['localidad']; ?></td>
     
-      <!-- <td class="text-center">
-        <a href="/user/user?id=<?= $usuario['id_usuario'] ?>">
+       <td class="text-center">
+        <a href="/ficha/print?idficha=<?= $caso['idficha'] ?>">
           <i class="bi bi-pencil-square"></i>
         </a>
-      </td> -->
+      </td> 
    
   </tr>
   <?php endforeach; ?>

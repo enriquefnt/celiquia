@@ -79,7 +79,7 @@
 
 
 <div class="col-sm-8">	
-			<label class="form-label-sm" for="domicilio">Domicilio</label>
+			<label class="form-label-sm" for="domicilio">Domicilio (calle-número-piso-departamento-barrio-paraje)</label>
 			<input class="form-control form-control-sm" type="text" name="ficha[domicilio]" id="domicilio" required="required" value="<?=$datosInter['domicilio'] ?? ''?>">
 			</div>    
  
@@ -110,14 +110,14 @@
 
  <div class="col-sm-2">
     <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1">
-    <label class="form-check-label" for="inlineCheckbox1">Biopsia</label>
+    <input class="form-check-input" type="checkbox" id="biopsia" name="ficha[biopsia]"value="1">
+    <label class="form-check-label" for="biopsia">Biopsia</label>
     </div>
    </div>  
    <div class="col-sm-2">
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="2">
-  <label class="form-check-label" for="inlineCheckbox2">Endoscopia</label>
+  <input class="form-check-input" type="checkbox" id="endoscopia" name="ficha[endoscopia]"value="1">
+  <label class="form-check-label" for="endoscopia">Endoscopia</label>
 </div>
 </div>
 

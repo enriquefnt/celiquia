@@ -65,7 +65,7 @@ class Ficha
   
           
         if (isset($_GET['idficha'])) {
-          $datosFicha=$this->tablaFichas->findById($_GET['idficha'])?? '';
+          $datosFicha=count($this->tablaFichas->findById($_GET['idficha'])?? '');
       
            $title='Ficha';
     
@@ -96,8 +96,23 @@ class Ficha
     
     public function fichaSubmit() {
          
-     
-       $fichas=$this->tablaFichas->findAll();
+      //  var_dump($_POST);
+     //  $fichas=$this->tablaFichas->findAll();
+     $ficharepe=$this->tablaFichas->find('dni', $_POST['ficha']['dni'])[0] ?? [];
+     //var_dump($ficharepe);die;
+     if($ficharep=count($this->tablaFichas->find('dni', $_POST['ficha']['dni'])) >0){
+        return ['template' => 'errorDni.html.php',
+        'title' => 'Error' ,
+        'variables' => [
+            'ficharepe' => $ficharepe ?? []
+            ]
+           ];
+     };
+    // var_dump($ficharepe);die;
+
+
+
+
        $usuario = $this->authentication->getUser();
        $ficha = $_POST['ficha'];
    
@@ -135,16 +150,16 @@ if (isset($ficha['familiar_nombre'])){
     unset($ficha['familiar_parentezco'], $ficha['familiar_nombre'], $ficha['familiar_apellido']);
 
  //var_dump($ficha);die;
- $errors = [];
-$dniexiste=count($this->tablaFichas->find('dni', $ficha['dni']));
-var_dump($dniexiste);
- if (empty($_GET['id']) && count($this->tablaFichas->find('dni', $ficha['dni'])) > 0
-     && $ficha['dni'] > 0) {
+//  $errors = [];
+// $dniexiste=count($this->tablaFichas->find('dni', $ficha['dni']));
+// var_dump($dniexiste);
+//  if (empty($_GET['id']) && count($this->tablaFichas->find('dni', $ficha['dni'])) > 0
+//      && $ficha['dni'] > 0) {
 
-     $errors = 'usuario repetido';
- }
- var_dump($errors);
- if  (empty($errors)) {
+//      $errors = 'usuario repetido';
+//  }
+//  var_dump($errors);
+//  if  (empty($errors)) {
 
      $this->tablaFichas->save($ficha);
   
@@ -154,17 +169,17 @@ var_dump($dniexiste);
          'ficha' => $ficha ?? ' '
      ]
      ];
-    }
-else  {
-        $ficharep=$this->tablaFichas->find('dni', $ficha['dni']);
-      //  
-    return ['template' => 'errorDni.html.php',
-     'title' => 'Error' ,
-     'variables' => [
-         'ficharep' => $ficharep
-         ]
-        ];
-    }   
+    
+// else  {
+//         $ficharep=$this->tablaFichas->find('dni', $ficha['dni']);
+//       //  
+//     return ['template' => 'errorDni.html.php',
+//      'title' => 'Error' ,
+//      'variables' => [
+//          'ficharep' => $ficharep
+//          ]
+//         ];
+//     }   
 
 }    
 
@@ -205,13 +220,13 @@ public function print() {
 
 	
 	$datosFicha = $this->tablaFichas->findById($_GET['idficha']);
-   
-	$fecha= date('d/m/Y',strtotime($datosFicha['fechanot']));
+   	$fecha= date('d/m/Y',strtotime($datosFicha['fechanot']));
     $nombre= $datosFicha['nombre']. '  '. $datosFicha['apellido'];
-	
 	$informa = $this->tablaUser->findById($datosFicha['idUsuario']);
-	//var_dump($informa);die;
+    $datosFicha['biopsia']=$datosFicha['biopsia']== 1 ? 'Si' : 'No';
+    $datosFicha['endoscopia']=$datosFicha['endoscopia']== 1 ? 'Si' : 'No';
 
+	//var_dump($informa);die;
 	$usuario = $this->authentication->getUser();
    
 	$quienImprime = $usuario['nombre'] .' '.$usuario['apellido'] ;
@@ -258,11 +273,33 @@ public function print() {
     $pdf->Cell(100,10,'Fecha'. iconv('UTF-8', 'Windows-1252',' Diagnóstico: ') .  $datosFicha['fechadiag'] ,0,0); 
     $pdf->Cell(80,10, 'Edad' . iconv('UTF-8', 'Windows-1252',' Diagnóstico: '). $datosFicha['edaddiag'] ,0,0); 
     $pdf->Ln(5);
-    //$pdf->Cell(100,10,'Domicilio: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['domicilio'])  ,0,0); 
-    //$pdf->Cell(60,10,'Localidad: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['localidad'])  ,0,0); 
-	//$pdf->Ln(5);
+    $pdf->Cell(49,10, iconv('UTF-8', 'Windows-1252','Biopsia: ') .  $datosFicha['biopsia'] ,0,0); 
+    $pdf->Cell(50,10,  iconv('UTF-8', 'Windows-1252','Endoscopía: '). $datosFicha['endoscopia'] ,0,0); 
+    $pdf->Cell(49,10,  iconv('UTF-8', 'Windows-1252','Grado: '). $datosFicha['grados'] ,0,0);
+    $pdf->Cell(49,10,  iconv('UTF-8', 'Windows-1252','Protocolo Nº: '). $datosFicha['protocolo'] ,0,0); 
+    $pdf->Ln(15);
+    /////////SIgnos y sintomas ///////////////////////////
+    $pdf->Rect(10, 121, 190, 20, 'D');
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Signos y Síntomas Clínicos'), 0, 1, 'L', true);
+	$pdf->SetFont('Arial','',10);
+    $pdf->Cell(100,10, iconv('UTF-8', 'Windows-1252',' Forma de presentación: ') . iconv('UTF-8', 'Windows-1252', $datosFicha['formaclin']) ,0,0); 
+    $pdf->Ln(5);
+    $pdf->Cell(80,10,  iconv('UTF-8', 'Windows-1252',' ENfermedades Asociadas: '). $datosFicha['enfermeasoc'] ,0,0); 
+    $pdf->Ln(15);
+    ///////////////////////////////Laboratorio //////////////////
+    $pdf->Rect(10, 148, 190, 20, 'D');
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Laboratorio'), 0, 1, 'L', true);
+	$pdf->SetFont('Arial','',10);
+    $pdf->Cell(100,10, iconv('UTF-8', 'Windows-1252',' Fecha de extracción: ') . iconv('UTF-8', 'Windows-1252', $datosFicha['fechaestrac']) ,0,0); 
+    $pdf->Ln(5);
+    $pdf->Cell(80,10,  iconv('UTF-8', 'Windows-1252',' Enfermedades Asociadas: '). $datosFicha['enfermeasoc'] ,0,0); 
+    $pdf->Ln(15);
 	//$pdf->SetFont('Medico','',14);
-	$pdf->SetFont('Arial','I',8);
+	//$pdf->SetFont('Arial','I',8);
 	$pdf->SetY(-28);
 	$pdf->Output($datosFicha[1],'I');
 }
