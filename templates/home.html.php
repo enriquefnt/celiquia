@@ -1,9 +1,11 @@
 <?php $title="Anuncios" ;?>
 <main>
-<section class="d-flex justify-content-center justify-content-lg-between "> -->
+<section class="d-flex justify-content-center justify-content-lg-between "> 
  <div class="conteiner container-sm"> 
-
- <img src="../public/trigal.png" alt="Trigal" width="500" height="600">
+  <h1>
+    Página de inicio en construción!
+  </h1>
+ <!-- <img src="../public/trigal.png" alt="Trigal" width="500" height="600"> -->
  
    </div> 
  </section>
@@ -12,14 +14,14 @@
 <footer class="text-center text-lg-start bg-white text-muted">
   
 
-  <!-- Section: Links  -->
-  <section class="">
+ 
+  <!-- <section class="">
     <div class="container text-center text-md-start mt-5">
-      <!-- Grid row -->
+      <
       <div class="row mt-3 pt-1">
-        <!-- Grid column -->
+        
         <div class="col-md-3 col-lg-4 col-sm-3 mx-auto mb-4">
-          <!-- Content -->
+          
           <h6 class="text-uppercase fw-bold mb-4" >
             <i class="fas fa-gem me-3 text-primary"></i>Institución
           </h6>
@@ -28,7 +30,7 @@
           </p>
         </div>
         <div class="col-md-3 col-lg-4 col-sm-3 mx-auto mb-4">
-          <!-- Content -->
+         
           <h6 class="text-uppercase fw-bold mb-4" >
             <i class="fas fa-gem me-3 text-primary"></i>Responsabble del Programa de Celiquía:
           </h6>
@@ -38,27 +40,27 @@
         </div>
         
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          <!-- Links -->
+          
           <h6 class="text-uppercase fw-bold mb-4"><i class="fas fa-gem me-3 text-primary"></i>Contacto</h6>
           <p><i class="fas fa-home me-3 text-secondary"></i> Belgrano 1349 -1º piso - Salta Capital - CP 4400</p>
           <p><i class="fas fa-envelope me-3 text-secondary"></i>programaceliquia@gmail.com </p>
           <p><i class="fas fa-phone me-3 text-secondary"></i> 0387-4370128/127 <br> &nbsp &nbsp &nbsp &nbsp  0387-152458570</p>
           <p><i class="fas fa-print me-3 text-secondary"></i> 0387-4320695</p>
         </div>
-        <!-- Grid column -->
+      
       </div>
-      <!-- Grid row -->
+     
     </div>
   </section>
-  <!-- Section: Social media -->
+  
   <section class="d-flex justify-content-center justify-content-sm-between p-4 border-bottom">
-    <!-- Left -->
+    
     <div class="me-5 d-none d-lg-block">
       <span><b>Nuestras redes sociales:</b></span>
     </div>
-    <!-- Left -->
+    
 
-    <!-- Right -->
+   
     <div>
       <a href="https://www.facebook.com/direcnutyasaludable/"  target="_blank" class="me-4 link-secondary">
         <i class="fab fa-facebook-f"></i>
@@ -67,9 +69,9 @@
         <i class="fab fa-twitter"></i>
       </a>
          </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
+   
+  </section> -->
+ 
   
 </footer>
 

@@ -6,6 +6,7 @@ use \AllowDynamicProperties;
 class  Imprime extends Fpdf
 
 {
+    
 // Page header
 function Header()
 {
@@ -24,11 +25,15 @@ function Header()
 // Page footer
 function Footer()
 {
+    // $usuario = $this->authentication->getUser();
+   
+	// $quienImprime = $usuario['nombre'] .' '.$usuario['apellido'] ;
     // Position at 1.5 cm from bottom
     $this->SetY(-15);
     // Arial italic 8
     $this->SetFont('Arial','I',8);
     // Page number
-    $this->Cell(0,10,'Pag. '.$this->PageNo().'/{nb}'. 'Copia Impresa por: ' ,0,0,'C');
+    $this->Cell(0,10,'Pag. '.$this->PageNo().'/{nb}'. 'Copia Impresa por: ' //. //$quienImprime
+    ,0,0,'C');
     }
 }

@@ -138,9 +138,9 @@ if (isset($ficha['familiar_nombre'])){
        $datos_familiares = array();
        for ($i = 0; $i < count($familiar_nombre); $i++) {
         $datos_familiares[] = array(
-            'nombre' => $familiar_nombre[$i],
-            'apellido' => $familiar_apellido[$i],
-            'parentezco' => $familiar_parentezco[$i]
+            'nombre' => ucfirst(ltrim($familiar_nombre[$i])),
+            'apellido' => ucfirst(ltrim($familiar_apellido[$i])),
+            'parentezco' => ucfirst(ltrim($familiar_parentezco[$i]))
         );
             }
         
@@ -149,17 +149,6 @@ if (isset($ficha['familiar_nombre'])){
        
     unset($ficha['familiar_parentezco'], $ficha['familiar_nombre'], $ficha['familiar_apellido']);
 
- //var_dump($ficha);die;
-//  $errors = [];
-// $dniexiste=count($this->tablaFichas->find('dni', $ficha['dni']));
-// var_dump($dniexiste);
-//  if (empty($_GET['id']) && count($this->tablaFichas->find('dni', $ficha['dni'])) > 0
-//      && $ficha['dni'] > 0) {
-
-//      $errors = 'usuario repetido';
-//  }
-//  var_dump($errors);
-//  if  (empty($errors)) {
 
      $this->tablaFichas->save($ficha);
   
@@ -170,17 +159,6 @@ if (isset($ficha['familiar_nombre'])){
      ]
      ];
     
-// else  {
-//         $ficharep=$this->tablaFichas->find('dni', $ficha['dni']);
-//       //  
-//     return ['template' => 'errorDni.html.php',
-//      'title' => 'Error' ,
-//      'variables' => [
-//          'ficharep' => $ficharep
-//          ]
-//         ];
-//     }   
-
 }    
 
 public function listar() {
@@ -225,8 +203,14 @@ public function print() {
 	$informa = $this->tablaUser->findById($datosFicha['idUsuario']);
     $datosFicha['biopsia']=$datosFicha['biopsia']== 1 ? 'Si' : 'No';
     $datosFicha['endoscopia']=$datosFicha['endoscopia']== 1 ? 'Si' : 'No';
-
-	//var_dump($informa);die;
+    $datosFicha['iga']=$datosFicha['iga']== 1 ? 'Si' : 'No';
+    $datosFicha['atgiga']=$datosFicha['atgiga']== 1 ? 'Si' : 'No';
+    $datosFicha['atgigg']=$datosFicha['atgigg']== 1 ? 'Si' : 'No';
+    $json = $datosFicha['grupofam'];
+    $familiares=json_decode($json, true);
+    $numFamiliares = count($familiares);
+    //echo($numFamiliares);
+	//var_dump($familiares);die;
 	$usuario = $this->authentication->getUser();
    
 	$quienImprime = $usuario['nombre'] .' '.$usuario['apellido'] ;
@@ -235,73 +219,112 @@ public function print() {
 	// $pdf->AddFont('Medico','','medico.php');
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
-	$pdf->Ln(10);
+	$pdf->Ln(8);
     $pdf->SetLineWidth(0.5);
     $pdf->SetFillColor(220, 220, 220);
-    $pdf->Rect(10, 40, 190, 20, 'D');
+   // $pdf->Rect(10, 40, 190, 20, 'D');
     $pdf->SetFont('Arial', 'B', 12);
-    
     $pdf->SetTextColor(0, 0, 0);
     ///////////////declarante ////////////////////
     $pdf->Cell(0,7, 'Declarante', 0, 1, 'L', true);
 	$pdf->SetFont('Arial','',10);
     $pdf->Cell(35,10, 'Fecha: ' . $fecha  ,0,0); 
-	//$pdf->Ln(5);
 	$pdf->Cell(80,10,iconv('UTF-8', 'Windows-1252','Institución: ').  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion'])  ,0,0); 
 	$pdf->Ln(6);
 	$pdf->Cell(0,7,'Profesional: '. iconv('UTF-8', 'Windows-1252', $datosFicha['profesional'] )   ,0,1); 
     $pdf->Ln();
 //	$pdf->SetFillColor(220, 220, 220);
 /////////////////paciente/////////////////////////
-    $pdf->Rect(10, 67, 190, 20, 'D');
+   // $pdf->Rect(10, 67, 190, 20, 'D');
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->SetTextColor(0, 0, 0);
+    //$pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(0,7, 'Paciente', 0, 1, 'L', true);
 	$pdf->SetFont('Arial','',10);
     $pdf->Cell(100,10,'Nombre: '.  iconv('UTF-8', 'Windows-1252', $nombre)  ,0,0); 
     $pdf->Cell(80,10, 'Edad: ' . $datosFicha['edad'] ,0,0); 
-    $pdf->Ln(5);
+    $pdf->Ln(6);
     $pdf->Cell(100,10,'Domicilio: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['domicilio'])  ,0,0); 
     $pdf->Cell(60,10,'Localidad: '.  iconv('UTF-8', 'Windows-1252', $datosFicha['localidad'])  ,0,0); 
-    $pdf->Ln(15);
+    $pdf->Ln();
     ////////////////////////diagnostico //////////////////
-    $pdf->Rect(10, 94, 190, 20, 'D');
+  //  $pdf->Rect(10, 94, 190, 20, 'D');
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Diagnóstico'), 0, 1, 'L', true);
 	$pdf->SetFont('Arial','',10);
     $pdf->Cell(100,10,'Fecha'. iconv('UTF-8', 'Windows-1252',' Diagnóstico: ') .  $datosFicha['fechadiag'] ,0,0); 
     $pdf->Cell(80,10, 'Edad' . iconv('UTF-8', 'Windows-1252',' Diagnóstico: '). $datosFicha['edaddiag'] ,0,0); 
-    $pdf->Ln(5);
+    $pdf->Ln(6);
     $pdf->Cell(49,10, iconv('UTF-8', 'Windows-1252','Biopsia: ') .  $datosFicha['biopsia'] ,0,0); 
     $pdf->Cell(50,10,  iconv('UTF-8', 'Windows-1252','Endoscopía: '). $datosFicha['endoscopia'] ,0,0); 
     $pdf->Cell(49,10,  iconv('UTF-8', 'Windows-1252','Grado: '). $datosFicha['grados'] ,0,0);
     $pdf->Cell(49,10,  iconv('UTF-8', 'Windows-1252','Protocolo Nº: '). $datosFicha['protocolo'] ,0,0); 
-    $pdf->Ln(15);
+    $pdf->Ln();
     /////////SIgnos y sintomas ///////////////////////////
-    $pdf->Rect(10, 121, 190, 20, 'D');
+   // $pdf->Rect(10, 121, 190, 20, 'D');
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Signos y Síntomas Clínicos'), 0, 1, 'L', true);
 	$pdf->SetFont('Arial','',10);
-    $pdf->Cell(100,10, iconv('UTF-8', 'Windows-1252',' Forma de presentación: ') . iconv('UTF-8', 'Windows-1252', $datosFicha['formaclin']) ,0,0); 
-    $pdf->Ln(5);
-    $pdf->Cell(80,10,  iconv('UTF-8', 'Windows-1252',' ENfermedades Asociadas: '). $datosFicha['enfermeasoc'] ,0,0); 
-    $pdf->Ln(15);
+    $pdf->Cell(100,10, iconv('UTF-8', 'Windows-1252','Forma de presentación: ') . iconv('UTF-8', 'Windows-1252', $datosFicha['formaclin']) ,0,0); 
+    $pdf->Ln(6);
+    $pdf->Cell(80,10,  iconv('UTF-8', 'Windows-1252','Enfermedades Asociadas: '). $datosFicha['enfermeasoc'] ,0,0); 
+    $pdf->Ln();
     ///////////////////////////////Laboratorio //////////////////
-    $pdf->Rect(10, 148, 190, 20, 'D');
+  //  $pdf->Rect(10, 148, 190, 20, 'D');
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Laboratorio'), 0, 1, 'L', true);
 	$pdf->SetFont('Arial','',10);
-    $pdf->Cell(100,10, iconv('UTF-8', 'Windows-1252',' Fecha de extracción: ') . iconv('UTF-8', 'Windows-1252', $datosFicha['fechaestrac']) ,0,0); 
+    $pdf->Cell(80,10, iconv('UTF-8', 'Windows-1252','Fecha de extracción: ') . iconv('UTF-8', 'Windows-1252', $datosFicha['fechaestrac']) ,0,0); 
     $pdf->Ln(5);
-    $pdf->Cell(80,10,  iconv('UTF-8', 'Windows-1252',' Enfermedades Asociadas: '). $datosFicha['enfermeasoc'] ,0,0); 
-    $pdf->Ln(15);
+    $pdf->Cell(65,10,  iconv('UTF-8', 'Windows-1252','IgA Sérica Total: '). $datosFicha['iga'] ,0,0); 
+    $pdf->Cell(65,10,  iconv('UTF-8', 'Windows-1252','Anticuerpo ATG IgA: '). $datosFicha['atgiga'] ,0,0); 
+    $pdf->Cell(60,10,  iconv('UTF-8', 'Windows-1252','Anticuerpo ATG IgG: '). $datosFicha['atgigg'] ,0,0); 
+    $pdf->Ln();
+    ////////////////////////////Familiares/////////////////////////////////
+    //$pdf->Rect(10, 175, 190, 20, 'D');
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Familiares'), 0, 1, 'L', true);
+	//$pdf->SetFont('Arial','',10);
+    $pdf->Ln(8);
+    $pdf->SetLineWidth(0.3);
+    // Definir la cabecera de la tabla
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell(40, 8, 'Nombre', 1, 0, 'C');
+    $pdf->Cell(40, 8, 'Apellido', 1, 0, 'C');
+    $pdf->Cell(60, 8, 'Parentesco', 1, 1, 'C'); // Aumentar el ancho de la celda para Parentesco
+
+// Agregar los datos a la tabla
+    $pdf->SetFont('Arial', '', 7);
+    foreach ($familiares as $familiar) {
+        if (!empty($familiar['nombre'])) {
+    // Ajustar el ancho de las celdas según el contenido
+    $pdf->Cell(40, 6, iconv('UTF-8', 'Windows-1252', $familiar['nombre']), 1, 0, 'L');
+    $pdf->Cell(40, 6, iconv('UTF-8', 'Windows-1252', $familiar['apellido']), 1, 0, 'L');
+    $pdf->Cell(60, 6, iconv('UTF-8', 'Windows-1252', $familiar['parentezco']), 1, 1, 'L');
+            }       
+    }
+    $pdf->Ln(8);
+//////////////////////Medidas a observar//////////////////////////
+$pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Medidas a Observar'), 0, 1, 'L', true);
+	$pdf->SetFont('Arial','',10);
+    $pdf->Cell (190,20, iconv('UTF-8', 'Windows-1252', $datosFicha['observaciones']) ,0,0); 
+    $pdf->Ln(5);
+    
 	//$pdf->SetFont('Medico','',14);
 	//$pdf->SetFont('Arial','I',8);
+	$pdf->SetFont('Arial','I',8);
+
 	$pdf->SetY(-28);
-	$pdf->Output($datosFicha[1],'I');
+
+	$pdf->Cell(0,7,'Copia realizada por: ' . iconv('UTF-8', 'Windows-1252',$quienImprime),0,0,'C') ;
+
+
+	$pdf->Output($datosFicha[4],'I');
 }
 
 
