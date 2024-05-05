@@ -47,4 +47,67 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // icono ayuda
+    ///agrega campos para familiares
+    function agregarFamiliar() {
+        var container = document.getElementById("familiares-container");
+        var div = document.createElement("div");
+        div.classList.add("row");
+        div.innerHTML = `
+            <div class="col-sm-4">
+                <label class="form-label-sm" for="familiar_nombre">Nombre:</label>
+                <input type="text" class="form-control form-control-sm" name="ficha[familiar_nombre][]" >
+            </div>
+            <div class="col-sm-4">
+                <label class="form-label-sm" for="familiar_apellido">Apellido:</label>
+                <input type="text" class="form-control form-control-sm" name="ficha[familiar_apellido][]" >
+            </div>
+            <div class="col-sm-4">
+                <label class="form-label-sm" for="familiar_parentezco">Parentesco:</label>
+                <select name="ficha[familiar_parentezco][]" id="familiar_parentezco" class="form-control form-control-sm">
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option value='Hermano/a'>Hermano/a</option>
+                <option value='Padre/Madre'>Padre/Madre</option>
+                <option value='Hijo/a'>Hijo/a</option>
+                <option value='Tio/a'>Tio/a</option>
+                <option value='Abuelo/a'>Abuelo/a</option>
+                </select>
+            </div>
+          
+            
+        `;
+        container.appendChild(div);
     
+        var filas = container.getElementsByClassName('row');
+        if (filas.length > 1) {
+            var ultimaFila = filas[filas.length - 1];
+            var labels = ultimaFila.querySelectorAll('label');
+            labels.forEach(function(label) {
+                label.style.display = 'none';
+            });
+        }
+    }
+
+   // placehoders en select
+   document.addEventListener('DOMContentLoaded', function() {
+    const selectElements = document.querySelectorAll('.form-control.form-control-sm');
+  
+    selectElements.forEach(function(selectElement) {
+      validateSelect(selectElement);
+      selectElement.addEventListener('change', function() {
+        validateSelect(this);
+      });
+    });
+  });
+  
+  function validateSelect(selectElement) {
+    if (selectElement.value === '') {
+      selectElement.nextElementSibling.textContent = 'Seleccione una opción.';
+      selectElement.form.onsubmit = function(event) {
+        event.preventDefault(); // Prevent form submission if placeholder is selected
+      };
+    } else {
+      selectElement.nextElementSibling.textContent = ''; // Clear error message if selection is made
+      selectElement.form.onsubmit = null; // Remove validation if selection is made
+    }
+  }
+  

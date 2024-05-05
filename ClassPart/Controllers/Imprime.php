@@ -29,11 +29,11 @@ function Footer()
    
 	// $quienImprime = $usuario['nombre'] .' '.$usuario['apellido'] ;
     // Position at 1.5 cm from bottom
-    $this->SetY(-15);
+//    $this->SetY(-15);
     // Arial italic 8
-    $this->SetFont('Arial','I',8);
+//    $this->SetFont('Arial','I',8);
     // Page number
-    $this->Cell(0,10,'Pag. '.$this->PageNo().'/{nb}'. 'Copia Impresa por: ' //. //$quienImprime
-    ,0,0,'C');
+//    $this->Cell(0,10,'Pag. '.$this->PageNo().'/{nb}'. 'Copia Impresa por: ' //. //$quienImprime
+//    ,0,0,'C');
     }
 }

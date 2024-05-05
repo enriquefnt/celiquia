@@ -45,7 +45,7 @@
 <div class="col-sm-2">
   <label class="form-label-sm" for="sexo">Sexo</label>
   <select name="ficha[sexo]" id="sexo" class="form-control form-control-sm">
-  	<option hidden selected><?=$datosInter['sexo'] ?? '...'?></option>
+  <option value="" disabled selected>Seleccione una opción</option>
     <option value=2>Femenino</option>
 	<option value=1>Masculino</option>
 	<option value=9>No determinado</option>
@@ -79,8 +79,14 @@
 
 
 <div class="col-sm-8">	
-			<label class="form-label-sm" for="domicilio">Domicilio (calle-número-piso-departamento-barrio-paraje)</label>
+			<label class="form-label-sm" for="domicilio">Domicilio</label>
+            <div class="input-group">
 			<input class="form-control form-control-sm" type="text" name="ficha[domicilio]" id="domicilio" required="required" value="<?=$datosInter['domicilio'] ?? ''?>">
+             <span class="input-group-text">
+            <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top"
+             title="Indique calle-número-piso- n° de departamento-barrio, en caso de viviendas rurales indique la localidad o paraje mas cercano y describa brevemente la ubicación"></i>
+        </span>
+    </div>
 			</div>    
  
    <div class="col-sm-4">
@@ -121,7 +127,7 @@
 </div>
 </div>
 
-<div class="col-sm-2">
+<!-- <div class="col-sm-2">
   <label class="form-label-sm" for="grados">Grados</label>
   <select name="ficha[grados]" id="grados" class="form-control form-control-sm">
     <option value='0'>0</option>
@@ -131,7 +137,21 @@
     <option value='3b'>3 b</option>
     <option value='3c'>3 c</option>
 	</select>
- </div>
+ </div> -->
+
+ <div class="col-sm-2">
+  <label class="form-label-sm" for="grados">Grados</label>
+  <select name="ficha[grados]" id="grados" class="form-control form-control-sm" required>
+  <option value="" disabled selected>Seleccione una opción</option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3a">3 a</option>
+    <option value="3b">3 b</option>
+    <option value="3c">3 c</option>
+  </select>
+</div>
+
 
 
 <div class="col-sm-2">	
@@ -149,12 +169,14 @@
     <div class="col-sm-4">
   <label class="form-label-sm" for="formaclin">Forma clínica de presentación</label>
   <select name="ficha[formaclin]" id="formaclin" class="form-control form-control-sm">
-    <option value='Sintomática digestiva'>Sintomática digestiva</option>
-	<option value='Sintomática extradigestiva'>Sintomática extradigestiva</option>
-	<option value='Asintomática'>Asintomática</option>
-    <option value='Familiar (SCR)'>Familiar (SCR)</option>
- 	</select>
- </div>
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option value="Sintomática digestiva">Sintomática digestiva</option>
+    <option value="Sintomática extradigestiva">Sintomática extradigestiva</option>
+    <option value="Asintomática">Asintomática</option>
+    <option value="Familiar (SCR)">Familiar (SCR)</option>
+  </select>
+</div>
+
  
             <div class="form-group">
 			<label class="form-label-sm" for="enfermeasoc">Enfermedades asociadas</label>
@@ -355,43 +377,43 @@ var auto_complete = new Autocom(document.getElementById('localidad'), {
 </script>
 
 <script>
-function agregarFamiliar() {
-    var container = document.getElementById("familiares-container");
-    var div = document.createElement("div");
-    div.classList.add("row");
-    div.innerHTML = `
-        <div class="col-sm-4">
-            <label class="form-label-sm" for="familiar_nombre">Nombre:</label>
-            <input type="text" class="form-control form-control-sm" name="ficha[familiar_nombre][]" >
-        </div>
-        <div class="col-sm-4">
-            <label class="form-label-sm" for="familiar_apellido">Apellido:</label>
-            <input type="text" class="form-control form-control-sm" name="ficha[familiar_apellido][]" >
-        </div>
-        <div class="col-sm-4">
-            <label class="form-label-sm" for="familiar_parentezco">Parentesco:</label>
-            <select name="ficha[familiar_parentezco][]" id="familiar_parentezco" class="form-control form-control-sm">
-            <option value='Hermano/a'>Hermano/a</option>
-            <option value='Padre/Madre'>Padre/Madre</option>
-            <option value='Hijo/a'>Hijo/a</option>
-            <option value='Tio/a'>Tio/a</option>
-            <option value='Abuelo/a'>Abuelo/a</option>
-            </select>
-        </div>
+// function agregarFamiliar() {
+//     var container = document.getElementById("familiares-container");
+//     var div = document.createElement("div");
+//     div.classList.add("row");
+//     div.innerHTML = `
+//         <div class="col-sm-4">
+//             <label class="form-label-sm" for="familiar_nombre">Nombre:</label>
+//             <input type="text" class="form-control form-control-sm" name="ficha[familiar_nombre][]" >
+//         </div>
+//         <div class="col-sm-4">
+//             <label class="form-label-sm" for="familiar_apellido">Apellido:</label>
+//             <input type="text" class="form-control form-control-sm" name="ficha[familiar_apellido][]" >
+//         </div>
+//         <div class="col-sm-4">
+//             <label class="form-label-sm" for="familiar_parentezco">Parentesco:</label>
+//             <select name="ficha[familiar_parentezco][]" id="familiar_parentezco" class="form-control form-control-sm">
+//             <option value='Hermano/a'>Hermano/a</option>
+//             <option value='Padre/Madre'>Padre/Madre</option>
+//             <option value='Hijo/a'>Hijo/a</option>
+//             <option value='Tio/a'>Tio/a</option>
+//             <option value='Abuelo/a'>Abuelo/a</option>
+//             </select>
+//         </div>
       
         
-    `;
-    container.appendChild(div);
+//     `;
+//     container.appendChild(div);
 
-    var filas = container.getElementsByClassName('row');
-    if (filas.length > 1) {
-        var ultimaFila = filas[filas.length - 1];
-        var labels = ultimaFila.querySelectorAll('label');
-        labels.forEach(function(label) {
-            label.style.display = 'none';
-        });
-    }
-}
+//     var filas = container.getElementsByClassName('row');
+//     if (filas.length > 1) {
+//         var ultimaFila = filas[filas.length - 1];
+//         var labels = ultimaFila.querySelectorAll('label');
+//         labels.forEach(function(label) {
+//             label.style.display = 'none';
+//         });
+//     }
+// }
 </script>
 
 <script>
@@ -406,4 +428,49 @@ var options = {
 };
 
 var auto_complete = new Autocom(document.getElementById('institucion'), options);
+</script>
+
+<script>
+// const gradosSelect = document.getElementById('grados');
+// const form = gradosSelect.closest('form'); // Assuming the select is inside a form
+
+// form.addEventListener('submit', (event) => {
+//   if (gradosSelect.value === '') {
+//     event.preventDefault(); // Prevent form submission if placeholder is selected
+//     gradosSelect.nextElementSibling.textContent = 'Debes seleccionar un grado.'; // Add error message (optional)
+//   }
+// });
+</script>
+
+<script>
+// function validateSelect(selectElement) {
+//   if (selectElement.value === '') {
+//     selectElement.nextElementSibling.textContent = 'Seleccione una opción.';
+//     selectElement.form.addEventListener('submit', function(event) {
+//       event.preventDefault();
+//     });
+//   } else {
+//     selectElement.form.removeEventListener('submit'); // Remove the event listener if validation passes
+//   }
+// }
+///////////////////////////////////////////
+            // function validateSelect(selectElement) {
+            // if (selectElement.value === '') {
+            //     selectElement.nextElementSibling.textContent = 'Seleccione una opción.';
+            //     selectElement.form.onsubmit = function(event) {
+            //     event.preventDefault(); // Prevent form submission if placeholder is selected
+            //     };
+            // } else {
+            //     selectElement.form.onsubmit = null; // Remove validation if selection is made
+            // }
+            // }
+
+</script>
+<script>
+//     const selectElements = document.querySelectorAll('select.form-control form-control-sm'); // Get all selects with class "form-control"
+
+// for (const selectElement of selectElements) {
+//   validateSelect(selectElement);
+// }
+
 </script>

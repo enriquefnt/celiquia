@@ -137,12 +137,14 @@ if (isset($ficha['familiar_nombre'])){
        $familiar_parentezco = $ficha['familiar_parentezco'];
        $datos_familiares = array();
        for ($i = 0; $i < count($familiar_nombre); $i++) {
+        if (!empty($familiar_nombre)){
         $datos_familiares[] = array(
             'nombre' => ucfirst(ltrim($familiar_nombre[$i])),
             'apellido' => ucfirst(ltrim($familiar_apellido[$i])),
             'parentezco' => ucfirst(ltrim($familiar_parentezco[$i]))
         );
             }
+        }
         
        $ficha['grupofam']=json_encode($datos_familiares);
     }
@@ -219,21 +221,21 @@ public function print() {
 	// $pdf->AddFont('Medico','','medico.php');
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
-	$pdf->Ln(8);
+	//$pdf->Ln(8);
     $pdf->SetLineWidth(0.5);
     $pdf->SetFillColor(220, 220, 220);
    // $pdf->Rect(10, 40, 190, 20, 'D');
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->SetTextColor(0, 0, 0);
     ///////////////declarante ////////////////////
+    $pdf->Ln(8);
     $pdf->Cell(0,7, 'Declarante', 0, 1, 'L', true);
 	$pdf->SetFont('Arial','',10);
     $pdf->Cell(35,10, 'Fecha: ' . $fecha  ,0,0); 
 	$pdf->Cell(80,10,iconv('UTF-8', 'Windows-1252','Institución: ').  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion'])  ,0,0); 
 	$pdf->Ln(6);
 	$pdf->Cell(0,7,'Profesional: '. iconv('UTF-8', 'Windows-1252', $datosFicha['profesional'] )   ,0,1); 
-    $pdf->Ln();
-//	$pdf->SetFillColor(220, 220, 220);
+    $pdf->Ln(6);
 /////////////////paciente/////////////////////////
    // $pdf->Rect(10, 67, 190, 20, 'D');
     $pdf->SetFont('Arial', 'B', 12);
@@ -317,14 +319,13 @@ $pdf->SetFont('Arial', 'B', 12);
     
 	//$pdf->SetFont('Medico','',14);
 	//$pdf->SetFont('Arial','I',8);
-	$pdf->SetFont('Arial','I',8);
 
+    $pdf->SetFont('Arial','I',8);
 	$pdf->SetY(-28);
-
 	$pdf->Cell(0,7,'Copia realizada por: ' . iconv('UTF-8', 'Windows-1252',$quienImprime),0,0,'C') ;
 
 
-	$pdf->Output($datosFicha[4],'I');
+	$pdf->Output(($datosFicha[4].$datosFicha[5]),'I');
 }
 
 
