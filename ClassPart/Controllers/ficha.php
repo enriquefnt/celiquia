@@ -209,8 +209,11 @@ public function print() {
     $datosFicha['atgiga']=$datosFicha['atgiga']== 1 ? 'Si' : 'No';
     $datosFicha['atgigg']=$datosFicha['atgigg']== 1 ? 'Si' : 'No';
     $json = $datosFicha['grupofam'];
+    if (!empty($datosFicha['grupofam'])) {
+
     $familiares=json_decode($json, true);
-    $numFamiliares = count($familiares);
+   // $numFamiliares = count($familiares);
+    }
     //echo($numFamiliares);
 	//var_dump($familiares);die;
 	$usuario = $this->authentication->getUser();
@@ -286,11 +289,14 @@ public function print() {
     $pdf->Ln();
     ////////////////////////////Familiares/////////////////////////////////
     //$pdf->Rect(10, 175, 190, 20, 'D');
+    
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Familiares'), 0, 1, 'L', true);
+    if (!empty($datosFicha['grupofam'])) {
 	//$pdf->SetFont('Arial','',10);
     $pdf->Ln(8);
+    if (!empty($datosFicha['grupofam'])) {
     $pdf->SetLineWidth(0.3);
     // Definir la cabecera de la tabla
     $pdf->SetFont('Arial', 'B', 10);
@@ -300,6 +306,7 @@ public function print() {
 
 // Agregar los datos a la tabla
     $pdf->SetFont('Arial', '', 7);
+    
     foreach ($familiares as $familiar) {
         if (!empty($familiar['nombre'])) {
     // Ajustar el ancho de las celdas según el contenido
@@ -307,16 +314,32 @@ public function print() {
     $pdf->Cell(40, 6, iconv('UTF-8', 'Windows-1252', $familiar['apellido']), 1, 0, 'L');
     $pdf->Cell(60, 6, iconv('UTF-8', 'Windows-1252', $familiar['parentezco']), 1, 1, 'L');
             }       
+        }
     }
+
     $pdf->Ln(8);
+}
+else {
+    $pdf->Ln(8);
+    $pdf->SetFont('Arial','',10);
+    $pdf->Cell (190,20, iconv('UTF-8', 'Windows-1252', 'No se registraron familiares') ,0,0); 
+    $pdf->Ln(8);
+}
 //////////////////////Medidas a observar//////////////////////////
-$pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetFont('Arial', 'B', 12);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(0,7, iconv('UTF-8', 'Windows-1252','Medidas a Observar'), 0, 1, 'L', true);
+    if (!empty($datosFicha['observaciones'])) {
 	$pdf->SetFont('Arial','',10);
     $pdf->Cell (190,20, iconv('UTF-8', 'Windows-1252', $datosFicha['observaciones']) ,0,0); 
-    $pdf->Ln(5);
     
+    $pdf->Ln(5);}
+      else {
+        $pdf->SetFont('Arial','',10);
+        $pdf->Cell (190,20, iconv('UTF-8', 'Windows-1252', 'No registra observaciones') ,0,0);     
+
+
+      }
 	//$pdf->SetFont('Medico','',14);
 	//$pdf->SetFont('Arial','I',8);
 

@@ -24,8 +24,8 @@
     <td><?= $caso['localidad']; ?></td>
     
        <td class="text-center">
-        <a href="/ficha/print?idficha=<?= $caso['idficha'] ?>">
-          <i class="bi bi-pencil-square"></i>
+        <a href="/ficha/print?idficha=<?= $caso['idficha'] ?>"target="_blank"><i class="fa-regular fa-file-pdf"></i>
+       
         </a>
       </td> 
    

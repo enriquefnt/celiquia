@@ -16,7 +16,7 @@
    <div class="col-sm-2">	
     <label class="form-label-sm" for="fechanot">Fecha </label>
     <input class="form-control form-control-sm" type="date" name="ficha[fechanot]" id="fechanot" 
-    min="2024-01-01" max="<?=date('Y-m-d');?>" required="required" value="<?=date('Y-m-d');?>">
+    min="2000-01-01" max="<?=date('Y-m-d');?>" required="required" value="<?=date('Y-m-d');?>">
 </div>
 
 <div class="col-sm-3">
@@ -76,9 +76,13 @@
 </div>
 
 
+<div class="col-sm-2">
+<label class="form-label-sm" for="historiaClinica">Nº de Historia Clínica</label>
+<input class="form-control form-control-sm" type="number" name="ficha[historiaClinica]" id="historiaClinica"  value="<?=$datosInter['historiaClinica'] ?? ''?>">
+</div>
 
 
-<div class="col-sm-8">	
+<div class="col-sm-6">	
 			<label class="form-label-sm" for="domicilio">Domicilio</label>
             <div class="input-group">
 			<input class="form-control form-control-sm" type="text" name="ficha[domicilio]" id="domicilio" required="required" value="<?=$datosInter['domicilio'] ?? ''?>">
@@ -127,17 +131,7 @@
 </div>
 </div>
 
-<!-- <div class="col-sm-2">
-  <label class="form-label-sm" for="grados">Grados</label>
-  <select name="ficha[grados]" id="grados" class="form-control form-control-sm">
-    <option value='0'>0</option>
-	<option value='1'>1</option>
-	<option value='2'>2</option>
-    <option value='3a'>3 a</option>
-    <option value='3b'>3 b</option>
-    <option value='3c'>3 c</option>
-	</select>
- </div> -->
+
 
  <div class="col-sm-2">
   <label class="form-label-sm" for="grados">Grados</label>

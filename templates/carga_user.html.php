@@ -46,36 +46,28 @@ endif;
 </div>
 
 <div class="col-sm-3">
-  <label class="form-label-sm" for="profesion">Profesión</label>
+  <label class="form-label-sm" for="especialidad">Especialidad</label>
   <div class="input-group">
-  <select name="Usuario[profesion]"  class="form-control form-control-sm">
-    <option hidden selected><?=$datosUser['profesion'] ?? '...'?></option>
-    <option value='Enfermería'>Enfermería</option>
-    <option value='Nutrición'>Nutrición</option>
-    <option value='Medicina'>Medicina</option>
-    <option value='Agente Sanitario'>Agente Sanitario</option>
-    <option value='Administrativo'>Administrativo</option>
+  <select name="Usuario[especialidad]"  class="form-control form-control-sm">
+    <option hidden selected><?=$datosUser['especialidad'] ?? '...'?></option>
+    <option value='Gastroenterología adultos'>Gastroenterología adultos</option>
+    <option value='Gastroenterología pediátrica'>Gastroenterología pediátrica</option>
+    <option value='Clínica adultos'>Clínica adultos</option>
+    <option value='Clínica pediátrica'>Clínica pediátrica</option>
     <option value='Otros'>Otros</option>
     </select>
     <span class="input-group-text">
-      <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione el agrupamiento profesional al que pertenece el nuevo usuario"></i>
+      <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione Especialidad"></i>
       </span>
 </div>
  </div>
 
 <div class="col-sm-3">
-  <label class="form-label-sm" for="tipo">Función</label>
+  <label class="form-label-sm" for="tipo">Matrícula</label>
   <div class="input-group">
-  <select name="Usuario[tipo]" id="tipo" class="form-control form-control-sm">
-  	<option hidden selected><?=$datosUser['tipo'] ?? '...'?></option>
-  <!--  <option value='1'>Administrador</option> -->
-    <option value='Auditor'>Auditor</option>
-    <option value=Profesional>Vigilante</option>
-    <option value='Administrativo'>Administrativo</option>
-    <option value='Otros'>Otros</option>
-    </select>
-    <span class="input-group-text">
-      <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la funcion ejercerá el nuevo usuario"></i>
+  <input type="text" required="required" class="form-control form-control-sm" name="Usuario[matricula]"  autocomplete="off" value="<?=$datosUser['apellido'] ?? ''?>">
+  <span class="input-group-text">
+      <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Igrese el número de la matrícula profesional."></i>
       </span>
 </div>
 </div>
