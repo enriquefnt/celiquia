@@ -38,7 +38,7 @@ $pdo = new \PDO('mysql:host=212.1.210.73;dbname=saltaped_celiaquia;charset=utf8m
 
 public function getDefaultRoute(): string {
 
-	return 'ficha/home';
+	return 'login/home';
 
 	}
 

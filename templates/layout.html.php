@@ -82,7 +82,7 @@ $_SESSION['establecimiento_nombre']. "</p>";}
        <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a  class="navbar-brand mb-0 " href="/ficha/home">Inicio</a>
+            <a  class="navbar-brand mb-0 " href="/login/home">Inicio</a>
           </li> 
          
           <li class="nav-item">

@@ -43,6 +43,18 @@ $_SESSION['usuAo']=$usuario['usuAo'];
 }
 }
 
+
+public function home()
+{
+    $title = 'Inicio';
+
+
+    return ['template' => 'home.html.php', 'title' => $title, 'variables' => []];
+}
+
+
+
+
 public function logout() {
 $this->authentication->logout();
 header('location: /');

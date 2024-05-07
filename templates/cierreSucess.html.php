@@ -29,7 +29,7 @@
  <div class="modal-footer">
            
            
-            <a href="/ninios/home"  class="btn btn-primary btn-sm" role="button">Salir</a>
+            <a href="/login/home"  class="btn btn-primary btn-sm" role="button">Salir</a>
       </div> 
     </div>
   </div>

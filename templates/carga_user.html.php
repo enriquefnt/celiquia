@@ -65,7 +65,7 @@ endif;
 <div class="col-sm-3">
   <label class="form-label-sm" for="tipo">Matrícula</label>
   <div class="input-group">
-  <input type="text" required="required" class="form-control form-control-sm" name="Usuario[matricula]"  autocomplete="off" value="<?=$datosUser['apellido'] ?? ''?>">
+  <input type="text" required="required" class="form-control form-control-sm" name="Usuario[matricula]"  autocomplete="off" value="<?=$datosUser['matricula'] ?? ''?>">
   <span class="input-group-text">
       <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Igrese el número de la matrícula profesional."></i>
       </span>

@@ -4,12 +4,12 @@ use \ClassGrl\DataTables;
 class Usuarios {
 private $userTable;
 private $tablaInsti;
-//private $userTableSivin;
+
 
 
 public function __construct(\ClassGrl\DataTables $userTable,
 							\ClassGrl\DataTables $tablaInsti,
-							//\ClassGrl\DataTables $userTableSivin,
+							
 							) {
 
         $this->userTable = $userTable;

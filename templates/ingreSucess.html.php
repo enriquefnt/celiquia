@@ -18,7 +18,7 @@
            
             
             <div class="col-sm-3">		
-            <a href="/ninios/home"  class="btn btn-primary " role="button"><i class="fa-solid fa-check"></i></a>
+            <a href="/login/home"  class="btn btn-primary " role="button"><i class="fa-solid fa-check"></i></a>
             </div>	
       </div> 
     </div>

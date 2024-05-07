@@ -354,13 +354,13 @@ else {
 
 
 
-public function home()
-{
-    $title = 'Inicio';
+// public function home()
+// {
+//     $title = 'Inicio';
 
 
-    return ['template' => 'home.html.php', 'title' => $title, 'variables' => []];
-}
+//     return ['template' => 'home.html.php', 'title' => $title, 'variables' => []];
+// }
 
     
     public function calcularEdad($fechaNacimiento, $fechaActual) {

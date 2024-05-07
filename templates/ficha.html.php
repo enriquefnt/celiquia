@@ -231,7 +231,7 @@
 <fieldset class="border p-2">   
 <div class="d-flex">  
         <div class="col-sm-3">		
-            <a href="/ninios/home"  class="btn btn-primary " role="button">Salir sin cambiar</a>
+            <a href="/login/home"  class="btn btn-primary " role="button">Salir sin cambiar</a>
         </div>
         <div class="col-sm-3">	
             <input type="submit" id="myButton"  name=submit class="btn btn-primary " value="Guardar">
