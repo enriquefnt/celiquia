@@ -207,7 +207,8 @@ public function print() {
     $datosFicha['endoscopia']=$datosFicha['endoscopia']== 1 ? 'Si' : 'No';
     $datosFicha['iga']=$datosFicha['iga']== 1 ? 'Si' : 'No';
     $datosFicha['atgiga']=$datosFicha['atgiga']== 1 ? 'Si' : 'No';
-    $datosFicha['atgigg']=$datosFicha['atgigg']== 1 ? 'Si' : 'No';
+    $datosFicha['IgGPDG']=$datosFicha['IgGPDG']== 1 ? 'Si' : 'No';
+    $datosFicha['EMA']=$datosFicha['EMA']== 1 ? 'Si' : 'No';
     $json = $datosFicha['grupofam'];
     if (!empty($datosFicha['grupofam'])) {
 
@@ -283,9 +284,10 @@ public function print() {
 	$pdf->SetFont('Arial','',10);
     $pdf->Cell(80,10, iconv('UTF-8', 'Windows-1252','Fecha de extracción: ') . iconv('UTF-8', 'Windows-1252', $datosFicha['fechaestrac']) ,0,0); 
     $pdf->Ln(5);
-    $pdf->Cell(65,10,  iconv('UTF-8', 'Windows-1252','IgA Sérica Total: '). $datosFicha['iga'] ,0,0); 
-    $pdf->Cell(65,10,  iconv('UTF-8', 'Windows-1252','Anticuerpo ATG IgA: '). $datosFicha['atgiga'] ,0,0); 
-    $pdf->Cell(60,10,  iconv('UTF-8', 'Windows-1252','Anticuerpo ATG IgG: '). $datosFicha['atgigg'] ,0,0); 
+    $pdf->Cell(49,10,  iconv('UTF-8', 'Windows-1252','IgA Sérica Total: '). $datosFicha['iga'] ,0,0); 
+    $pdf->Cell(49,10,  iconv('UTF-8', 'Windows-1252','Anticuerpo ATG IgA: '). $datosFicha['atgiga'] ,0,0); 
+    $pdf->Cell(50,10,  iconv('UTF-8', 'Windows-1252','Anticuerpo ATG IgG: '). $datosFicha['IgGPDG'] ,0,0); 
+    $pdf->Cell(50,10,  iconv('UTF-8', 'Windows-1252','Anticuerpo ATG IgG: '). $datosFicha['EMA'] ,0,0); 
     $pdf->Ln();
     ////////////////////////////Familiares/////////////////////////////////
     //$pdf->Rect(10, 175, 190, 20, 'D');

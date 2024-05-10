@@ -1,6 +1,6 @@
 <div class="container">
     <legend class="w-80 p-0 h-0 ">
-        <p>Ficha de investigación de enfermedad celíaca.
+        <p>Ficha de registro de enfermedad celíaca.
         </p>
     </legend>
     <fieldset class="border p-2">
@@ -11,8 +11,9 @@
             <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Declarante
             </legend>
             <div class="col-sm-2">
-                <label class="form-label-sm" for="fechanot">Fecha </label>
-                <input class="form-control form-control-sm" type="date" name="ficha[fechanot]" id="fechanot" min="2000-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= date('Y-m-d'); ?>">
+                <label class="form-label-sm" for="fechanot">Fecha <span class="text-danger">*</label>
+                <input class="form-control form-control-sm" type="date" name="ficha[fechanot]" 
+                id="fechanot" min="2000-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= date('Y-m-d'); ?>">
             </div>
 
             <div class="col-sm-3">
@@ -21,7 +22,7 @@
             </div>
 
             <div class="col-sm-7">
-                <label class="form-label-sm" for="institucion">Efector</label>
+                <label class="form-label-sm" for="institucion">Efector<span class="text-danger">*</label>
                 <input class="form-control form-control-sm" type="text" name="ficha[institucion]" id="institucion" required="required" value="<?= $datosInter['institucion'] ?? '' ?>">
 
             </div>
@@ -30,16 +31,16 @@
             </legend>
 
             <div class="col-sm-2">
-                <label class="form-label-sm" for="nombre">Nombre</label>
+                <label class="form-label-sm" for="nombre">Nombre<span class="text-danger">*</label>
                 <input class="form-control form-control-sm" type="text" name="ficha[nombre]" id="nombre" required="required" value="<?= $datosInter['nombre'] ?? '' ?>">
             </div>
             <div class="col-sm-2">
-                <label class="form-label-sm" for="apellido">Apellido</label>
+                <label class="form-label-sm" for="apellido">Apellido<span class="text-danger">*</label>
                 <input class="form-control form-control-sm" type="text" name="ficha[apellido]" id="apellido" required="required" value="<?= $datosInter['apellido'] ?? '' ?>">
             </div>
 
             <div class="col-sm-2">
-                <label class="form-label-sm" for="sexo">Sexo</label>
+                <label class="form-label-sm" for="sexo">Sexo<span class="text-danger">*</label>
                 <select name="ficha[sexo]" id="sexo" class="form-control form-control-sm">
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value=2>Femenino</option>
@@ -49,7 +50,7 @@
             </div>
 
             <div class="col-sm-2">
-                <label class="form-label-sm" for="dni">DNI</label>
+                <label class="form-label-sm" for="dni">DNI<span class="text-danger">*</label>
                 <div class="input-group">
                     <input class="form-control form-control-sm" type="number" name="ficha[dni]" id="dni" min="0" max="99999999">
                     <span class="input-group-text">
@@ -59,8 +60,10 @@
             </div>
 
             <div class="col-sm-2">
-                <label class="form-label-sm" for="fechanac">Fecha de Nacimiento</label>
-                <input class="form-control form-control-sm" type="date" name="ficha[fechanac]" id="fechanac" min="1920-01-01" max="<?= date('Y-m-d'); ?>" onchange="calcularEdad()" required="required" value="<?= $datosInter['fechanac'] ?? '' ?>">
+                <label class="form-label-sm" for="fechanac">Fecha de Nacimiento<span class="text-danger">*</label>
+                <input class="form-control form-control-sm" type="date" name="ficha[fechanac]" id="fechanac"
+                 min="1920-01-01" max="<?= date('Y-m-d'); ?>" onchange="calcularEdad()" required="required"
+                 value="<?= $datosInter['fechanac'] ?? '' ?>">
             </div>
 
             <div class="col-sm-2">
@@ -71,22 +74,26 @@
 
             <div class="col-sm-2">
                 <label class="form-label-sm" for="historiaClinica">Nº de Historia Clínica</label>
-                <input class="form-control form-control-sm" type="number" name="ficha[historiaClinica]" id="historiaClinica" value="<?= $datosInter['historiaClinica'] ?? '' ?>">
+                <input class="form-control form-control-sm" type="number" name="ficha[historiaClinica]" 
+                id="historiaClinica" value="<?= $datosInter['historiaClinica'] ?? '' ?>">
             </div>
 
 
             <div class="col-sm-6">
-                <label class="form-label-sm" for="domicilio">Domicilio</label>
+                <label class="form-label-sm" for="domicilio">Domicilio<span class="text-danger">*</label>
                 <div class="input-group">
                     <input class="form-control form-control-sm" type="text" name="ficha[domicilio]" id="domicilio" required="required" value="<?= $datosInter['domicilio'] ?? '' ?>">
                     <span class="input-group-text">
-                        <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Indique calle-número-piso- n° de departamento-barrio, en caso de viviendas rurales indique la localidad o paraje mas cercano y describa brevemente la ubicación"></i>
+                        <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Indique 
+                        calle-número-piso- n° de departamento-barrio, en caso de viviendas rurales indique la localidad o paraje mas 
+                        cercano y describa brevemente la ubicación. 
+                        En caso de domicilio extraprovincial indique provincia o país en este campo y en el campo LOCALIDAD seleccione OTRO PAIS u OTRA PROVINCIA"></i>
                     </span>
                 </div>
             </div>
 
             <div class="col-sm-4">
-                <label class="form-label-sm" for="localidad">Localidad</label>
+                <label class="form-label-sm" for="localidad">Localidad<span class="text-danger">*</label>
                 <input type="text" name="ficha[localidad]" id="localidad" class="form-control form-control-sm" autocomplete="off" value="<?= $datosDomi['localidad'] ?? '' ?>">
 
                 <!-- <input type="hidden" name="ficha[IdResi]" value="<?= $datosDomi['IdResi'] ?? '' ?>"> -->
@@ -98,8 +105,9 @@
             </legend>
 
             <div class="col-sm-2">
-                <label class="form-label-sm" for="fechadiag">Fecha de Diagnóstico</label>
-                <input class="form-control form-control-sm" type="date" name="ficha[fechadiag]" id="fechadiag" min="1920-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= $datosInter['fechadiag'] ?? '' ?>">
+                <label class="form-label-sm" for="fechadiag">Fecha de Diagnóstico<span class="text-danger">*</label>
+                <input class="form-control form-control-sm" type="date" name="ficha[fechadiag]" 
+                id="fechadiag" min="1920-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= $datosInter['fechadiag'] ?? '' ?>">
             </div>
 
 
@@ -110,11 +118,11 @@
 
 
             <div class="col-sm-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="biopsia" name="ficha[biopsia]" value="1">
-                    <label class="form-check-label" for="biopsia">Biopsia</label>
-                </div>
-            </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="biopsia" name="ficha[biopsia]" value="1" onchange="toggleObservaciones()" required="required">
+    <label class="form-check-label" for="biopsia">Biopsia<span class="text-danger">*</label>
+  </div>
+</div>
             <div class="col-sm-2">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="endoscopia" name="ficha[endoscopia]" value="1">
@@ -128,12 +136,10 @@
                 <label class="form-label-sm" for="grados">Grados</label>
                 <select name="ficha[grados]" id="grados" class="form-control form-control-sm" required>
                     <option value="" disabled selected>Seleccione una opción</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
                     <option value="3a">3 a</option>
                     <option value="3b">3 b</option>
                     <option value="3c">3 c</option>
+                    <option value="3c">4 </option>
                 </select>
             </div>
 
@@ -141,57 +147,63 @@
 
             <div class="col-sm-2">
                 <label class="form-label-sm" for="protocolo">Nº Protocolo</label>
-                <input class="form-control form-control-sm" type="text" name="ficha[protocolo]" id="protocolo" required="required" value="<?= $datosInter['protocolo'] ?? '' ?>">
+                <input class="form-control form-control-sm" type="text" name="ficha[protocolo]" id="protocolo"  value="<?= $datosInter['protocolo'] ?? '' ?>">
             </div>
 
             <!-- <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Síntomas y Signos Clínicos
    </legend> -->
-            <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;">Síntomas y Signos Clínicos</legend>
+            <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;">Clínica</legend>
 
             <div class="col-sm-2">
                 <label class="form-label-sm" for="fechadiag">Fecha de Consulta</label>
                 <input class="form-control form-control-sm" type="date" name="ficha[fechaconsulta]" id="fechaconsulta" min="1920-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= $datosInter['fechaconsulta'] ?? '' ?>">
             </div>
             <div class="col-sm-4">
-                <label class="form-label-sm" for="formaclin">Forma clínica de presentación</label>
+                <label class="form-label-sm" for="formaclin">Forma clínica de presentación<span class="text-danger">*</label>
                 <select name="ficha[formaclin]" id="formaclin" class="form-control form-control-sm">
                     <option value="" disabled selected>Seleccione una opción</option>
-                    <option value="Sintomática digestiva">Sintomática digestiva</option>
-                    <option value="Sintomática extradigestiva">Sintomática extradigestiva</option>
-                    <option value="Asintomática">Asintomática</option>
-                    <option value="Familiar (SCR)">Familiar (SCR)</option>
+                    <option value="Sintomática digestiva">Sintomática</option>
+                    <option value="Sintomática extradigestiva">Asintomática</option>
+                    <option value="Asintomática">Subclínica</option>
+                    <!-- <option value="Familiar (SCR)">Familiar (SCR)</option> -->
                 </select>
             </div>
 
 
             <div class="form-group">
-                <label class="form-label-sm" for="enfermeasoc">Enfermedades asociadas</label>
-                <textarea class="form-control" rows="2" id="enfermeasoc" name="ficha[enfermeasoc]" value="<?= $datosNoti['enfermeasoc'] ?? '' ?>">
-			</textarea>
-            </div>
+    <label class="form-label-sm" for="enfermeasoc">Enfermedades asociadas</label>
+    <textarea class="form-control" rows="2" id="enfermeasoc" name="ficha[enfermeasoc]" 
+    placeholder="Anotar separado por comas los diagnósticos de la patología asociada"><?= $datosNoti['enfermeasoc'] ?? '' ?></textarea>
+</div>
             <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Laboratorio
             </legend>
 
             <div class="col-sm-3">
-                <label class="form-label-sm" for="fechaestrac">Fecha de extracción</label>
+                <label class="form-label-sm" for="fechaestrac">Fecha de extracción<span class="text-danger">*</label>
                 <input class="form-control form-control-sm" type="date" name="ficha[fechaestrac]" id="fechaestrac" min="1920-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= $datosInter['fechaestrac'] ?? '' ?>">
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="iga" name="ficha[iga]" value="1">
                     <label class="form-check-label" for="iga">IgA sérica total</label>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="atgiga" name="ficha[atgiga]" value="1">
                     <label class="form-check-label" for="atgiga">tTG-IgA</label>
                 </div>
             </div>
+            <div class="col-sm-2">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="IgGPDG" name="ficha[IgGPDG]" value="1">
+                    <label class="form-check-label" for="atgigg">IgGPDG</label>
+                </div>
+            </div>
             <div class="col-sm-3">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="atgigg" name="ficha[atgigg]" value="1">
-                    <label class="form-check-label" for="atgigg">tTG-IgG</label>
+                    <input class="form-check-input" type="checkbox" id="EMA" name="ficha[EMA]" value="1">
+                    <label class="form-check-label" for="atgigg">EMA</label>
                 </div>
             </div>
 
@@ -210,10 +222,10 @@
             </legend>
 
             <div class="form-group">
-                <label class="form-label-sm" for="observaciones">Medidas a Observar</label>
-                <textarea class="form-control" rows="2" id="observaciones" name="ficha[observaciones]" value="<?= $datosNoti['observaciones'] ?? '' ?>">
-			</textarea>
-            </div>
+            <label class="form-label-sm" for="observaciones">Observaciones<span id="asterisk" class="text-danger">*</span></label>
+    <textarea class="form-control" rows="2" id="observaciones" 
+    name="ficha[observaciones]" <?= $datosNoti['observaciones'] ?? '' ?>></textarea>
+    </div>
 
 
     </fieldset>
@@ -360,43 +372,21 @@
 </script>
 
 <script>
-    // function agregarFamiliar() {
-    //     var container = document.getElementById("familiares-container");
-    //     var div = document.createElement("div");
-    //     div.classList.add("row");
-    //     div.innerHTML = `
-    //         <div class="col-sm-4">
-    //             <label class="form-label-sm" for="familiar_nombre">Nombre:</label>
-    //             <input type="text" class="form-control form-control-sm" name="ficha[familiar_nombre][]" >
-    //         </div>
-    //         <div class="col-sm-4">
-    //             <label class="form-label-sm" for="familiar_apellido">Apellido:</label>
-    //             <input type="text" class="form-control form-control-sm" name="ficha[familiar_apellido][]" >
-    //         </div>
-    //         <div class="col-sm-4">
-    //             <label class="form-label-sm" for="familiar_parentezco">Parentesco:</label>
-    //             <select name="ficha[familiar_parentezco][]" id="familiar_parentezco" class="form-control form-control-sm">
-    //             <option value='Hermano/a'>Hermano/a</option>
-    //             <option value='Padre/Madre'>Padre/Madre</option>
-    //             <option value='Hijo/a'>Hijo/a</option>
-    //             <option value='Tio/a'>Tio/a</option>
-    //             <option value='Abuelo/a'>Abuelo/a</option>
-    //             </select>
-    //         </div>
+   function toggleObservaciones() {
+  var biopsiaCheckbox = document.getElementById("biopsia");
+  var observacionesTextarea = document.getElementById("observaciones");
+  var observacionesLabel = document.querySelector('label[for="observaciones"] span.text-danger');
 
-
-    //     `;
-    //     container.appendChild(div);
-
-    //     var filas = container.getElementsByClassName('row');
-    //     if (filas.length > 1) {
-    //         var ultimaFila = filas[filas.length - 1];
-    //         var labels = ultimaFila.querySelectorAll('label');
-    //         labels.forEach(function(label) {
-    //             label.style.display = 'none';
-    //         });
-    //     }
-    // }
+  if (!biopsiaCheckbox.checked) {
+    observacionesLabel.style.display = "inline"; // Mostrar el asterisco
+    observacionesTextarea.setAttribute("required", "required");
+    observacionesTextarea.setAttribute("placeholder", "Debe justificar acá el diagnóstico sin biopsia"); // Agregar el placeholder
+  } else {
+    observacionesLabel.style.display = "none"; // Ocultar el asterisco
+    observacionesTextarea.removeAttribute("required");
+    observacionesTextarea.placeholder = ""; // Eliminar el placeholder
+  }
+}
 </script>
 
 <script>
@@ -413,45 +403,3 @@
     var auto_complete = new Autocom(document.getElementById('institucion'), options);
 </script>
 
-<script>
-    // const gradosSelect = document.getElementById('grados');
-    // const form = gradosSelect.closest('form'); // Assuming the select is inside a form
-
-    // form.addEventListener('submit', (event) => {
-    //   if (gradosSelect.value === '') {
-    //     event.preventDefault(); // Prevent form submission if placeholder is selected
-    //     gradosSelect.nextElementSibling.textContent = 'Debes seleccionar un grado.'; // Add error message (optional)
-    //   }
-    // });
-</script>
-
-<script>
-    // function validateSelect(selectElement) {
-    //   if (selectElement.value === '') {
-    //     selectElement.nextElementSibling.textContent = 'Seleccione una opción.';
-    //     selectElement.form.addEventListener('submit', function(event) {
-    //       event.preventDefault();
-    //     });
-    //   } else {
-    //     selectElement.form.removeEventListener('submit'); // Remove the event listener if validation passes
-    //   }
-    // }
-    ///////////////////////////////////////////
-    // function validateSelect(selectElement) {
-    // if (selectElement.value === '') {
-    //     selectElement.nextElementSibling.textContent = 'Seleccione una opción.';
-    //     selectElement.form.onsubmit = function(event) {
-    //     event.preventDefault(); // Prevent form submission if placeholder is selected
-    //     };
-    // } else {
-    //     selectElement.form.onsubmit = null; // Remove validation if selection is made
-    // }
-    // }
-</script>
-<script>
-    //     const selectElements = document.querySelectorAll('select.form-control form-control-sm'); // Get all selects with class "form-control"
-
-    // for (const selectElement of selectElements) {
-    //   validateSelect(selectElement);
-    // }
-</script>
