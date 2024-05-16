@@ -291,7 +291,8 @@ class Ficha
         $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(100, 10, iconv('UTF-8', 'Windows-1252', 'Forma de presentación: ') . iconv('UTF-8', 'Windows-1252', $datosFicha['formaclin']), 0, 0);
         $pdf->Ln(6);
-        $pdf->Cell(80, 10,  iconv('UTF-8', 'Windows-1252', 'Enfermedades Asociadas: ') . $datosFicha['enfermeasoc'], 0, 0);
+        $pdf->Cell(80, 10,  iconv('UTF-8', 'Windows-1252', 'Enfermedades Asociadas: ') . 
+        iconv('UTF-8', 'Windows-1252', $datosFicha['enfermeasoc'], 0, 0));
         $pdf->Ln();
         ///////////////////////////////Laboratorio //////////////////
         //  $pdf->Rect(10, 148, 190, 20, 'D');
@@ -312,32 +313,30 @@ class Ficha
         $pdf->SetFont('Arial', 'B', 12);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Cell(0, 7, iconv('UTF-8', 'Windows-1252', 'Familiares'), 0, 1, 'L', true);
-       // if (!empty($datosFicha['grupofam'])) {
-            //$pdf->SetFont('Arial','',10);
-            $pdf->Ln(8);
-            if (!empty($datosFicha['grupofam'])) {
-                $pdf->SetLineWidth(0.3);
-                // Definir la cabecera de la tabla
-                $pdf->SetFont('Arial', 'B', 10);
-                $pdf->Cell(40, 8, 'Nombre', 1, 0, 'C');
-                $pdf->Cell(40, 8, 'Apellido', 1, 0, 'C');
-                $pdf->Cell(60, 8, 'Parentesco', 1, 1, 'C'); // Aumentar el ancho de la celda para Parentesco
+        $pdf->Ln(8);
+        if (!empty($datosFicha['grupofam'])) {
+            $pdf->SetLineWidth(0.3);
+            // Definir la cabecera de la tabla
+            $pdf->SetFont('Arial', 'B', 10);
+            $pdf->Cell(40, 8, 'Nombre', 1, 0, 'C');
+            $pdf->Cell(40, 8, 'Apellido', 1, 0, 'C');
+            $pdf->Cell(60, 8, 'Parentesco', 1, 1, 'C'); // Aumentar el ancho de la celda para Parentesco
 
-                // Agregar los datos a la tabla
-                $pdf->SetFont('Arial', '', 7);
+            // Agregar los datos a la tabla
+            $pdf->SetFont('Arial', '', 7);
 
-                foreach ($familiares as $familiar) {
-                    if (!empty($familiar['nombre'])) {
-                        // Ajustar el ancho de las celdas según el contenido
-                        $pdf->Cell(40, 6, iconv('UTF-8', 'Windows-1252', $familiar['nombre']), 1, 0, 'L');
-                        $pdf->Cell(40, 6, iconv('UTF-8', 'Windows-1252', $familiar['apellido']), 1, 0, 'L');
-                        $pdf->Cell(60, 6, iconv('UTF-8', 'Windows-1252', $familiar['parentezco']), 1, 1, 'L');
-                    }
+            foreach ($familiares as $familiar) {
+                if (!empty($familiar['nombre'])) {
+                    // Ajustar el ancho de las celdas según el contenido
+                    $pdf->Cell(40, 6, iconv('UTF-8', 'Windows-1252', $familiar['nombre']), 1, 0, 'L');
+                    $pdf->Cell(40, 6, iconv('UTF-8', 'Windows-1252', $familiar['apellido']), 1, 0, 'L');
+                    $pdf->Cell(60, 6, iconv('UTF-8', 'Windows-1252', $familiar['parentezco']), 1, 1, 'L');
                 }
-        //    }
+            }
+            //    }
 
-           $pdf->Ln(6);
-        } else if(empty($datosFicha['grupofam'])) {
+            $pdf->Ln(6);
+        } else if (empty($datosFicha['grupofam'])) {
             $pdf->Ln(8);
             $pdf->SetFont('Arial', '', 10);
             $pdf->Cell(190, 20, iconv('UTF-8', 'Windows-1252', 'No se registraron familiares'), 0, 0);
@@ -395,5 +394,3 @@ class Ficha
         return $ndias;
     }
 }
-
-
