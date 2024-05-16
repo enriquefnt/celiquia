@@ -112,11 +112,11 @@
             </div>
 
 
-            
-            <div class="col-sm-2">
+
+            <!-- <div class="col-sm-2">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="biopsia" name="ficha[biopsia]" value="1" onchange="toggleObservaciones()" required="required">
-                    <label class="form-check-label" for="biopsia">Biopsia<span class="text-danger">*</span></label>
+                    <input class="form-check-input" type="checkbox" id="biopsia" name="ficha[biopsia]" value="1" onchange="toggleObservaciones()">
+                    <label class="form-check-label" for="biopsia">Biopsia</span></label>
                     <div class="input-group">
                         <span class="input-group-text">
                             <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Si no se realizó debe 
@@ -124,6 +124,18 @@
                         </span>
                     </div>
                 </div>
+            </div> -->
+            <div class="col-sm-2">
+            <div class="form-check d-flex align-items-center">
+    <label class="form-check-label d-block" for="biopsia">
+        Biopsia
+        <input class="form-check-input" type="checkbox" id="biopsia" name="ficha[biopsia]" value="1" onchange="toggleObservaciones()">
+        <span class="text-muted">
+            <i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Si no se realizó debe aclararlo en 'Observaciones'"></i>
+           
+        </span>
+    </label>
+</div>
             </div>
 
             <div class="col-sm-2">
@@ -137,7 +149,7 @@
 
             <div class="col-sm-2">
                 <label class="form-label-sm" for="grados">Grados</label>
-                <select name="ficha[grados]" id="grados" class="form-control form-control-sm" required>
+                <select name="ficha[grados]" id="grados" class="form-control form-control-sm">
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option value="3a">3 a</option>
                     <option value="3b">3 b</option>
@@ -153,8 +165,7 @@
                 <input class="form-control form-control-sm" type="text" name="ficha[protocolo]" id="protocolo" value="<?= $datosInter['protocolo'] ?? '' ?>">
             </div>
 
-            <!-- <legend class="w-80 p-0 h-0 " style="font-size: 0.95rem;font-weight: bold;"> Síntomas y Signos Clínicos
-   </legend> -->
+
             <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;">Clínica</legend>
 
             <div class="col-sm-2">
