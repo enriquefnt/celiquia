@@ -18,7 +18,7 @@ public function __construct() {
 $pdo = new \PDO('mysql:host=212.1.210.73;dbname=saltaped_celiaquia;charset=utf8mb4', 'saltaped_userceliaquia', '1XS8I8nu5NXl');
 	
 	$this->tablaFichas = new \ClassGrl\DataTables($pdo,'ficha', 'idficha');	
-	$this->tablaInsti = new \ClassGrl\DataTables($pdo,'datos_institucion', 'establecimiento_id');	
+	$this->tablaInsti = new \ClassGrl\DataTables($pdo,'datos_institucion', 'codi_esta');	
 	$this->tablaUser = new \ClassGrl\DataTables($pdo,'datos_usuarios', 'id_usuario');	
 	$this->tablaLocal = new \ClassGrl\DataTables($pdo,'datos_localidad', 'gid');	
 	$this->authentication = new \ClassGrl\Authentication($this->tablaUser,'user', 'password'); 
@@ -38,7 +38,7 @@ $pdo = new \PDO('mysql:host=212.1.210.73;dbname=saltaped_celiaquia;charset=utf8m
 
 public function getDefaultRoute(): string {
 
-	return 'ficha/home';
+	return 'login/home';
 
 	}
 

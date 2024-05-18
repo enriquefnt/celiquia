@@ -4,5 +4,5 @@
 	session_write_close();
 	session_destroy();
 
-	header('Location: ninios/home');
+	header('Location: login/home');
 ?>

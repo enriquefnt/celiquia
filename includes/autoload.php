@@ -4,6 +4,7 @@ $fileName = str_replace('\\', '/', $className) . '.php';
 $file = __DIR__ . '/../' . $fileName;
 
 include $file;
+//echo($file);
 }
 
 spl_autoload_register('autoloader');

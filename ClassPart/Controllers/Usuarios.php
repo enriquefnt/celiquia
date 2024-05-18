@@ -4,12 +4,12 @@ use \ClassGrl\DataTables;
 class Usuarios {
 private $userTable;
 private $tablaInsti;
-//private $userTableSivin;
+
 
 
 public function __construct(\ClassGrl\DataTables $userTable,
 							\ClassGrl\DataTables $tablaInsti,
-							//\ClassGrl\DataTables $userTableSivin,
+							
 							) {
 
         $this->userTable = $userTable;
@@ -82,7 +82,7 @@ $instituciones = $this->tablaInsti->findAll();
 	$Usuario['usuAo'] = $this->tablaInsti->findById($Usuario['codi_esta'])['AOP'] ?? '';
 	$Usuario['fechaCarga'] = new \DateTime();
 
-// var_dump($Usuario);  die;
+//var_dump($Usuario);  die;
 
 	$title = 'Carga Usuarios';
 

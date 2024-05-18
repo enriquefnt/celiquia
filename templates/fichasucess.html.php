@@ -13,7 +13,7 @@
  <div class="modal-footer">
         
           <div class="col-sm-3">
-                   <a href="/ficha/home"  class="btn btn-primary " role="button"><i class="fa-solid fa-check"></i></a>
+                   <a href="/login/home"  class="btn btn-primary " role="button"><i class="fa-solid fa-check"></i></a>
             </div>	
 
       </div> 
