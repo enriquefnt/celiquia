@@ -215,6 +215,7 @@ class Ficha
 
         $datosFicha = $this->tablaFichas->findById($_GET['idficha']);
         $fecha = date('d/m/Y', strtotime($datosFicha['fechanot']));
+        $semana=$this->calcularSemanaEpidemiologica($datosFicha['fechanot']);
         $fechanac = date('d/m/Y', strtotime($datosFicha['fechanac']));
         $nombre = $datosFicha['nombre'] . '  ' . $datosFicha['apellido'];
         $informa = $this->tablaUser->findById($datosFicha['idUsuario']);
@@ -250,8 +251,9 @@ class Ficha
         $pdf->Ln(6);
         $pdf->Cell(0, 7, 'Declarante', 0, 1, 'L', true);
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(50, 10, 'Fecha: ' . $fecha, 0, 0);
-        $pdf->Cell(140, 10, iconv('UTF-8', 'Windows-1252', 'Institución: ') .  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion']), 0, 0);
+        $pdf->Cell(32, 10, 'Fecha: ' . $fecha, 0, 0);
+        $pdf->Cell(24, 10, 'Semana: ' . $semana, 0, 0);
+        $pdf->Cell(138, 10, iconv('UTF-8', 'Windows-1252', 'Institución: ') .  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion']), 0, 0);
         $pdf->Ln(8);
         $pdf->Cell(0, 7, 'Profesional: ' . iconv('UTF-8', 'Windows-1252', $datosFicha['profesional']), 0, 1);
         // $pdf->Ln(6);
@@ -538,14 +540,35 @@ class Ficha
         }
     }
 
-    private function calcularDias($fechaIni, $fechaFin)
-    {
-        $inicio = new \DateTime($fechaIni);
-        $fin = new \DateTime($fechaFin);
-        $dias = $inicio->diff($fin);
+    
 
-        $ndias = $dias->days;
-
-        return $ndias;
-    }
+        public function calcularSemanaEpidemiologica($fecha) {
+            // Validar el formato de la fecha
+            if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
+                throw new \Exception('Formato de fecha no válido (YYYY-MM-DD)');
+            }
+    
+            // Convertir la fecha a formato timestamp
+            $timestamp = strtotime($fecha);
+    
+            // Obtener el primer día del año
+            $primerDiaAño = strtotime('first day of january ' . date('Y', $timestamp));
+    
+            // Calcular el número de días desde el primer día del año
+            $diasDesdePrimerDia = (int) floor(($timestamp - $primerDiaAño) / 86400);
+    
+            // Calcular la semana epidemiológica
+            $semanaEpidemiologica = (int) ceil(($diasDesdePrimerDia + 3) / 7);
+    
+            // Ajustar la semana epidemiológica para semanas 52 y 53
+            if ($semanaEpidemiologica === 53 && date('z', $primerDiaAño) === 0) {
+                $semanaEpidemiologica = 1;
+            } elseif ($semanaEpidemiologica === 53) {
+                $semanaEpidemiologica = 52;
+            }
+    
+            return $semanaEpidemiologica;
+        }
+    
+    
 }
