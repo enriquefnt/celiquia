@@ -16,6 +16,7 @@ public function __construct() {
 
 
 $pdo = new \PDO('mysql:host=212.1.210.73;dbname=saltaped_celiaquia;charset=utf8mb4', 'saltaped_userceliaquia', '1XS8I8nu5NXl');
+//$pdo = new \PDO('mysql:host=172.17.35.15;dbname=saltaped_celiaquia;charset=utf8mb4', 'efinetti', 'enfi7625');
 	
 	$this->tablaFichas = new \ClassGrl\DataTables($pdo,'ficha', 'idficha');	
 	$this->tablaInsti = new \ClassGrl\DataTables($pdo,'datos_institucion', 'codi_esta');	
