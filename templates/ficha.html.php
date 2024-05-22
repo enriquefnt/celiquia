@@ -41,7 +41,7 @@
             <div class="col-sm-2">
                 <label class="form-label-sm" for="sexo">Sexo<span class="text-danger">*</label>
                 <select name="ficha[sexo]" id="sexo" class="form-control form-control-sm">
-                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="" disabled selected>Seleccione</option>
                     <option value=2>Femenino</option>
                     <option value=1>Masculino</option>
                     <option value=9>No determinado</option>
@@ -113,20 +113,9 @@
 
 
 
-            <!-- <div class="col-sm-2">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="biopsia" name="ficha[biopsia]" value="1" onchange="toggleObservaciones()">
-                    <label class="form-check-label" for="biopsia">Biopsia</span></label>
-                    <div class="input-group">
-                        <span class="input-group-text">
-                            <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Si no se realizó debe 
-                                aclararlo en 'Observaciones'"></i>
-                        </span>
-                    </div>
-                </div>
-            </div> -->
+            
             <div class="col-sm-2">
-            <div class="form-check d-flex align-items-center">
+            <div class="form-check form-switch align-items-center">
     <label class="form-check-label d-block" for="biopsia">
         Biopsia
         <input class="form-check-input" type="checkbox" id="biopsia" name="ficha[biopsia]" value="1" onchange="toggleObservaciones()">
@@ -139,7 +128,7 @@
             </div>
 
             <div class="col-sm-2">
-                <div class="form-check form-check-inline">
+                <div class="form-check form-switch align-items-center">
                     <input class="form-check-input" type="checkbox" id="endoscopia" name="ficha[endoscopia]" value="1">
                     <label class="form-check-label" for="endoscopia">Endoscopia</label>
                 </div>
@@ -150,7 +139,7 @@
             <div class="col-sm-2">
                 <label class="form-label-sm" for="grados">Grados</label>
                 <select name="ficha[grados]" id="grados" class="form-control form-control-sm">
-                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="" disabled selected>Seleccione</option>
                     <option value="3a">3 a</option>
                     <option value="3b">3 b</option>
                     <option value="3c">3 c</option>
@@ -196,25 +185,25 @@
                 <input class="form-control form-control-sm" type="date" name="ficha[fechaestrac]" id="fechaestrac" min="1920-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= $datosInter['fechaestrac'] ?? '' ?>">
             </div>
             <div class="col-sm-2">
-                <div class="form-check form-check-inline">
+                <div class="form-check form-switch align-items-center">
                     <input class="form-check-input" type="checkbox" id="iga" name="ficha[iga]" value="1">
                     <label class="form-check-label" for="iga">IgA sérica total</label>
                 </div>
             </div>
             <div class="col-sm-2">
-                <div class="form-check form-check-inline">
+                <div class="form-check form-switch align-items-center">
                     <input class="form-check-input" type="checkbox" id="atgiga" name="ficha[atgiga]" value="1">
                     <label class="form-check-label" for="atgiga">tTG-IgA</label>
                 </div>
             </div>
             <div class="col-sm-2">
-                <div class="form-check form-check-inline">
+                <div class="form-check form-switch align-items-center">
                     <input class="form-check-input" type="checkbox" id="IgGPDG" name="ficha[IgGPDG]" value="1">
                     <label class="form-check-label" for="atgigg">IgGPDG</label>
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="form-check form-check-inline">
+                <div class="form-check form-switch align-items-center">
                     <input class="form-check-input" type="checkbox" id="EMA" name="ficha[EMA]" value="1">
                     <label class="form-check-label" for="atgigg">EMA</label>
                 </div>

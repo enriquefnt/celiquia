@@ -3,18 +3,10 @@
 body {
   display: flex;
   flex-direction: column;
-  /*  background-color: orangered; 
-  */
-  height: 100vh 
+    height: 100vh 
 }
 
-/*
-input[type="submit"] {
-    font-family: FontAwesome sans-serif;
-    display: inline-block;
-  position: relative;
-}
-*/
+
 
  .header, .footer {
   flex: none;
@@ -47,30 +39,3 @@ input[type="submit"] {
     font-size: 0.8rem;
 }
 
-/*
-#dataTable {
-  border: 0;
-} 
-
-----------------------------------------------
- .card {
-  background-color: #b29c23;
-}
-
-.card-title {
-  font-size: 1.2rem;
-} 
-
-.card-text {
-  font-family: Verdana, Geneva, Tahoma, sans-serif; 
-  font-family: Arial, Helvetica, sans-serif
-} 
-
- .fa-check{
-  color:#0c39cb;
- }
-
-.fa-exclamation{
-  color:#cb0c39;
-} 
-*/

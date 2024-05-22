@@ -52,6 +52,13 @@ public function home()
     return ['template' => 'home.html.php', 'title' => $title, 'variables' => []];
 }
 
+public function blanco()
+{
+    $title = 'Blanco';
+
+
+    return ['template' => 'blanco.html.php', 'title' => $title, 'variables' => []];
+}
 
 
 

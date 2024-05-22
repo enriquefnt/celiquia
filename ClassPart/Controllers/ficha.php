@@ -217,8 +217,10 @@ class Ficha
         $fecha = date('d/m/Y', strtotime($datosFicha['fechanot']));
         $semana=$this->calcularSemanaEpidemiologica($datosFicha['fechanot']);
         $fechanac = date('d/m/Y', strtotime($datosFicha['fechanac']));
+        $fechadiag = date('d/m/Y', strtotime($datosFicha['fechanac']));
+        $fechalab = date('d/m/Y', strtotime($datosFicha['fechaestrac']));
         $nombre = $datosFicha['nombre'] . '  ' . $datosFicha['apellido'];
-        $informa = $this->tablaUser->findById($datosFicha['idUsuario']);
+        $informa = $this->tablaUser->findById($datosFicha['fechadiag']);
         $datosFicha['biopsia'] = $datosFicha['biopsia'] == 1 ? 'Si' : 'No';
         $datosFicha['endoscopia'] = $datosFicha['endoscopia'] == 1 ? 'Si' : 'No';
         $datosFicha['iga'] = $datosFicha['iga'] == 1 ? 'Si' : 'No';
@@ -277,7 +279,7 @@ class Ficha
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Cell(0, 7, iconv('UTF-8', 'Windows-1252', 'Diagnóstico'), 0, 1, 'L', true);
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(100, 10, 'Fecha' . iconv('UTF-8', 'Windows-1252', ' Diagnóstico: ') .  $datosFicha['fechadiag'], 0, 0);
+        $pdf->Cell(100, 10, 'Fecha' . iconv('UTF-8', 'Windows-1252', ' Diagnóstico: ') .  $fechadiag, 0, 0);
         $pdf->Cell(80, 10, 'Edad' . iconv('UTF-8', 'Windows-1252', ' Diagnóstico: ') . $datosFicha['edaddiag'], 0, 0);
         $pdf->Ln(6);
         $pdf->Cell(49, 10, iconv('UTF-8', 'Windows-1252', 'Biopsia: ') .  $datosFicha['biopsia'], 0, 0);
@@ -301,7 +303,7 @@ class Ficha
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Cell(0, 7, iconv('UTF-8', 'Windows-1252', 'Laboratorio'), 0, 1, 'L', true);
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(80, 10, iconv('UTF-8', 'Windows-1252', 'Fecha de extracción: ') . iconv('UTF-8', 'Windows-1252', $datosFicha['fechaestrac']), 0, 0);
+        $pdf->Cell(80, 10, iconv('UTF-8', 'Windows-1252', 'Fecha de extracción: ') . iconv('UTF-8', 'Windows-1252', $fechalab), 0, 0);
         $pdf->Ln(5);
         $pdf->Cell(49, 10,  iconv('UTF-8', 'Windows-1252', 'IgA Sérica Total: ') . $datosFicha['iga'], 0, 0);
         $pdf->Cell(49, 10,  iconv('UTF-8', 'Windows-1252', 'Anticuerpo ATG IgA: ') . $datosFicha['atgiga'], 0, 0);

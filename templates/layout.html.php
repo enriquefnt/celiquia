@@ -121,7 +121,7 @@ $_SESSION['establecimiento_nombre']. "</p>";}
     <?php endif; ?>
   </nav>
 
-
+ 
 
 
 </header>

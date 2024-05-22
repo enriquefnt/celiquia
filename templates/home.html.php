@@ -1,32 +1,37 @@
 <?php $title="Anuncios" ;?>
 <main>
 <section class="d-flex justify-content-center justify-content-lg-between "> 
+  
  <div class="conteiner container-sm"> 
-  <h1>
-    Página de inicio en construción!
-  </h1>
- <!-- <img src="../public/trigal.png" alt="Trigal" width="500" height="600"> -->
- 
+  
+ <!-- <img src="https://celiaquia.v.je/cueto.jpg" class="img-fluid mx-auto" alt="Cueto"> -->
+ <img src="https://celiaquia.v.je/cueto.jpg" class="img-fluid mx-auto" alt="Cueto" style="width:800px; height: 500px; object-fit: contain;">
    </div> 
  </section>
+ 
 </main>
 
-<footer class="text-center text-lg-start bg-white text-muted">
+ <footer class="text-center text-lg-start bg-white text-muted">
   
 
  
-  <!-- <section class="">
+  <section class="">
     <div class="container text-center text-md-start mt-5">
-      <
-      <div class="row mt-3 pt-1">
+            <div class="row mt-3 pt-1">
         
         <div class="col-md-3 col-lg-4 col-sm-3 mx-auto mb-4">
           
           <h6 class="text-uppercase fw-bold mb-4" >
             <i class="fas fa-gem me-3 text-primary"></i>Institución
           </h6>
+          <p>
+          Ministerio de Salud Pública de Salta.
+          </p>
           <p >
-            Direccion de Nutrición y Alimentación Saludable, organismo perteneciente al Ministerio de Salud Pública de Salta.
+            Subsecretaría de Medicina Social
+          </p>
+          <p >
+            Direccion de Nutrición y Alimentación Saludable
           </p>
         </div>
         <div class="col-md-3 col-lg-4 col-sm-3 mx-auto mb-4">
@@ -40,7 +45,6 @@
         </div>
         
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          
           <h6 class="text-uppercase fw-bold mb-4"><i class="fas fa-gem me-3 text-primary"></i>Contacto</h6>
           <p><i class="fas fa-home me-3 text-secondary"></i> Belgrano 1349 -1º piso - Salta Capital - CP 4400</p>
           <p><i class="fas fa-envelope me-3 text-secondary"></i>programaceliquia@gmail.com </p>
@@ -70,9 +74,13 @@
       </a>
          </div>
    
-  </section> -->
- 
+  </section>
+
+  <section class="d-flex justify-content-center justify-content-lg-between "> 
+ <div class="conteiner container-sm"> 
   
-</footer>
+   </div> 
+ </section>
+</footer> 
 
 
