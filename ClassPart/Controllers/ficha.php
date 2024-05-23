@@ -211,11 +211,10 @@ class Ficha
 
     public function print()
     {
-
-
         $datosFicha = $this->tablaFichas->findById($_GET['idficha']);
+        $localidad = $this->tablaLocal->findById($datosFicha['gid']);
         $fecha = date('d/m/Y', strtotime($datosFicha['fechanot']));
-        $semana=$this->calcularSemanaEpidemiologica($datosFicha['fechanot']);
+        $semana = $this->calcularSemanaEpidemiologica($datosFicha['fechanot']);
         $fechanac = date('d/m/Y', strtotime($datosFicha['fechanac']));
         $fechadiag = date('d/m/Y', strtotime($datosFicha['fechanac']));
         $fechalab = date('d/m/Y', strtotime($datosFicha['fechaestrac']));
@@ -271,7 +270,10 @@ class Ficha
         $pdf->Cell(34, 10, 'DNI: ' . $datosFicha['dni'], 0, 0);
         $pdf->Ln(6);
         $pdf->Cell(110, 10, 'Domicilio: ' .  iconv('UTF-8', 'Windows-1252', $datosFicha['domicilio']), 0, 0);
-        $pdf->Cell(95, 10, 'Localidad: ' .  iconv('UTF-8', 'Windows-1252', $datosFicha['localidad']), 0, 0);
+        $pdf->Cell(95, 10, 'Localidad: ' .  iconv('UTF-8', 'Windows-1252', $localidad['nombre_geo']), 0, 0);
+        $pdf->Ln(6);
+        $pdf->Cell(110, 10, 'Area Operativa: '.$localidad['aop']. ' - '. iconv('UTF-8', 'Windows-1252', $localidad['AreaOperativa']), 0, 0);
+        $pdf->Cell(95, 10, 'Departamento: ' .  iconv('UTF-8', 'Windows-1252', $localidad['Departamento']), 0, 0);
         $pdf->Ln();
         ////////////////////////diagnostico //////////////////
         //  $pdf->Rect(10, 94, 190, 20, 'D');
@@ -369,7 +371,7 @@ class Ficha
         $pdf->Output(($datosFicha[4] . $datosFicha[5]), 'I');
     }
 
-  
+
 
 
 
@@ -388,35 +390,34 @@ class Ficha
         }
     }
 
-    
 
-        public function calcularSemanaEpidemiologica($fecha) {
-            // Validar el formato de la fecha
-            if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
-                throw new \Exception('Formato de fecha no válido (YYYY-MM-DD)');
-            }
-    
-            // Convertir la fecha a formato timestamp
-            $timestamp = strtotime($fecha);
-    
-            // Obtener el primer día del año
-            $primerDiaAño = strtotime('first day of january ' . date('Y', $timestamp));
-    
-            // Calcular el número de días desde el primer día del año
-            $diasDesdePrimerDia = (int) floor(($timestamp - $primerDiaAño) / 86400);
-    
-            // Calcular la semana epidemiológica
-            $semanaEpidemiologica = (int) ceil(($diasDesdePrimerDia + 3) / 7);
-    
-            // Ajustar la semana epidemiológica para semanas 52 y 53
-            if ($semanaEpidemiologica === 53 && date('z', $primerDiaAño) === 0) {
-                $semanaEpidemiologica = 1;
-            } elseif ($semanaEpidemiologica === 53) {
-                $semanaEpidemiologica = 52;
-            }
-    
-            return $semanaEpidemiologica;
+
+    public function calcularSemanaEpidemiologica($fecha)
+    {
+        // Validar el formato de la fecha
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
+            throw new \Exception('Formato de fecha no válido (YYYY-MM-DD)');
         }
-    
-    
+
+        // Convertir la fecha a formato timestamp
+        $timestamp = strtotime($fecha);
+
+        // Obtener el primer día del año
+        $primerDiaAño = strtotime('first day of january ' . date('Y', $timestamp));
+
+        // Calcular el número de días desde el primer día del año
+        $diasDesdePrimerDia = (int) floor(($timestamp - $primerDiaAño) / 86400);
+
+        // Calcular la semana epidemiológica
+        $semanaEpidemiologica = (int) ceil(($diasDesdePrimerDia + 3) / 7);
+
+        // Ajustar la semana epidemiológica para semanas 52 y 53
+        if ($semanaEpidemiologica === 53 && date('z', $primerDiaAño) === 0) {
+            $semanaEpidemiologica = 1;
+        } elseif ($semanaEpidemiologica === 53) {
+            $semanaEpidemiologica = 52;
+        }
+
+        return $semanaEpidemiologica;
+    }
 }
