@@ -47,9 +47,17 @@ $_SESSION['usuAo']=$usuario['usuAo'];
 public function home()
 {
     $title = 'Inicio';
+	
+	$imagen= '/imagenes/cueto.jpg';
+	$pdf= '/imagenes/Instructivo.pdf';
 
 
-    return ['template' => 'home.html.php', 'title' => $title, 'variables' => []];
+    return ['template' => 'home.html.php', 
+			   'title' => $title,
+			    'variables' => [
+					'imagen' => $imagen,
+					'pdf' => $pdf
+				]];
 }
 
 public function blanco()

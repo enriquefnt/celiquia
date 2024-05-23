@@ -127,120 +127,120 @@
 
 
 
-<div class="col-sm-2">
-    <div class="form-check form-switch align-items-center">
-        <input class="form-check-input" type="checkbox" id="endoscopia" name="ficha[endoscopia]" value="1">
-        <label class="form-check-label" for="endoscopia">Endoscopia</label>
-    </div>
-</div>
+            <div class="col-sm-2">
+                <div class="form-check form-switch align-items-center">
+                    <input class="form-check-input" type="checkbox" id="endoscopia" name="ficha[endoscopia]" value="1">
+                    <label class="form-check-label" for="endoscopia">Endoscopia</label>
+                </div>
+            </div>
 
 
 
-<div class="col-sm-2">
-    <label class="form-label-sm" for="grados">Grados</label>
-    <select name="ficha[grados]" id="grados" class="form-control form-control-sm">
-        <option value="" disabled selected>Seleccione</option>
-        <option value="3a">3 a</option>
-        <option value="3b">3 b</option>
-        <option value="3c">3 c</option>
-        <option value="3c">4 </option>
-    </select>
-</div>
+            <div class="col-sm-2">
+                <label class="form-label-sm" for="grados">Grados</label>
+                <select name="ficha[grados]" id="grados" class="form-control form-control-sm">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="3a">3 a</option>
+                    <option value="3b">3 b</option>
+                    <option value="3c">3 c</option>
+                    <option value="3c">4 </option>
+                </select>
+            </div>
 
 
 
-<div class="col-sm-2">
-    <label class="form-label-sm" for="protocolo">Nº Protocolo</label>
-    <input class="form-control form-control-sm" type="text" name="ficha[protocolo]" id="protocolo" value="<?= $datosInter['protocolo'] ?? '' ?>">
-</div>
+            <div class="col-sm-2">
+                <label class="form-label-sm" for="protocolo">Nº Protocolo</label>
+                <input class="form-control form-control-sm" type="text" name="ficha[protocolo]" id="protocolo" value="<?= $datosInter['protocolo'] ?? '' ?>">
+            </div>
 
 
-<legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;">Clínica</legend>
+            <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;">Clínica</legend>
 
-<div class="col-sm-2">
-    <label class="form-label-sm" for="fechadiag">Fecha de Consulta</label>
-    <input class="form-control form-control-sm" type="date" name="ficha[fechaconsulta]" id="fechaconsulta" min="1920-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= $datosInter['fechaconsulta'] ?? '' ?>">
-</div>
-<div class="col-sm-4">
-    <label class="form-label-sm" for="formaclin">Forma clínica de presentación<span class="text-danger">*</label>
-    <select name="ficha[formaclin]" id="formaclin" class="form-control form-control-sm">
-        <option value="" disabled selected>Seleccione una opción</option>
-        <option value="Sintomática digestiva">Sintomática</option>
-        <option value="Sintomática extradigestiva">Asintomática</option>
-        <option value="Asintomática">Subclínica</option>
-        <!-- <option value="Familiar (SCR)">Familiar (SCR)</option> -->
-    </select>
-</div>
-
-
-<div class="form-group">
-    <label class="form-label-sm" for="enfermeasoc">Enfermedades asociadas</label>
-    <textarea class="form-control" rows="2" id="enfermeasoc" name="ficha[enfermeasoc]" placeholder="Anotar separado por comas los diagnósticos de la patología asociada"><?= $datosNoti['enfermeasoc'] ?? '' ?></textarea>
-</div>
-<legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Laboratorio
-</legend>
-
-<div class="col-sm-3">
-    <label class="form-label-sm" for="fechaestrac">Fecha de extracción<span class="text-danger">*</label>
-    <input class="form-control form-control-sm" type="date" name="ficha[fechaestrac]" id="fechaestrac" min="1920-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= $datosInter['fechaestrac'] ?? '' ?>">
-</div>
-<div class="col-sm-2">
-    <div class="form-check form-switch align-items-center">
-        <input class="form-check-input" type="checkbox" id="iga" name="ficha[iga]" value="1">
-        <label class="form-check-label" for="iga">IgA sérica total</label>
-    </div>
-</div>
-<div class="col-sm-2">
-    <div class="form-check form-switch align-items-center">
-        <input class="form-check-input" type="checkbox" id="atgiga" name="ficha[atgiga]" value="1">
-        <label class="form-check-label" for="atgiga">tTG-IgA</label>
-    </div>
-</div>
-<div class="col-sm-2">
-    <div class="form-check form-switch align-items-center">
-        <input class="form-check-input" type="checkbox" id="IgGPDG" name="ficha[IgGPDG]" value="1">
-        <label class="form-check-label" for="atgigg">IgGPDG</label>
-    </div>
-</div>
-<div class="col-sm-3">
-    <div class="form-check form-switch align-items-center">
-        <input class="form-check-input" type="checkbox" id="EMA" name="ficha[EMA]" value="1">
-        <label class="form-check-label" for="atgigg">EMA</label>
-    </div>
-</div>
-
-<legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Estudio Grupo Familiar
-</legend>
-<div class="col-sm-6">
-    <input type="hidden" name="idCaso" value="1"> <!-- Aquí se debe cambiar el valor del ID del formulario principal -->
-    <!-- <h3>Familiares del Caso</h3> -->
-    <div id="familiares-container">
-        <!-- Aquí se agregarán dinámicamente los campos de los familiares -->
-    </div>
-    <button type="button" class="btn btn-primary" onclick="agregarFamiliar()">Agregar Familiar</button>
-</div>
-
-<legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Medidas a observar
-</legend>
-
-<div class="form-group">
-    <label class="form-label-sm" for="observaciones">Observaciones<span id="asterisk" class="text-danger">*</span></label>
-    <textarea class="form-control" rows="2" id="observaciones" name="ficha[observaciones]" <?= $datosNoti['observaciones'] ?? '' ?>></textarea>
-</div>
+            <div class="col-sm-2">
+                <label class="form-label-sm" for="fechadiag">Fecha de Consulta</label>
+                <input class="form-control form-control-sm" type="date" name="ficha[fechaconsulta]" id="fechaconsulta" min="1920-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= $datosInter['fechaconsulta'] ?? '' ?>">
+            </div>
+            <div class="col-sm-4">
+                <label class="form-label-sm" for="formaclin">Forma clínica de presentación<span class="text-danger">*</label>
+                <select name="ficha[formaclin]" id="formaclin" class="form-control form-control-sm">
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="Sintomática digestiva">Sintomática</option>
+                    <option value="Sintomática extradigestiva">Asintomática</option>
+                    <option value="Asintomática">Subclínica</option>
+                    <!-- <option value="Familiar (SCR)">Familiar (SCR)</option> -->
+                </select>
+            </div>
 
 
-</fieldset>
-<fieldset class="border p-2">
-    <div class="d-flex">
-        <div class="col-sm-3">
-            <a href="/login/home" class="btn btn-primary " role="button">Salir sin cambiar</a>
+            <div class="form-group">
+                <label class="form-label-sm" for="enfermeasoc">Enfermedades asociadas</label>
+                <textarea class="form-control" rows="2" id="enfermeasoc" name="ficha[enfermeasoc]" placeholder="Anotar separado por comas los diagnósticos de la patología asociada"><?= $datosNoti['enfermeasoc'] ?? '' ?></textarea>
+            </div>
+            <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Laboratorio
+            </legend>
+
+            <div class="col-sm-3">
+                <label class="form-label-sm" for="fechaestrac">Fecha de extracción<span class="text-danger">*</label>
+                <input class="form-control form-control-sm" type="date" name="ficha[fechaestrac]" id="fechaestrac" min="1920-01-01" max="<?= date('Y-m-d'); ?>" required="required" value="<?= $datosInter['fechaestrac'] ?? '' ?>">
+            </div>
+            <div class="col-sm-2">
+                <div class="form-check form-switch align-items-center">
+                    <input class="form-check-input" type="checkbox" id="iga" name="ficha[iga]" value="1">
+                    <label class="form-check-label" for="iga">IgA sérica total</label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-check form-switch align-items-center">
+                    <input class="form-check-input" type="checkbox" id="atgiga" name="ficha[atgiga]" value="1">
+                    <label class="form-check-label" for="atgiga">tTG-IgA</label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-check form-switch align-items-center">
+                    <input class="form-check-input" type="checkbox" id="IgGPDG" name="ficha[IgGPDG]" value="1">
+                    <label class="form-check-label" for="atgigg">IgGPDG</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-check form-switch align-items-center">
+                    <input class="form-check-input" type="checkbox" id="EMA" name="ficha[EMA]" value="1">
+                    <label class="form-check-label" for="atgigg">EMA</label>
+                </div>
+            </div>
+
+            <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Estudio Grupo Familiar
+            </legend>
+            <div class="col-sm-6">
+                <input type="hidden" name="idCaso" value="1"> <!-- Aquí se debe cambiar el valor del ID del formulario principal -->
+                <!-- <h3>Familiares del Caso</h3> -->
+                <div id="familiares-container">
+                    <!-- Aquí se agregarán dinámicamente los campos de los familiares -->
+                </div>
+                <button type="button" class="btn btn-primary" onclick="agregarFamiliar()">Agregar Familiar</button>
+            </div>
+
+            <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Medidas a observar
+            </legend>
+
+            <div class="form-group">
+                <label class="form-label-sm" for="observaciones">Observaciones<span id="asterisk" class="text-danger">*</span></label>
+                <textarea class="form-control" rows="2" id="observaciones" name="ficha[observaciones]" <?= $datosNoti['observaciones'] ?? '' ?>></textarea>
+            </div>
+
+
+    </fieldset>
+    <fieldset class="border p-2">
+        <div class="d-flex">
+            <div class="col-sm-3">
+                <a href="/login/home" class="btn btn-primary " role="button">Salir sin cambiar</a>
+            </div>
+            <div class="col-sm-3">
+                <input type="submit" id="myButton" name=submit class="btn btn-primary " value="Guardar">
+            </div>
         </div>
-        <div class="col-sm-3">
-            <input type="submit" id="myButton" name=submit class="btn btn-primary " value="Guardar">
-        </div>
-    </div>
-</fieldset>
-</form>
+    </fieldset>
+    </form>
 </div>
 
 

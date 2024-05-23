@@ -1,9 +1,11 @@
 <?php $title = "Anuncios"; ?>
 <main>
   <section class="d-flex justify-content-center justify-content-lg-between ">
-
     <div class="conteiner container-sm">
-      <img src="https://celiaquia.v.je/cueto.jpg" class="img-fluid mx-auto" alt="Cueto" style="width:800px; height: 500px; object-fit: contain;">
+    
+      <a href="<?= htmlspecialchars($pdf, ENT_QUOTES, 'UTF-8') ?? '' ?>" target="_blank">Ver/Descargar Instructivo</a>
+  <h4>Novedades</h4>
+      <img src="<?= htmlspecialchars($imagen, ENT_QUOTES, 'UTF-8') ?? '' ?>" class="img-fluid mx-auto" alt="Imagen" style="width:800px; height: 500px; object-fit: contain;">
     </div>
   </section>
 
