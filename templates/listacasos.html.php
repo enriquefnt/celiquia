@@ -23,9 +23,7 @@
           <td><?= $caso['edad']; ?></td>
           <td><?= $caso['localidad']; ?></td>
 
-          <!-- <td class="text-center">
-            <a href="/ficha/print?idficha=<?= $caso['idficha'] ?>&nom=<?= $caso['nombresTitulo'] ?>" target="_blank">
-            <i class="fa-regular fa-file-pdf"></i> -->
+          
           <td class="text-center">
             <a href="/ficha/print?idficha=<?= $caso['idficha'] ?>&nom=<?= $caso['nombresTitulo'] ?>" target="_blank">
               <i class="fa-regular fa-file-pdf"></i>

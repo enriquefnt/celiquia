@@ -11,7 +11,7 @@ class  Imprime extends Fpdf
 function Header()
 {
     // Logo
-   $this->Image('../imagenes/logo.png',10,6,30);
+   $this->Image('imagenes/logo.png',10,6,30);
     // Arial bold 15
     $this->SetFont('Arial','B',16);
     // Move to the right

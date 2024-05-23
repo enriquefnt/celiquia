@@ -3,7 +3,8 @@
   <section class="d-flex justify-content-center justify-content-lg-between ">
     <div class="conteiner container-sm">
     
-      <a href="<?= htmlspecialchars($pdf, ENT_QUOTES, 'UTF-8') ?? '' ?>" target="_blank">Ver/Descargar Instructivo</a>
+      <a href="<?= htmlspecialchars($pdf, ENT_QUOTES, 'UTF-8') ?? '' ?>" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true">  Ver/Descargar Instructivo</i>
+      </a>
   <h4>Novedades</h4>
       <img src="<?= htmlspecialchars($imagen, ENT_QUOTES, 'UTF-8') ?? '' ?>" class="img-fluid mx-auto" alt="Imagen" style="width:800px; height: 500px; object-fit: contain;">
     </div>
@@ -37,7 +38,7 @@
         <div class="col-md-3 col-lg-4 col-sm-3 mx-auto mb-4">
 
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3 text-primary"></i>Responsabble del Programa de Celiquía:
+            <i class="fas fa-gem me-3 text-primary"></i>Responsable del Programa de Celiquía:
           </h6>
           <p>
             Lic. Silvia Quipildor (Jefa) </p>
@@ -77,9 +78,9 @@
 
   </section>
 
-  <section class="d-flex justify-content-center justify-content-lg-between ">
+  <!-- <section class="d-flex justify-content-center justify-content-lg-between ">
     <div class="conteiner container-sm">
 
     </div>
-  </section>
+  </section> -->
 </footer>
