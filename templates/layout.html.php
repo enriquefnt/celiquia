@@ -55,6 +55,12 @@ $_SESSION['inicio'] = time(); // actualiza ultimo uso
   <title><?= $title ?></title>
   <script src="/autocom.js"></script>
 
+  <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body class="w3-light-grey">
@@ -119,7 +125,7 @@ $_SESSION['inicio'] = time(); // actualiza ultimo uso
             </div>
         </div>
       <?php else : ?>
-        <a class="nav-link active " aria-current="page" href="/login/login">Ingresar con contraseña (Usuarios registrados)</a>
+        <a class="nav-link active " aria-current="page" href="/login/declara">Ingresar con contraseña (Usuarios registrados)</a>
       <?php endif; ?>
       </nav>
 

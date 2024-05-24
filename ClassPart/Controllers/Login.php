@@ -60,12 +60,12 @@ public function home()
 				]];
 }
 
-public function blanco()
+public function declara()
 {
-    $title = 'Blanco';
+    $title = 'Declaración';
 
 
-    return ['template' => 'blanco.html.php', 'title' => $title, 'variables' => []];
+    return ['template' => 'declaracion.html.php', 'title' => $title, 'variables' => []];
 }
 
 
