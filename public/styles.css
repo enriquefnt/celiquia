@@ -1,20 +1,19 @@
-
-
 body {
   display: flex;
   flex-direction: column;
-    height: 100vh 
+  height: 100vh
 }
 
 
 
- .header, .footer {
+.header,
+.footer {
   flex: none;
-} 
+}
 
-.header > .w3-col {
+.header>.w3-col {
   width: 50%;
-} 
+}
 
 .table-container {
   flex: auto;
@@ -22,10 +21,8 @@ body {
 }
 
 
-
-
-
-.table-container > .w3-col, .table-container .w3-container {
+.table-container>.w3-col,
+.table-container .w3-container {
   height: 100%;
 }
 
@@ -35,7 +32,26 @@ body {
 
 
 ::placeholder {
-    color: #999; 
-    font-size: 0.8rem;
+  color: #999;
+  font-size: 0.8rem;
 }
 
+.hidden {
+  display: none;
+}
+
+.custom-checkbox .form-check-input {
+  width: 1.5em;
+  height: 1.5em;
+  border: 2px solid #007bff;
+  background-color: #f8f9fa;
+}
+
+.custom-checkbox .form-check-input:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.custom-checkbox .form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}

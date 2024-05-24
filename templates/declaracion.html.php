@@ -1,9 +1,3 @@
-<!-- <style>
-        .hidden {
-            display: none;
-        }
-    </style> 
-</head>-->
 <body>
     <div class="container my-5">
         <div class="card">

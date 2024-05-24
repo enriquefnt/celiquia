@@ -55,27 +55,6 @@ $_SESSION['inicio'] = time(); // actualiza ultimo uso
   <title><?= $title ?></title>
   <script src="/autocom.js"></script>
 
-  <style>
-    .hidden {
-      display: none;
-    }
-
-    .custom-checkbox .form-check-input {
-      width: 1.5em;
-      height: 1.5em;
-      border: 2px solid #007bff;
-      background-color: #f8f9fa;
-    }
-
-    .custom-checkbox .form-check-input:checked {
-      background-color: #007bff;
-      border-color: #007bff;
-    }
-
-    .custom-checkbox .form-check-input:focus {
-      box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
-    }
-  </style>
 
 </head>
 
