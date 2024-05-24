@@ -23,7 +23,7 @@ $_SESSION['inicio'] = time(); // actualiza ultimo uso
 
   <script src="https://kit.fontawesome.com/f6cbba0704.js" crossorigin="anonymous"></script>
 
-  
+
   <!-- -----------------jquery----------------- -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
@@ -56,10 +56,26 @@ $_SESSION['inicio'] = time(); // actualiza ultimo uso
   <script src="/autocom.js"></script>
 
   <style>
-        .hidden {
-            display: none;
-        }
-    </style>
+    .hidden {
+      display: none;
+    }
+
+    .custom-checkbox .form-check-input {
+      width: 1.5em;
+      height: 1.5em;
+      border: 2px solid #007bff;
+      background-color: #f8f9fa;
+    }
+
+    .custom-checkbox .form-check-input:checked {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .custom-checkbox .form-check-input:focus {
+      box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    }
+  </style>
 
 </head>
 
