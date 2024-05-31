@@ -27,6 +27,7 @@ $_SESSION['apellido']=$usuario['apellido'];
 $_SESSION['tipo']=$usuario['tipo'];
 $_SESSION['establecimiento_nombre']=$usuario['establecimiento_nombre'];
 $_SESSION['usuAo']=$usuario['usuAo'];
+$_SESSION['id_usuario']=$usuario['id_usuario'];
 
 	return ['template' => 'loginSuccess.html.php',
 	'title' => 'Ingreso OK'

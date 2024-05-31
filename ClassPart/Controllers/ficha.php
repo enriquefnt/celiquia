@@ -100,11 +100,7 @@ class Ficha
 
     public function fichaSubmit()
     {
-
-        //  var_dump($_POST);
-        //  $fichas=$this->tablaFichas->findAll();
         $ficharepe = $this->tablaFichas->find('dni', $_POST['ficha']['dni'])[0] ?? [];
-        //var_dump($ficharepe);die;
         if ($ficharep = count($this->tablaFichas->find('dni', $_POST['ficha']['dni'])) > 0 && $_POST['ficha']['dni'] > 0) {
             return [
                 'template' => 'errorDni.html.php',
@@ -114,21 +110,12 @@ class Ficha
                 ]
             ];
         };
-        // var_dump($ficharepe);die;
-
-
-
 
         $usuario = $this->authentication->getUser();
         $ficha = $_POST['ficha'];
-
-
-        //  $ficha['nombre'] = 'juan perez';
         $array_nombre = explode(' ', $ficha['nombre']);
         $array_nombre = array_map('ucfirst', $array_nombre);
         $ficha['nombre'] = ltrim(implode(' ', $array_nombre));
-        // $ficha['nombre']=ucfirst(ltrim($ficha['nombre']));
-        //  $ficha['apellido']=ucfirst(ltrim($ficha['apellido']));
         $array_nombre = explode(' ', $ficha['apellido']);
         $array_apellido = array_map('ucfirst', $array_nombre);
         $ficha['apellido'] = ltrim(implode(' ', $array_apellido));
@@ -178,8 +165,14 @@ class Ficha
     }
 
     public function listar()
+
+
     {
-        $result = $this->tablaFichas->findAll();
+        if ($_SESSION['tipo'] == 'Auditor') {
+            $result = $this->tablaFichas->findAll();
+        } else {
+            $result = $this->tablaFichas->find('idUsuario', $_SESSION['id_usuario']);
+        }
 
         $caso = [];
         foreach ($result as $caso) {
@@ -219,7 +212,7 @@ class Ficha
         $fechadiag = date('d/m/Y', strtotime($datosFicha['fechanac']));
         $fechalab = date('d/m/Y', strtotime($datosFicha['fechaestrac']));
         $nombre = $datosFicha['nombre'] . '  ' . $datosFicha['apellido'];
-        $informa = $this->tablaUser->findById($datosFicha['fechadiag']);
+        //$informa = $this->tablaUser->findById($datosFicha['fechadiag']);
         $datosFicha['biopsia'] = $datosFicha['biopsia'] == 1 ? 'Si' : 'No';
         $datosFicha['endoscopia'] = $datosFicha['endoscopia'] == 1 ? 'Si' : 'No';
         $datosFicha['iga'] = $datosFicha['iga'] == 1 ? 'Si' : 'No';
@@ -272,7 +265,7 @@ class Ficha
         $pdf->Cell(110, 10, 'Domicilio: ' .  iconv('UTF-8', 'Windows-1252', $datosFicha['domicilio']), 0, 0);
         $pdf->Cell(95, 10, 'Localidad: ' .  iconv('UTF-8', 'Windows-1252', $localidad['nombre_geo']), 0, 0);
         $pdf->Ln(6);
-        $pdf->Cell(110, 10, 'Area Operativa: '.$localidad['aop']. ' - '. iconv('UTF-8', 'Windows-1252', $localidad['AreaOperativa']), 0, 0);
+        $pdf->Cell(110, 10, 'Area Operativa: ' . $localidad['aop'] . ' - ' . iconv('UTF-8', 'Windows-1252', $localidad['AreaOperativa']), 0, 0);
         $pdf->Cell(95, 10, 'Departamento: ' .  iconv('UTF-8', 'Windows-1252', $localidad['Departamento']), 0, 0);
         $pdf->Ln();
         ////////////////////////diagnostico //////////////////
@@ -371,7 +364,24 @@ class Ficha
         $pdf->Output(($datosFicha[4] . $datosFicha[5]), 'I');
     }
 
-
+    public function constancia()
+    {
+        
+        $pdf = new \ClassPart\Controllers\Constancia('P', 'mm', 'A4');
+        $pdf->SetTitle(iconv('UTF-8', 'Windows-1252', 'nada'));
+        $pdf->AliasNbPages();
+        $pdf->AddPage();
+        //$pdf->Ln(8);
+        $pdf->SetLineWidth(0.5);
+        $pdf->SetFillColor(220, 220, 220);
+        // $pdf->Rect(10, 40, 190, 20, 'D');
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->SetTextColor(0, 0, 0);
+        ///////////////declarante ////////////////////
+        $pdf->Ln(6);
+        $pdf->Cell(0, 7, 'Declarante', 0, 1, 'L', true);
+        $pdf->Output('I', 'output.pdf');
+    }
 
 
 
