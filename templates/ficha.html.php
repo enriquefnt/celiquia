@@ -8,7 +8,7 @@
 
             <input type="hidden" name="ficha[idficha]" id="idficha" value=<?= $datosInter['idficha'] ?? '' ?>>
 
-            <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Declarante
+            <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;">Declarante
             </legend>
             <div class="col-sm-2">
                 <label class="form-label-sm" for="fechanot">Fecha <span class="text-danger">*</label>
@@ -22,8 +22,14 @@
 
             <div class="col-sm-7">
                 <label class="form-label-sm" for="institucion">Efector<span class="text-danger">*</label>
-                <input class="form-control form-control-sm" type="text" name="ficha[institucion]" id="institucion" required="required" value="<?= $datosInter['institucion'] ?? '' ?>">
-
+                <div class="input-group">
+                    <input class="form-control form-control-sm" type="text" name="ficha[institucion]" id="institucion" required="required" value="<?= $datosInter['institucion'] ?? '' ?>">
+                    <span class="input-group-text">
+                        <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Indique el Hospital
+                         u Institución donde se realizó el dignóstico. 
+                        Si fue en consultorios particulares, seleccione 'Consultorio Particular' precedido del área operativa que corresponda."></i>
+                    </span>
+                </div>
             </div>
 
             <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Paciente
@@ -90,11 +96,17 @@
 
             <div class="col-sm-4">
                 <label class="form-label-sm" for="localidad">Localidad<span class="text-danger">*</label>
-                <input type="text" name="ficha[localidad]" id="localidad" class="form-control form-control-sm" autocomplete="off" value="<?= $datosDomi['localidad'] ?? '' ?>">
+                <div class="input-group">
 
-                <!-- <input type="hidden" name="ficha[IdResi]" value="<?= $datosDomi['IdResi'] ?? '' ?>"> -->
-                <input type="hidden" name="ficha[Gid]" id="gid" value="<?= $data['value'] ?? $datosDomi['gid'] ?? '' ?>" />
+                    <input type="text" name="ficha[localidad]" id="localidad" class="form-control form-control-sm" autocomplete="off" value="<?= $datosDomi['localidad'] ?? '' ?>">
 
+                    <!-- <input type="hidden" name="ficha[IdResi]" value="<?= $datosDomi['IdResi'] ?? '' ?>"> -->
+                    <input type="hidden" name="ficha[Gid]" id="gid" value="<?= $data['value'] ?? $datosDomi['gid'] ?? '' ?>" />
+                    <span class="input-group-text">
+                        <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Aca están listadas todas la localidades y parajes de la Provincia, se autocompletan a medida que va escribiendo. Si es de otro País o Provincia seleccione 
+                        Otra Provincia u Otro País"></i>
+                    </span>
+                </div>
             </div>
 
             <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Diagnóstico
