@@ -9,15 +9,19 @@ class  Constancia extends Fpdf
  // Add a background image
  function Header()
  {
-     // Insert the background image
-     $this->Image('imagenes/constancia.png', 0, 0, $this->GetPageWidth(), $this->GetPageHeight());
-     //$this->Image('imagenes/logo.png', 10, 6, 30);
+    $this->SetFont('Arial', 'B', 16);
+        // Move to the right
+        $this->Cell(45);
+        // Title
+        $this->Cell(140, 12, iconv('UTF-8', 'Windows-1252', 'CONSTANCIA MÉDICA DE ENFERMEDAD CELÍACA'), 1, 0, 'C');
+        // Line break
+        $this->Ln(20);
  }
-
+/*
  public function Error($msg)
     {
         // Manejar el error aquí
     }
 
-    //...
+    //... */
 }
