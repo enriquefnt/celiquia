@@ -11,11 +11,11 @@ class  Constancia extends Fpdf
  {
     $this->SetFont('Arial', 'B', 16);
         // Move to the right
-        $this->Cell(45);
+      //  $this->Cell();
         // Title
-        $this->Cell(140, 12, iconv('UTF-8', 'Windows-1252', 'CONSTANCIA MÉDICA DE ENFERMEDAD CELÍACA'), 1, 0, 'C');
+        $this->Cell(0, 12, iconv('UTF-8', 'Windows-1252', 'CONSTANCIA MÉDICA DE ENFERMEDAD CELÍACA'), 0, 0, 'C');
         // Line break
-        $this->Ln(20);
+        $this->Ln(14);
  }
 /*
  public function Error($msg)
