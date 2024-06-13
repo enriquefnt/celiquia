@@ -99,8 +99,6 @@
                 <div class="input-group">
 
                     <input type="text" name="ficha[localidad]" id="localidad" class="form-control form-control-sm" autocomplete="off" value="<?= $datosDomi['localidad'] ?? '' ?>">
-
-                    <!-- <input type="hidden" name="ficha[IdResi]" value="<?= $datosDomi['IdResi'] ?? '' ?>"> -->
                     <input type="hidden" name="ficha[Gid]" id="gid" value="<?= $data['value'] ?? $datosDomi['gid'] ?? '' ?>" />
                     <span class="input-group-text">
                         <i class="fas fa-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Aca están listadas todas la localidades y parajes de la Provincia, se autocompletan a medida que va escribiendo. Si es de otro País o Provincia seleccione 
@@ -180,7 +178,6 @@
                     <option value="Sintomática digestiva">Sintomática</option>
                     <option value="Sintomática extradigestiva">Asintomática</option>
                     <option value="Asintomática">Subclínica</option>
-                    <!-- <option value="Familiar (SCR)">Familiar (SCR)</option> -->
                 </select>
             </div>
 
@@ -224,8 +221,8 @@
             <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;"> Estudio Grupo Familiar
             </legend>
             <div class="col-sm-6">
-                <input type="hidden" name="idCaso" value="1"> <!-- Aquí se debe cambiar el valor del ID del formulario principal -->
-                <!-- <h3>Familiares del Caso</h3> -->
+                <input type="hidden" name="idCaso" value="1">
+
                 <div id="familiares-container">
                     <!-- Aquí se agregarán dinámicamente los campos de los familiares -->
                 </div>

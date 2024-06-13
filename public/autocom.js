@@ -69,8 +69,8 @@ class Autocom {
     let label;
     if (this.options.highlightTyped) {
       const idx = removeDiacritics(item.label)
-          .toLowerCase()
-          .indexOf(removeDiacritics(lookup).toLowerCase());
+        .toLowerCase()
+        .indexOf(removeDiacritics(lookup).toLowerCase());
       const className = Array.isArray(this.options.highlightClass) ? this.options.highlightClass.join(' ')
         : (typeof this.options.highlightClass == 'string' ? this.options.highlightClass : '');
       label = item.label.substring(0, idx)
@@ -108,8 +108,8 @@ class Autocom {
       const key = keys[i];
       const entry = this.options.data[key];
       const item = {
-          label: this.options.label ? entry[this.options.label] : key,
-          value: this.options.value ? entry[this.options.value] : entry
+        label: this.options.label ? entry[this.options.label] : key,
+        value: this.options.value ? entry[this.options.value] : entry
       };
 
       if (removeDiacritics(item.label).toLowerCase().indexOf(removeDiacritics(lookup).toLowerCase()) >= 0) {
@@ -166,6 +166,6 @@ function insertAfter(elem, refElem) {
  */
 function removeDiacritics(str) {
   return str
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
 }

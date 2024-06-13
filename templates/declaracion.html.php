@@ -52,7 +52,7 @@
             }
         }
 
-        // Ensure the button is hidden on initial page load
+        // ocultar boton al inicio
         document.addEventListener('DOMContentLoaded', (event) => {
             document.getElementById('continueButtonDiv').classList.add('hidden');
         });

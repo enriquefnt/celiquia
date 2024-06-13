@@ -160,13 +160,3 @@ endif;
 
   var auto_complete = new Autocom(document.getElementById('establecimiento_nombre'), options);
 </script>
-
-
-
-
-<!-- <script>
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
-</script> -->

@@ -62,10 +62,6 @@ class Ficha
             );
         }
 
-        // var_dump($listaDni) ;die;
-
-
-
 
         if (isset($_GET['idficha'])) {
             $datosFicha = count($this->tablaFichas->findById($_GET['idficha']) ?? '');
@@ -188,7 +184,7 @@ class Ficha
                 'localidad' => $caso['localidad'] ?? ''
             ];
         }
-        //var_dump($casos);die;
+
 
         $title = 'Lista Casos';
 
@@ -236,10 +232,10 @@ class Ficha
         // $pdf->AddFont('Medico','','medico.php');
         $pdf->AliasNbPages();
         $pdf->AddPage();
-        //$pdf->Ln(8);
+
         $pdf->SetLineWidth(0.5);
         $pdf->SetFillColor(220, 220, 220);
-        // $pdf->Rect(10, 40, 190, 20, 'D');
+
         $pdf->SetFont('Arial', 'B', 12);
         $pdf->SetTextColor(0, 0, 0);
         ///////////////declarante ////////////////////
@@ -251,11 +247,11 @@ class Ficha
         $pdf->Cell(138, 10, iconv('UTF-8', 'Windows-1252', 'Institución: ') .  iconv('UTF-8', 'Windows-1252', $datosFicha['institucion']), 0, 0);
         $pdf->Ln(8);
         $pdf->Cell(0, 7, 'Profesional: ' . iconv('UTF-8', 'Windows-1252', $datosFicha['profesional']), 0, 1);
-        // $pdf->Ln(6);
+
         /////////////////paciente/////////////////////////
-        // $pdf->Rect(10, 67, 190, 20, 'D');
+
         $pdf->SetFont('Arial', 'B', 12);
-        //$pdf->SetTextColor(0, 0, 0);
+
         $pdf->Cell(0, 7, 'Paciente', 0, 1, 'L', true);
         $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(82, 10, 'Nombre: ' .  iconv('UTF-8', 'Windows-1252', $nombre), 0, 0);
@@ -270,7 +266,7 @@ class Ficha
         $pdf->Cell(95, 10, 'Departamento: ' .  iconv('UTF-8', 'Windows-1252', $localidad['Departamento']), 0, 0);
         $pdf->Ln();
         ////////////////////////diagnostico //////////////////
-        //  $pdf->Rect(10, 94, 190, 20, 'D');
+
         $pdf->SetFont('Arial', 'B', 12);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Cell(0, 7, iconv('UTF-8', 'Windows-1252', 'Diagnóstico'), 0, 1, 'L', true);
@@ -294,7 +290,7 @@ class Ficha
         $pdf->Cell(80, 10,  iconv('UTF-8', 'Windows-1252', 'Enfermedades Asociadas: ') .  iconv('UTF-8', 'Windows-1252', $datosFicha['enfermeasoc']), 0, 0);
         $pdf->Ln();
         ///////////////////////////////Laboratorio //////////////////
-        //  $pdf->Rect(10, 148, 190, 20, 'D');
+
         $pdf->SetFont('Arial', 'B', 12);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Cell(0, 7, iconv('UTF-8', 'Windows-1252', 'Laboratorio'), 0, 1, 'L', true);
@@ -332,7 +328,7 @@ class Ficha
                     $pdf->Cell(60, 6, iconv('UTF-8', 'Windows-1252', $familiar['parentezco']), 1, 1, 'L');
                 }
             }
-           
+
 
             $pdf->Ln(6);
         } else if (empty($datosFicha['grupofam'])) {
@@ -344,7 +340,7 @@ class Ficha
         //////////////////////Medidas a observar//////////////////////////
         $pdf->SetFont('Arial', 'B', 12);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Cell(0, 7, iconv('UTF-8', 'Windows-1252', 'Medidas a Observar'), 0, 1, 'L', true);
+        $pdf->Cell(0, 7, iconv('UTF-8', 'Windows-1252', 'Observaciones'), 0, 1, 'L', true);
         if (!empty($datosFicha['observaciones'])) {
             $pdf->SetFont('Arial', '', 10);
             $pdf->Cell(190, 20, iconv('UTF-8', 'Windows-1252', $datosFicha['observaciones']), 0, 0);
@@ -355,7 +351,7 @@ class Ficha
             $pdf->Cell(190, 20, iconv('UTF-8', 'Windows-1252', 'No registra observaciones'), 0, 0);
         }
         //$pdf->SetFont('Medico','',14);
-        //$pdf->SetFont('Arial','I',8);
+
 
         $pdf->SetFont('Arial', 'I', 8);
         $pdf->SetY(-28);
@@ -374,7 +370,7 @@ class Ficha
         $semana = $this->calcularSemanaEpidemiologica($datosFicha['fechanot']);
         $fechanac = date('d/m/Y', strtotime($datosFicha['fechanac']));
         $fechadiag = date('d/m/Y', strtotime($datosFicha['fechadiag']));
-        $aniodiag= date('Y', strtotime($datosFicha['fechadiag']));
+        $aniodiag = date('Y', strtotime($datosFicha['fechadiag']));
         $fechalab = date('d/m/Y', strtotime($datosFicha['fechaestrac']));
         $nombre = $datosFicha['nombre'] . '  ' . $datosFicha['apellido'];
         //$informa = $this->tablaUser->findById($datosFicha['fechadiag']);
@@ -389,8 +385,7 @@ class Ficha
         if (!empty($datosFicha['grupofam'])) {
             $familiares = json_decode($json, true);
         }
-        //echo($numFamiliares);
-        //var_dump($familiares);die;
+
         $usuario = $this->authentication->getUser();
 
         $quienImprime = $usuario['nombre'] . ' ' . $usuario['apellido'];
@@ -412,12 +407,12 @@ class Ficha
         $pdf->Cell(32, 10, 'Fecha: ' . $fecha, 0, 0);
         $pdf->Ln(10);
         $pdf->MultiCell(0, 6, iconv('UTF-8', 'Windows-1252', 'Por la presente se deja constancia que la/el paciente ')
-        .iconv('UTF-8', 'Windows-1252', $nombre).' DNI: ' .  $datosFicha['dni'].' Fecha de nac.: ' . $fechanac . 
-        iconv('UTF-8', 'Windows-1252', ' tiene enfermedad celíaca diagnosticada en el año ').$aniodiag, 0, 'J', 0);
-          $pdf->Ln(6);
-       
+            . iconv('UTF-8', 'Windows-1252', $nombre) . ' DNI: ' .  $datosFicha['dni'] . ' Fecha de nac.: ' . $fechanac .
+            iconv('UTF-8', 'Windows-1252', ' tiene enfermedad celíaca diagnosticada en el año ') . $aniodiag, 0, 'J', 0);
+        $pdf->Ln(6);
+
         ////////////////////////diagnostico //////////////////
-        
+
         //  $pdf->Rect(10, 94, 190, 20, 'D');
         $pdf->SetFont('Arial', 'B', 12);
         $pdf->SetTextColor(0, 0, 0);
@@ -429,26 +424,26 @@ class Ficha
         $pdf->SetTextColor(0, 0, 0);
         $pdf->SetFont('Arial', '', 10);
         $pdf->Ln(8);
-        $pdf->Cell(100, 10, iconv('UTF-8', 'Windows-1252', 'Serología: ') , 0, 0);
+        $pdf->Cell(100, 10, iconv('UTF-8', 'Windows-1252', 'Serología: '), 0, 0);
         $pdf->Ln(8);
         $pdf->Cell(49, 10,  iconv('UTF-8', 'Windows-1252', 'IgA Sérica Total: ') . $datosFicha['iga'], 0, 0);
         $pdf->Cell(49, 10,  iconv('UTF-8', 'Windows-1252', 'Anticuerpo ATG IgA: ') . $datosFicha['atgiga'], 0, 0);
         $pdf->Cell(50, 10,  iconv('UTF-8', 'Windows-1252', 'Anticuerpo ATG IgG: ') . $datosFicha['IgGPDG'], 0, 0);
         $pdf->Cell(50, 10,  iconv('UTF-8', 'Windows-1252', 'Anticuerpo ATG IgG: ') . $datosFicha['EMA'], 0, 0);
         $pdf->Ln();
-        $pdf->Cell(100, 10, iconv('UTF-8', 'Windows-1252', 'Biópsia: ') , 0, 0);
+        $pdf->Cell(100, 10, iconv('UTF-8', 'Windows-1252', 'Biópsia: '), 0, 0);
         $pdf->Ln(8);
         $pdf->Cell(49, 10, iconv('UTF-8', 'Windows-1252', 'Biopsia: ') .  $datosFicha['biopsia'], 0, 0);
         $pdf->Cell(50, 10,  iconv('UTF-8', 'Windows-1252', 'Endoscopía: ') . $datosFicha['endoscopia'], 0, 0);
         $pdf->Cell(49, 10,  iconv('UTF-8', 'Windows-1252', 'Grado: ') . $datosFicha['grados'], 0, 0);
         $pdf->Cell(49, 10,  iconv('UTF-8', 'Windows-1252', 'Protocolo Nº: ') . $datosFicha['protocolo'], 0, 0);
         $pdf->Ln();
-        
-       
 
-        
 
-        $pdf->Output(('COnstancia'.$datosFicha[4] . $datosFicha[5]), 'I');
+
+
+
+        $pdf->Output(('COnstancia' . $datosFicha[4] . $datosFicha[5]), 'I');
     }
 
 
