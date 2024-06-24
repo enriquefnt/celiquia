@@ -56,7 +56,7 @@ class Login
 	{
 		$title = 'Inicio';
 
-		$imagen = '/imagenes/cueto.jpg';
+		$imagen = '/imagenes/cartel.png';
 		$pdf = '/imagenes/Instructivo.pdf';
 
 

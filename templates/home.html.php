@@ -47,7 +47,7 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <h6 class="text-uppercase fw-bold mb-4"><i class="fas fa-gem me-3 text-primary"></i>Contacto</h6>
           <p><i class="fas fa-home me-3 text-secondary"></i> Belgrano 1349 -1º piso - Salta Capital - CP 4400</p>
-          <p><i class="fas fa-envelope me-3 text-secondary"></i>secretariadenutricion@salta.gov.ar </p>
+          <p><i class="fas fa-envelope me-3 text-secondary"></i>secretariadenutricion@salta.gob.ar </p>
           <p><i class="fas fa-phone me-3 text-secondary"></i> 0387-4370128/127 <br> &nbsp &nbsp &nbsp &nbsp 0387-152458570</p>
           <p><i class="fas fa-print me-3 text-secondary"></i> 0387-4320695</p>
         </div>
