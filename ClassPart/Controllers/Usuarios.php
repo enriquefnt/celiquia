@@ -74,6 +74,8 @@ class Usuarios
 
 
 		$Usuario = $_POST['Usuario'];
+		if(isset($_POST['Usuario']['id_usuario'])){$Usuario['nombre']=$_POST['Usuario']['id_usuario'];}
+		else {$Usuario['nombre']=NULL;}
 		$Usuario['nombre'] = ltrim(ucwords(strtolower($Usuario['nombre'])));
 		$Usuario['apellido'] = ltrim(ucwords(strtolower($Usuario['apellido'])));
 		$Usuario['email'] = ltrim(strtolower($Usuario['email']));

@@ -109,7 +109,19 @@ class Ficha
         };
 
         $usuario = $this->authentication->getUser();
+
         $ficha = $_POST['ficha'];
+        if (isset($_POST['ficha']['idficha']) && !empty($_POST['ficha']['idficha'])) {
+            $ficha['idficha'] = $_POST['ficha']['idficha'];
+        } else {
+            // Asegúrate de no incluir 'id_usuario' si está vacío o no presente
+            unset($ficha['idficha']);
+        }
+
+
+
+
+
         $array_nombre = explode(' ', $ficha['nombre']);
         $array_nombre = array_map('ucfirst', $array_nombre);
         $ficha['nombre'] = ltrim(implode(' ', $array_nombre));
