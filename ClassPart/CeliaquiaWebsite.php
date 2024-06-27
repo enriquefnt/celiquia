@@ -16,6 +16,8 @@ public function __construct() {
 
 
 $pdo = new \PDO('mysql:host=212.1.210.73;dbname=saltaped_celiaquia;charset=utf8mb4', 'saltaped_userceliaquia', '1XS8I8nu5NXl');
+//$pdo = new \PDO('mysql:host=172.17.40.105;dbname=saltaped_celiaquia;charset=utf8mb4', 'usuarioRegistro', 'Usuario333');
+$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 	
 	$this->tablaFichas = new \ClassGrl\DataTables($pdo,'ficha', 'idficha');	

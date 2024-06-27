@@ -111,16 +111,12 @@ class Ficha
         $usuario = $this->authentication->getUser();
 
         $ficha = $_POST['ficha'];
-        if (isset($_POST['ficha']['idficha']) && !empty($_POST['ficha']['idficha'])) {
-            $ficha['idficha'] = $_POST['ficha']['idficha'];
-        } else {
-            // Asegúrate de no incluir 'id_usuario' si está vacío o no presente
-            unset($ficha['idficha']);
-        }
-
-
-
-
+        // if (isset($_POST['ficha']['idficha']) && !empty($_POST['ficha']['idficha'])) {
+        //     $ficha['idficha'] = $_POST['ficha']['idficha'];
+        // } else {
+        //     // Asegúrate de no incluir 'id_usuario' si está vacío o no presente
+        //     unset($ficha['idficha']);
+        // }
 
         $array_nombre = explode(' ', $ficha['nombre']);
         $array_nombre = array_map('ucfirst', $array_nombre);
@@ -458,6 +454,15 @@ class Ficha
         $pdf->Output(('COnstancia' . $datosFicha[4] . $datosFicha[5]), 'I');
     }
 
+    public function cleanArray($data)
+    {
+        foreach ($data as $key => $value) {
+            if (empty($value)) {
+                unset($data[$key]);
+            }
+        }
+        return $data;
+    }
 
 
     public function calcularEdad($fechaNacimiento, $fechaActual)
