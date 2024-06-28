@@ -23,6 +23,7 @@ endif;
     </legend>
 
     <form onkeydown="return event.key != 'Enter';" class="row g-3" action="" method="post" id='formulario' autocomplete="off">
+      <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
       <input type="hidden" name="Usuario[id_usuario]" id="id_usuario" value=<?= $datosUser['id_usuario'] ?? '' ?>>
 
       <div class="col-sm-6">
