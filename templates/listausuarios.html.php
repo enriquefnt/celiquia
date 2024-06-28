@@ -1,6 +1,6 @@
 
 
-<<div class="container mt-4">
+<div class="container mt-4">
   <table id="example" class="table table-bordered display compact">
     <thead >
   <tr >

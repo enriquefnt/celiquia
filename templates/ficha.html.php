@@ -5,7 +5,7 @@
     </legend>
     <fieldset class="border p-2">
         <form onkeydown="return event.key != 'Enter';" class="row g-3" action="" id="interFormulario" method="post" autocomplete="off">
-
+        <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
             <input type="hidden" name="ficha[idficha]" id="idficha" value=<?= $datosInter['idficha'] ?? '' ?>>
 
             <legend class="bg-secondary w-100 p-2 mb-0" style="font-size: 0.95rem; font-weight: bold;">Declarante

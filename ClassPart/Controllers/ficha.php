@@ -33,11 +33,29 @@ class Ficha
         $this->authentication = $authentication;
     }
 
+    private function generate_csrf_token()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return $_SESSION['csrf_token'];
+    }
 
+    // Método para validar el token CSRF
+    private function validate_csrf_token($token)
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        return $token === $_SESSION['csrf_token'];
+    }
 
     public function ficha($Idint = null)
     {
-
+        $csrf_token = $this->generate_csrf_token();
         $instituciones = $this->tablaInsti->findAll();
 
         foreach ($instituciones as $institucion) {
@@ -72,6 +90,7 @@ class Ficha
                 'template' => 'ficha.html.php',
                 'title' => $title,
                 'variables' => [
+                    'csrf_token' => $csrf_token,
                     'data_insti'  =>   $data_insti ?? [],
                     'dataLocalidad'  =>   $dataLocalidad ?? [],
                     'datosFicha' => $datosFicha ?? [],
@@ -89,6 +108,7 @@ class Ficha
             'template' => 'ficha.html.php',
             'title' => $title,
             'variables' => [
+                'csrf_token' => $csrf_token,
                 'data_insti'  =>   $data_insti ?? [],
                 'dataLocalidad'  =>   $dataLocalidad ?? []
             ]
@@ -97,6 +117,11 @@ class Ficha
 
     public function fichaSubmit()
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || !$this->validate_csrf_token($_POST['csrf_token'])) {
+                die('CSRF token mismatch');
+            }
+        }
         $ficharepe = $this->tablaFichas->find('dni', $_POST['ficha']['dni'])[0] ?? [];
         if ($ficharep = count($this->tablaFichas->find('dni', $_POST['ficha']['dni'])) > 0 && $_POST['ficha']['dni'] > 0) {
             return [
