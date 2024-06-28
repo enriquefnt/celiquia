@@ -7,7 +7,9 @@ class Authentication
 
 	public function __construct(private DataTables $users, private string $usernameColumn, private string $passwordColumn)
 	{
-		session_start();
+		if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 	}
 
 
