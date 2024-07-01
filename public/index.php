@@ -7,7 +7,7 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-i
 // Configuración de cookies de sesión
 if (session_status() == PHP_SESSION_NONE) {
     session_set_cookie_params([
-        'lifetime' => 86400, // 1 día de expiración
+        'lifetime' => 21600, // 6 horas de expiración
         'path' => '/',
       //  'domain' => 'celiquia.v.je',
         'secure' => true, // Asegúrate de que la cookie solo se envíe a través de HTTPS
