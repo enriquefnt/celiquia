@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_set_cookie_params([
         'lifetime' => 86400, // 1 día de expiración
         'path' => '/',
-        'domain' => 'tudominio.com',
+      //  'domain' => 'celiquia.v.je',
         'secure' => true, // Asegúrate de que la cookie solo se envíe a través de HTTPS
         'httponly' => true, // Marca HttpOnly
         'samesite' => 'Strict' // Configura el atributo SameSite
